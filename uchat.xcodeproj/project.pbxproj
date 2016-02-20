@@ -1,0 +1,349 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FEA7BDA91C78750F002A6535 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA7BDA81C78750F002A6535 /* AppDelegate.swift */; };
+		FEA7BDAB1C78750F002A6535 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA7BDAA1C78750F002A6535 /* ViewController.swift */; };
+		FEA7BDAE1C78750F002A6535 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEA7BDAC1C78750F002A6535 /* Main.storyboard */; };
+		FEA7BDB01C78750F002A6535 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEA7BDAF1C78750F002A6535 /* Assets.xcassets */; };
+		FEA7BDB31C78750F002A6535 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEA7BDB11C78750F002A6535 /* LaunchScreen.storyboard */; };
+		FEA7BDC21C787C25002A6535 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA7BDC01C787C25002A6535 /* Bolts.framework */; };
+		FEA7BDC31C787C25002A6535 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA7BDC11C787C25002A6535 /* Parse.framework */; };
+		FEA7BDC51C787C72002A6535 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA7BDC41C787C72002A6535 /* SystemConfiguration.framework */; };
+		FEA7BDC71C787C8A002A6535 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA7BDC61C787C8A002A6535 /* AudioToolbox.framework */; };
+		FEA7BDC91C788047002A6535 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA7BDC81C788047002A6535 /* libsqlite3.tbd */; };
+		FEA7BDCB1C788069002A6535 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA7BDCA1C788069002A6535 /* libz.tbd */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		FEA7BDA51C78750F002A6535 /* uchat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uchat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FEA7BDA81C78750F002A6535 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FEA7BDAA1C78750F002A6535 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FEA7BDAD1C78750F002A6535 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FEA7BDAF1C78750F002A6535 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FEA7BDB21C78750F002A6535 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FEA7BDB41C78750F002A6535 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FEA7BDC01C787C25002A6535 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "Supporting Files/Frameworks/Bolts.framework"; sourceTree = "<group>"; };
+		FEA7BDC11C787C25002A6535 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "Supporting Files/Frameworks/Parse.framework"; sourceTree = "<group>"; };
+		FEA7BDC41C787C72002A6535 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		FEA7BDC61C787C8A002A6535 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		FEA7BDC81C788047002A6535 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		FEA7BDCA1C788069002A6535 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FEA7BDA21C78750F002A6535 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FEA7BDCB1C788069002A6535 /* libz.tbd in Frameworks */,
+				FEA7BDC91C788047002A6535 /* libsqlite3.tbd in Frameworks */,
+				FEA7BDC71C787C8A002A6535 /* AudioToolbox.framework in Frameworks */,
+				FEA7BDC51C787C72002A6535 /* SystemConfiguration.framework in Frameworks */,
+				FEA7BDC31C787C25002A6535 /* Parse.framework in Frameworks */,
+				FEA7BDC21C787C25002A6535 /* Bolts.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FEA7BD9C1C78750F002A6535 = {
+			isa = PBXGroup;
+			children = (
+				FEA7BDA71C78750F002A6535 /* uchat */,
+				FEA7BDA61C78750F002A6535 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FEA7BDA61C78750F002A6535 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FEA7BDA51C78750F002A6535 /* uchat.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FEA7BDA71C78750F002A6535 /* uchat */ = {
+			isa = PBXGroup;
+			children = (
+				FEA7BDA81C78750F002A6535 /* AppDelegate.swift */,
+				FEA7BDAA1C78750F002A6535 /* ViewController.swift */,
+				FEA7BDAC1C78750F002A6535 /* Main.storyboard */,
+				FEA7BDAF1C78750F002A6535 /* Assets.xcassets */,
+				FEA7BDB11C78750F002A6535 /* LaunchScreen.storyboard */,
+				FEA7BDB41C78750F002A6535 /* Info.plist */,
+				FEA7BDBF1C78796A002A6535 /* Supporting Files */,
+			);
+			path = uchat;
+			sourceTree = "<group>";
+		};
+		FEA7BDBE1C787962002A6535 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FEA7BDCA1C788069002A6535 /* libz.tbd */,
+				FEA7BDC81C788047002A6535 /* libsqlite3.tbd */,
+				FEA7BDC61C787C8A002A6535 /* AudioToolbox.framework */,
+				FEA7BDC41C787C72002A6535 /* SystemConfiguration.framework */,
+				FEA7BDC01C787C25002A6535 /* Bolts.framework */,
+				FEA7BDC11C787C25002A6535 /* Parse.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FEA7BDBF1C78796A002A6535 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FEA7BDBE1C787962002A6535 /* Frameworks */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FEA7BDA41C78750F002A6535 /* uchat */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FEA7BDB71C78750F002A6535 /* Build configuration list for PBXNativeTarget "uchat" */;
+			buildPhases = (
+				FEA7BDA11C78750F002A6535 /* Sources */,
+				FEA7BDA21C78750F002A6535 /* Frameworks */,
+				FEA7BDA31C78750F002A6535 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = uchat;
+			productName = uchat;
+			productReference = FEA7BDA51C78750F002A6535 /* uchat.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FEA7BD9D1C78750F002A6535 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Wojtek Materka";
+				TargetAttributes = {
+					FEA7BDA41C78750F002A6535 = {
+						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 8VHSCMB438;
+					};
+				};
+			};
+			buildConfigurationList = FEA7BDA01C78750F002A6535 /* Build configuration list for PBXProject "uchat" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FEA7BD9C1C78750F002A6535;
+			productRefGroup = FEA7BDA61C78750F002A6535 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FEA7BDA41C78750F002A6535 /* uchat */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FEA7BDA31C78750F002A6535 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FEA7BDB31C78750F002A6535 /* LaunchScreen.storyboard in Resources */,
+				FEA7BDB01C78750F002A6535 /* Assets.xcassets in Resources */,
+				FEA7BDAE1C78750F002A6535 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FEA7BDA11C78750F002A6535 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FEA7BDAB1C78750F002A6535 /* ViewController.swift in Sources */,
+				FEA7BDA91C78750F002A6535 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		FEA7BDAC1C78750F002A6535 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FEA7BDAD1C78750F002A6535 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		FEA7BDB11C78750F002A6535 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FEA7BDB21C78750F002A6535 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FEA7BDB51C78750F002A6535 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FEA7BDB61C78750F002A6535 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FEA7BDB81C78750F002A6535 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/uchat/Supporting",
+					Files/Frameworks,
+					"$(PROJECT_DIR)/uchat/Supporting",
+					Files/Frameworks,
+				);
+				INFOPLIST_FILE = uchat/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wojtekmaterka.uchat;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		FEA7BDB91C78750F002A6535 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/uchat/Supporting",
+					Files/Frameworks,
+					"$(PROJECT_DIR)/uchat/Supporting",
+					Files/Frameworks,
+				);
+				INFOPLIST_FILE = uchat/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wojtekmaterka.uchat;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FEA7BDA01C78750F002A6535 /* Build configuration list for PBXProject "uchat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FEA7BDB51C78750F002A6535 /* Debug */,
+				FEA7BDB61C78750F002A6535 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FEA7BDB71C78750F002A6535 /* Build configuration list for PBXNativeTarget "uchat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FEA7BDB81C78750F002A6535 /* Debug */,
+				FEA7BDB91C78750F002A6535 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FEA7BD9D1C78750F002A6535 /* Project object */;
+}
