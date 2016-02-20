@@ -13,19 +13,28 @@ import Parse
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        //Load env variables
+        let envDict = NSProcessInfo.processInfo().environment
+        
         // Enable storing and querying data from Local Datastore.
         // Remove this line if you don't want to use Local Datastore features or want to use cachePolicy.
         Parse.enableLocalDatastore()
         
         // Initialize Parse
         Parse.initializeWithConfiguration(ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) -> Void in
-            configuration.applicationId = "uchatapp"
-            configuration.clientKey = "8022802"
-            configuration.server = "https://intense-river-39239.herokuapp.com/parse"
+            configuration.applicationId = envDict["PARSE_APP_ID"]! as String
+            configuration.clientKey = envDict["PARSE_CLIENT_KEY"]! as String
+            configuration.server = envDict["PARSE_SERVER"]! as String
         }))
+        
+        print(envDict["PARSE_APP_ID"]!)
+        print(envDict["PARSE_CLIENT_KEY"]!)
+        print(envDict["PARSE_SERVER"]!)
         
         
         PFUser.enableAutomaticUser()
