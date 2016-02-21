@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "AA1EDCBFC606D8DB30A0887C8EF8CC6504516E29",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "AA1EDCBFC606D8DB30A0887C8EF8CC6504516E29" : 0,
+    "CD1557C3AE966BEDF3490D85F9712687801B146C" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "A541C41A-2E30-43D2-9D70-B6F781363300",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "AA1EDCBFC606D8DB30A0887C8EF8CC6504516E29" : "uchatclient\/",
+    "CD1557C3AE966BEDF3490D85F9712687801B146C" : "uchatclient\/XCGLogger\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "uchat",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "uchat.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:wosheesh\/uchatclient.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "AA1EDCBFC606D8DB30A0887C8EF8CC6504516E29"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/DaveWoodCom\/XCGLogger.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "CD1557C3AE966BEDF3490D85F9712687801B146C"
+    }
+  ]
+}

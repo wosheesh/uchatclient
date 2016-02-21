@@ -9,6 +9,7 @@
 import Foundation
 
 struct UdacityUser {
+    
     static var udacityKey : String? {
         willSet(userUdacityKey) {
             print("setting user udacity Key to \(userUdacityKey)")
@@ -21,11 +22,7 @@ struct UdacityUser {
     }
     static var firstName : String?
     static var lastName : String?
-    static var mapString : String?
-    static var mediaURL : String?
-    static var lat: Double? = nil
-    static var long: Double? = nil
-    static var objectID: String?
+    static var channels: [Channel]?
     
     init(udacityKey: String, firstName: String, lastName: String) {
         UdacityUser.udacityKey = udacityKey
@@ -58,11 +55,7 @@ struct UdacityUser {
         UdacityUser.udacityKey = nil
         UdacityUser.firstName = nil
         UdacityUser.lastName = nil
-        UdacityUser.mapString = nil
-        UdacityUser.mediaURL = nil
-        UdacityUser.lat = nil
-        UdacityUser.long = nil
-        UdacityUser.objectID = nil
+
     }
     
     

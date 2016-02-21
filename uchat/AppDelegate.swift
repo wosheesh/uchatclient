@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import XCGLogger
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,6 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        //XCLogger
+        let log = XCGLogger.defaultInstance()
+        log.setup(.Debug, showThreadName: true, showLogLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: "path/to/file", fileLogLevel: .Debug)
         
         //Load env variables
         let envDict = NSProcessInfo.processInfo().environment
@@ -56,17 +61,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
-        
         print("Parse initialized ✅")
         
         // Register for notifications
-        
         let notificationTypes: UIUserNotificationType = [.Alert, .Badge, .Sound]
         let notificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: nil)
         
         UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
         
         UIApplication.sharedApplication().registerForRemoteNotifications()
+        
+        
+
         
         return true
     }

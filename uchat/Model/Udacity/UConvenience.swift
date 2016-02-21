@@ -14,9 +14,9 @@ extension UClient {
     /// Authenticate with Udacity API with email and password, pull user data and update UserInformation
     func authenticateWithUserCredentials(email: String, password: String, completionHandler: (success: Bool, errorString: String?) -> Void) {
         if email.isEmpty {
-            completionHandler(success: false, errorString: "Email is Empty")
+            completionHandler(success: false, errorString: "Please enter your email.")
         } else if password.isEmpty {
-            completionHandler(success: false, errorString: "Password is Empty")
+            completionHandler(success: false, errorString: "Please enter your password.")
         } else {
             
             getSessionID(email, password: password, access_token: nil) { (success, sessionID, userID, errorString) in

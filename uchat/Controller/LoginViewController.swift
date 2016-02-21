@@ -7,7 +7,7 @@
 //
 
 // TODO: add app Transport security for Udacity servers
-// TODO: Sigin In
+// TODO: verify channels
 
 import UIKit
 
@@ -93,7 +93,7 @@ class LoginViewController: UIViewController {
             
             self.messageFrame.removeFromSuperview()
             self.setUIEnabled(enabled: false)
-            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("TabsController") as! UITabBarController
+            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("ChatNav") as! UINavigationController
             self.presentViewController(controller, animated: true, completion: nil)
         })
     }
@@ -136,7 +136,6 @@ class LoginViewController: UIViewController {
     func openSafariWithURLString(urlString: String) {
         let app = UIApplication.sharedApplication()
         
-        /* check if they left http(s) prefix - many students don't and safari fails to open */
         if urlString.hasPrefix("http://") || urlString.hasPrefix("https://") {
             app.openURL(NSURL(string: urlString)!)
         } else {
