@@ -1,25 +1,127 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="HhH-Fe-e37">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Login View Controller-->
+        <scene sceneID="dr7-7p-i8Y">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Login" id="HhH-Fe-e37" customClass="LoginViewController" customModule="On_the_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="M0u-Et-GeP"/>
+                        <viewControllerLayoutGuide type="bottom" id="PLj-gX-7Hp"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="cY0-Qq-mQO">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vYN-C7-yhp" customClass="LoginTextField" customModule="On_the_Map" customModuleProvider="target">
+                                <rect key="frame" x="20" y="195" width="560" height="30"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="emailAddress"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login to Udacity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8wX-bX-ko0">
+                                <rect key="frame" x="219" y="154" width="162" height="26"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="22"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aUg-B7-A7W" customClass="UdacityLoginButton" customModule="On_the_Map" customModuleProvider="target">
+                                <rect key="frame" x="20" y="275" width="560" height="36"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
+                                <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="loginButtonTouch:" destination="HhH-Fe-e37" eventType="touchUpInside" id="7aR-XZ-nQ9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SYQ-xJ-rn9">
+                                <rect key="frame" x="158" y="326" width="285" height="36"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
+                                <state key="normal" title="Don't have an account? Sign Up">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="signUpButtonTouchUp:" destination="HhH-Fe-e37" eventType="touchUpInside" id="OqE-S3-BEH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zma-N5-m9V" customClass="FBLoginButton" customModule="On_the_Map" customModuleProvider="target">
+                                <rect key="frame" x="20" y="544" width="560" height="36"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
+                                <state key="normal" title="Login with Facebook"/>
+                                <connections>
+                                    <action selector="loginWithFBButtonTouchUp:" destination="HhH-Fe-e37" eventType="touchUpInside" id="V3I-Pn-cy5"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="VuZ-gw-Q1l" customClass="LoginTextField" customModule="On_the_Map" customModuleProvider="target">
+                                <rect key="frame" x="20" y="235" width="560" height="30"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="no" returnKeyType="go" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="HhH-Fe-e37" id="QDX-F7-fFs"/>
+                                </connections>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Udacity U" translatesAutoresizingMaskIntoConstraints="NO" id="OY9-rH-0fJ">
+                                <rect key="frame" x="250" y="39" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="Mt1-S9-CAH"/>
+                                    <constraint firstAttribute="width" constant="100" id="YO2-C9-ROf"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.92941176469999998" green="0.48627450979999998" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="SYQ-xJ-rn9" firstAttribute="top" secondItem="aUg-B7-A7W" secondAttribute="bottom" constant="15" id="3He-OR-5w0"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="VuZ-gw-Q1l" secondAttribute="leading" id="6HC-YR-DAI"/>
+                            <constraint firstItem="VuZ-gw-Q1l" firstAttribute="top" secondItem="vYN-C7-yhp" secondAttribute="bottom" constant="10" id="6fL-XC-15D"/>
+                            <constraint firstItem="OY9-rH-0fJ" firstAttribute="centerX" secondItem="cY0-Qq-mQO" secondAttribute="centerX" id="Asz-P1-4ei"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="aUg-B7-A7W" secondAttribute="trailing" id="Dao-c7-bUd"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="aUg-B7-A7W" secondAttribute="leading" id="DdS-O0-Cce"/>
+                            <constraint firstItem="vYN-C7-yhp" firstAttribute="top" secondItem="8wX-bX-ko0" secondAttribute="bottom" constant="15" id="KuE-aP-eBc"/>
+                            <constraint firstItem="8wX-bX-ko0" firstAttribute="top" secondItem="OY9-rH-0fJ" secondAttribute="bottom" constant="15" id="MJu-jD-daP"/>
+                            <constraint firstItem="SYQ-xJ-rn9" firstAttribute="centerX" secondItem="cY0-Qq-mQO" secondAttribute="centerX" id="MlY-6d-Mkp"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="zma-N5-m9V" secondAttribute="leading" id="YJd-ue-ytQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="VuZ-gw-Q1l" secondAttribute="trailing" id="YP4-ea-Biq"/>
+                            <constraint firstItem="VuZ-gw-Q1l" firstAttribute="centerX" secondItem="cY0-Qq-mQO" secondAttribute="centerX" id="dVF-cV-mOX"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="vYN-C7-yhp" secondAttribute="leading" id="dlc-o7-kj9"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vYN-C7-yhp" secondAttribute="trailing" id="jyp-zq-SLD"/>
+                            <constraint firstItem="zma-N5-m9V" firstAttribute="centerX" secondItem="cY0-Qq-mQO" secondAttribute="centerX" id="kqa-uU-Nbn"/>
+                            <constraint firstItem="vYN-C7-yhp" firstAttribute="centerX" secondItem="cY0-Qq-mQO" secondAttribute="centerX" id="lhh-zI-Zbf"/>
+                            <constraint firstItem="aUg-B7-A7W" firstAttribute="centerX" secondItem="cY0-Qq-mQO" secondAttribute="centerX" id="rvn-mY-jKf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="zma-N5-m9V" secondAttribute="trailing" id="sIb-5C-a5w"/>
+                            <constraint firstItem="aUg-B7-A7W" firstAttribute="top" secondItem="VuZ-gw-Q1l" secondAttribute="bottom" constant="10" id="t0T-Zp-9aV"/>
+                            <constraint firstItem="8wX-bX-ko0" firstAttribute="centerX" secondItem="cY0-Qq-mQO" secondAttribute="centerX" id="tZo-O2-GNE"/>
+                            <constraint firstItem="PLj-gX-7Hp" firstAttribute="top" secondItem="zma-N5-m9V" secondAttribute="bottom" constant="20" id="xjM-79-KQh"/>
+                            <constraint firstItem="OY9-rH-0fJ" firstAttribute="top" secondItem="M0u-Et-GeP" secondAttribute="bottom" constant="19" id="xjj-vj-FU5"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="vYN-C7-yhp" id="gWi-rY-Zb2"/>
+                        <outlet property="loginButton" destination="aUg-B7-A7W" id="VgU-CD-bNX"/>
+                        <outlet property="loginToUdacityLabel" destination="8wX-bX-ko0" id="ehZ-6c-NQM"/>
+                        <outlet property="loginWithFBButton" destination="zma-N5-m9V" id="r6U-9z-Bkd"/>
+                        <outlet property="passwordTextField" destination="VuZ-gw-Q1l" id="DNL-5P-XKH"/>
+                        <outlet property="signupButton" destination="SYQ-xJ-rn9" id="wXH-BC-qzV"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f61-s3-7aM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="376" y="411"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Udacity U" width="32" height="32"/>
+    </resources>
 </document>

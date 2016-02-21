@@ -9,8 +9,12 @@
 /* Begin PBXBuildFile section */
 		FE28F34F1C78E92400E75BF8 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE28F34D1C78E92400E75BF8 /* Bolts.framework */; };
 		FE28F3501C78E92400E75BF8 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE28F34E1C78E92400E75BF8 /* Parse.framework */; };
+		FE28F3591C79A6DF00E75BF8 /* UFacebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28F3551C79A6DF00E75BF8 /* UFacebook.swift */; };
+		FE28F35A1C79A6DF00E75BF8 /* UClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28F3561C79A6DF00E75BF8 /* UClient.swift */; };
+		FE28F35B1C79A6DF00E75BF8 /* UConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28F3571C79A6DF00E75BF8 /* UConvenience.swift */; };
+		FE28F35C1C79A6DF00E75BF8 /* UConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28F3581C79A6DF00E75BF8 /* UConstants.swift */; };
+		FE28F35E1C79A70D00E75BF8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28F35D1C79A70D00E75BF8 /* LoginViewController.swift */; };
 		FEA7BDA91C78750F002A6535 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA7BDA81C78750F002A6535 /* AppDelegate.swift */; };
-		FEA7BDAB1C78750F002A6535 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA7BDAA1C78750F002A6535 /* ViewController.swift */; };
 		FEA7BDAE1C78750F002A6535 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEA7BDAC1C78750F002A6535 /* Main.storyboard */; };
 		FEA7BDB01C78750F002A6535 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEA7BDAF1C78750F002A6535 /* Assets.xcassets */; };
 		FEA7BDB31C78750F002A6535 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEA7BDB11C78750F002A6535 /* LaunchScreen.storyboard */; };
@@ -23,9 +27,13 @@
 /* Begin PBXFileReference section */
 		FE28F34D1C78E92400E75BF8 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "Supporting Files/Frameworks/Bolts.framework"; sourceTree = "<group>"; };
 		FE28F34E1C78E92400E75BF8 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "Supporting Files/Frameworks/Parse.framework"; sourceTree = "<group>"; };
+		FE28F3551C79A6DF00E75BF8 /* UFacebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UFacebook.swift; path = Model/Udacity/UFacebook.swift; sourceTree = "<group>"; };
+		FE28F3561C79A6DF00E75BF8 /* UClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UClient.swift; path = Model/Udacity/UClient.swift; sourceTree = "<group>"; };
+		FE28F3571C79A6DF00E75BF8 /* UConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UConvenience.swift; path = Model/Udacity/UConvenience.swift; sourceTree = "<group>"; };
+		FE28F3581C79A6DF00E75BF8 /* UConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UConstants.swift; path = Model/Udacity/UConstants.swift; sourceTree = "<group>"; };
+		FE28F35D1C79A70D00E75BF8 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Controller/LoginViewController.swift; sourceTree = "<group>"; };
 		FEA7BDA51C78750F002A6535 /* uchat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uchat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEA7BDA81C78750F002A6535 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FEA7BDAA1C78750F002A6535 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FEA7BDAD1C78750F002A6535 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FEA7BDAF1C78750F002A6535 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FEA7BDB21C78750F002A6535 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -53,6 +61,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FE28F3511C79A6AE00E75BF8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FE28F3541C79A6CA00E75BF8 /* Udacity */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		FE28F3521C79A6B400E75BF8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FE28F35D1C79A70D00E75BF8 /* LoginViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		FE28F3531C79A6BF00E75BF8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		FE28F3541C79A6CA00E75BF8 /* Udacity */ = {
+			isa = PBXGroup;
+			children = (
+				FE28F3551C79A6DF00E75BF8 /* UFacebook.swift */,
+				FE28F3561C79A6DF00E75BF8 /* UClient.swift */,
+				FE28F3571C79A6DF00E75BF8 /* UConvenience.swift */,
+				FE28F3581C79A6DF00E75BF8 /* UConstants.swift */,
+			);
+			name = Udacity;
+			sourceTree = "<group>";
+		};
 		FEA7BD9C1C78750F002A6535 = {
 			isa = PBXGroup;
 			children = (
@@ -72,8 +114,10 @@
 		FEA7BDA71C78750F002A6535 /* uchat */ = {
 			isa = PBXGroup;
 			children = (
+				FE28F3511C79A6AE00E75BF8 /* Model */,
+				FE28F3531C79A6BF00E75BF8 /* View */,
+				FE28F3521C79A6B400E75BF8 /* Controller */,
 				FEA7BDA81C78750F002A6535 /* AppDelegate.swift */,
-				FEA7BDAA1C78750F002A6535 /* ViewController.swift */,
 				FEA7BDAC1C78750F002A6535 /* Main.storyboard */,
 				FEA7BDAF1C78750F002A6535 /* Assets.xcassets */,
 				FEA7BDB11C78750F002A6535 /* LaunchScreen.storyboard */,
@@ -181,7 +225,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FEA7BDAB1C78750F002A6535 /* ViewController.swift in Sources */,
+				FE28F35E1C79A70D00E75BF8 /* LoginViewController.swift in Sources */,
+				FE28F35A1C79A6DF00E75BF8 /* UClient.swift in Sources */,
+				FE28F35B1C79A6DF00E75BF8 /* UConvenience.swift in Sources */,
+				FE28F35C1C79A6DF00E75BF8 /* UConstants.swift in Sources */,
+				FE28F3591C79A6DF00E75BF8 /* UFacebook.swift in Sources */,
 				FEA7BDA91C78750F002A6535 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
