@@ -9,7 +9,7 @@
 import UIKit
 import XCGLogger
 
-class ChatViewController: UIViewController {
+class ChatViewController: UITableViewController {
     
     // MARK: - 🎛 Properties
     

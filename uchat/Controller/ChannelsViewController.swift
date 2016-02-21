@@ -37,8 +37,9 @@ class ChannelsViewController: UITableViewController {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 
                 let channel = channels[indexPath.row]
-                let controller = (segue.destinationViewController as! UINavigationController).topViewController as! ChatViewController
-                
+                let controller = segue.destinationViewController as! ChatViewController
+                controller.channel = channel
+                controller.navigationItem.leftItemsSupplementBackButton = true
                 
             }
         }

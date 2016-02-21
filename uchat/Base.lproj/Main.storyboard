@@ -123,21 +123,21 @@
         <!--Channels-->
         <scene sceneID="iIr-J7-WHM">
             <objects>
-                <tableViewController storyboardIdentifier="Channels" title="Channels" id="k9N-UK-h7P" customClass="ChannelsViewController" customModule="uchat" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ChannelsViewController" title="Channels" id="k9N-UK-h7P" customClass="ChannelsViewController" customModule="uchat" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="VQu-6L-6Un">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="channelCell" id="dzl-l3-bvF">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="channelCell" id="dzl-l3-bvF">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dzl-l3-bvF" id="rxm-g0-egG">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="ZoD-qg-pqD" kind="showDetail" identifier="enterChannel" id="e9S-Ij-N0a"/>
+                                    <segue destination="UvL-N5-OQh" kind="show" id="Mgu-K6-SSf"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -150,25 +150,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kQc-ot-ojU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1771" y="642"/>
-        </scene>
-        <!--Split View Controller-->
-        <scene sceneID="yM2-Bo-hN9">
-            <objects>
-                <splitViewController id="Jud-Az-P8Z" sceneMemberID="viewController">
-                    <connections>
-                        <segue destination="CzI-7o-YWd" kind="relationship" relationship="masterViewController" id="A30-B9-beS"/>
-                        <segue destination="ZoD-qg-pqD" kind="relationship" relationship="detailViewController" id="DxP-ju-ShV"/>
-                    </connections>
-                </splitViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iiQ-pH-qoS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-13" y="1056"/>
+            <point key="canvasLocation" x="1099" y="522"/>
         </scene>
         <!--Chat-->
         <scene sceneID="n31-hg-4WV">
             <objects>
-                <tableViewController title="Chat" id="UvL-N5-OQh" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ChatViewController" title="Chat" id="UvL-N5-OQh" customClass="ChatViewController" customModule="uchat" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="PTD-tQ-kht">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -192,12 +179,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jao-cG-C2b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1771" y="1464"/>
+            <point key="canvasLocation" x="1775" y="522"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Channels-->
         <scene sceneID="BOH-JR-Obn">
             <objects>
-                <navigationController storyboardIdentifier="ChatNav" automaticallyAdjustsScrollViewInsets="NO" id="CzI-7o-YWd" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ChatNavController" title="Channels" automaticallyAdjustsScrollViewInsets="NO" id="CzI-7o-YWd" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="MDJ-DL-mDn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -210,31 +197,10 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pnK-Jd-m9F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="816" y="642"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="KNs-Qu-VtB">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZoD-qg-pqD" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="v6F-3S-AEC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="UvL-N5-OQh" kind="relationship" relationship="rootViewController" id="VqR-bQ-5sp"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ggd-MI-mUl" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="816" y="1464"/>
+            <point key="canvasLocation" x="400" y="522"/>
         </scene>
     </scenes>
     <resources>
         <image name="Udacity U" width="256" height="256"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="e9S-Ij-N0a"/>
-    </inferredMetricsTieBreakers>
 </document>
