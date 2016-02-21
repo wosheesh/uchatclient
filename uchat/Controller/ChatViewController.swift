@@ -9,17 +9,20 @@
 import UIKit
 import XCGLogger
 
-class ChatViewController: UITableViewController {
+class ChatViewController: UIViewController {
     
     // MARK: - 🎛 Properties
     
     var channel: Channel!
     
+    @IBOutlet weak var chatWall: UITableView!
+    @IBOutlet weak var chatTextField: UITextField!
+    
     // MARK: - 🔄 Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        log.info("Selected channel: \(channel.name)")
+        log.info("Entered channel: \(channel.name)")
     }
     
     override func viewWillAppear(animated: Bool) {
