@@ -8,6 +8,13 @@
 
 import UIKit
 import Parse
+import XCGLogger
+
+//XCLogger
+let log = XCGLogger.defaultInstance()
+
+//Load env variables
+let envDict = NSProcessInfo.processInfo().environment
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,8 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        //Load env variables
-        let envDict = NSProcessInfo.processInfo().environment
+        //XCLogger
+        log.setup(.Debug, showThreadName: true, showLogLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: "/Users/wmaterka/Documents/Code/iOS/uchat/uchatclient/logs/uchat.log", fileLogLevel: .Verbose)
+        
+        
         
         // Enable storing and querying data from Local Datastore.
         // Remove this line if you don't want to use Local Datastore features or want to use cachePolicy.
@@ -56,17 +65,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
-        
-        print("Parse initialized ✅")
+        log.info("Parse initialized ✅")
         
         // Register for notifications
-        
         let notificationTypes: UIUserNotificationType = [.Alert, .Badge, .Sound]
         let notificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: nil)
         
         UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
         
         UIApplication.sharedApplication().registerForRemoteNotifications()
+        
+        
+
         
         return true
     }
@@ -78,18 +88,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         PFPush.subscribeToChannelInBackground("") { (succeeded: Bool, error: NSError?) in
             if succeeded {
-                print("Successfully subscribed to push notifications on the broadcast channel. 📨 ✅ \n");
+                log.info("Successfully subscribed to push notifications on the broadcast channel. 📨 ✅ \n");
             } else {
-                print("🆘 📨 Failed to subscribe to push notifications on the broadcast channel with error = %@.\n", error)
+                log.error("🆘 📨 Failed to subscribe to push notifications on the broadcast channel with error = \(error)")
             }
         }
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
         if error.code == 3010 {
-            print("📵 📨 Push notifications are not supported in the iOS Simulator.\n")
+            log.warning("📵 📨 Push notifications are not supported in the iOS Simulator.\n")
         } else {
-            print("🆘 📨 application:didFailToRegisterForRemoteNotificationsWithError: %@\n", error)
+            log.error("🆘 📨 application:didFailToRegisterForRemoteNotificationsWithError: \(error)")
         }
     }
     

@@ -7,13 +7,13 @@
 //
 
 // TODO: add app Transport security for Udacity servers
-// TODO: Sigin In
+// TODO: verify channels
 
 import UIKit
 
 class LoginViewController: UIViewController {
     
-    // MARK: Properties
+    // MARK: - 🎛 Properties
     
     @IBOutlet weak var loginToUdacityLabel: UILabel!
     @IBOutlet weak var emailTextField: LoginTextField!
@@ -30,13 +30,20 @@ class LoginViewController: UIViewController {
     /* shared session */
     var session: NSURLSession!
     
-    // MARK: Life Cycle
+    // MARK: - 🔄 Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         /* Get the shared URL session */
         session = NSURLSession.sharedSession()
+        
+        // Debugging
+        
+        #if DEBUG
+            emailTextField.text = envDict["UDACITY_EMAIL"]
+            passwordTextField.text = envDict["UDACITY_PASS"]
+        #endif
         
     }
     
@@ -49,7 +56,7 @@ class LoginViewController: UIViewController {
         passwordTextField.delegate = self
     }
     
-    // MARK: Actions
+    // MARK: - 💥 Actions
     
     @IBAction func loginButtonTouch(sender: AnyObject) {
         self.setUIEnabled(enabled: false)
@@ -88,27 +95,7 @@ class LoginViewController: UIViewController {
         openSafariWithURLString("https://www.udacity.com/account/auth#!/signup")
     }
     
-    func completeLogin() {
-        dispatch_async(dispatch_get_main_queue(), {
-            
-            self.messageFrame.removeFromSuperview()
-            self.setUIEnabled(enabled: false)
-            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("TabsController") as! UITabBarController
-            self.presentViewController(controller, animated: true, completion: nil)
-        })
-    }
-    
-    func displayError(errorString: String?) {
-        dispatch_async(dispatch_get_main_queue(), {
-            
-            self.messageFrame.removeFromSuperview()
-            self.setUIEnabled(enabled: true)
-            if let errorString = errorString {
-                
-                Alerts().simpleAlert(self, message: errorString)
-            }
-        })
-    }
+    // MARK: - 💁 Convenience
     
     /* shows an activity indicator with a simple message */
     func showProgressView(message: String) {
@@ -126,17 +113,40 @@ class LoginViewController: UIViewController {
         activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         activityIndicator.startAnimating()
         messageFrame.addSubview(activityIndicator)
-
+        
         messageFrame.addSubview(strLabel)
         view.addSubview(messageFrame)
-
+        
+    }
+    
+    //MARK: - 🐵 Helpers
+    
+    func displayError(errorString: String?) {
+        dispatch_async(dispatch_get_main_queue(), {
+            
+            self.messageFrame.removeFromSuperview()
+            self.setUIEnabled(enabled: true)
+            if let errorString = errorString {
+                
+                Alerts().simpleAlert(self, message: errorString)
+            }
+        })
+    }
+    
+    func completeLogin() {
+        dispatch_async(dispatch_get_main_queue(), {
+            
+            self.messageFrame.removeFromSuperview()
+            self.setUIEnabled(enabled: false)
+            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("ChatNav") as! UINavigationController
+            self.presentViewController(controller, animated: true, completion: nil)
+        })
     }
     
     /* open with Safari helper */
     func openSafariWithURLString(urlString: String) {
         let app = UIApplication.sharedApplication()
         
-        /* check if they left http(s) prefix - many students don't and safari fails to open */
         if urlString.hasPrefix("http://") || urlString.hasPrefix("https://") {
             app.openURL(NSURL(string: urlString)!)
         } else {

@@ -26,6 +26,10 @@
 		FE28F37C1C79B6AA00E75BF8 /* UdacityUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28F37B1C79B6AA00E75BF8 /* UdacityUser.swift */; };
 		FE28F37F1C79B87C00E75BF8 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE28F37D1C79B87C00E75BF8 /* FBSDKCoreKit.framework */; };
 		FE28F3801C79B87C00E75BF8 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE28F37E1C79B87C00E75BF8 /* FBSDKLoginKit.framework */; };
+		FE28F3961C79D0C700E75BF8 /* XCGLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE28F38B1C79D09600E75BF8 /* XCGLogger.framework */; };
+		FE28F3981C79D0F800E75BF8 /* ChannelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28F3971C79D0F800E75BF8 /* ChannelsViewController.swift */; };
+		FE28F3BA1C79D19000E75BF8 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28F3B91C79D19000E75BF8 /* Channel.swift */; };
+		FE28F3BC1C79E5F500E75BF8 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28F3BB1C79E5F500E75BF8 /* ChatViewController.swift */; };
 		FEA7BDA91C78750F002A6535 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA7BDA81C78750F002A6535 /* AppDelegate.swift */; };
 		FEA7BDAE1C78750F002A6535 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEA7BDAC1C78750F002A6535 /* Main.storyboard */; };
 		FEA7BDB01C78750F002A6535 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEA7BDAF1C78750F002A6535 /* Assets.xcassets */; };
@@ -35,6 +39,51 @@
 		FEA7BDC91C788047002A6535 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA7BDC81C788047002A6535 /* libsqlite3.tbd */; };
 		FEA7BDCB1C788069002A6535 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA7BDCA1C788069002A6535 /* libz.tbd */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FE28F38A1C79D09600E75BF8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FE28F3811C79D09500E75BF8 /* XCGLogger.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 55E3EE4519D76F280068C3A7;
+			remoteInfo = "XCGLogger (iOS)";
+		};
+		FE28F38C1C79D09600E75BF8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FE28F3811C79D09500E75BF8 /* XCGLogger.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 554DF41719D76FE7005708BE;
+			remoteInfo = "XCGLogger (OS X)";
+		};
+		FE28F38E1C79D09600E75BF8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FE28F3811C79D09500E75BF8 /* XCGLogger.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 70CB94201B99E728007802FF;
+			remoteInfo = "XCGLogger (watchOS)";
+		};
+		FE28F3901C79D09600E75BF8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FE28F3811C79D09500E75BF8 /* XCGLogger.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5515A3DF1BA119FA0047BA31;
+			remoteInfo = "XCGLogger (tvOS)";
+		};
+		FE28F3921C79D09600E75BF8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FE28F3811C79D09500E75BF8 /* XCGLogger.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 55E3EE5019D76F280068C3A7;
+			remoteInfo = "XCGLoggerTests (iOS)";
+		};
+		FE28F3941C79D09600E75BF8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FE28F3811C79D09500E75BF8 /* XCGLogger.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 55BB1F011B79DC7500709779;
+			remoteInfo = "XCGLoggerTests (OS X)";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		FE28F34D1C78E92400E75BF8 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "Supporting Files/Frameworks/Bolts.framework"; sourceTree = "<group>"; };
@@ -56,6 +105,10 @@
 		FE28F37B1C79B6AA00E75BF8 /* UdacityUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UdacityUser.swift; path = Model/Udacity/UdacityUser.swift; sourceTree = "<group>"; };
 		FE28F37D1C79B87C00E75BF8 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "Supporting Files/Frameworks/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
 		FE28F37E1C79B87C00E75BF8 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "Supporting Files/Frameworks/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
+		FE28F3811C79D09500E75BF8 /* XCGLogger.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = XCGLogger.xcodeproj; path = XCGLogger/XCGLogger/Library/XCGLogger.xcodeproj; sourceTree = "<group>"; };
+		FE28F3971C79D0F800E75BF8 /* ChannelsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChannelsViewController.swift; path = Controller/ChannelsViewController.swift; sourceTree = "<group>"; };
+		FE28F3B91C79D19000E75BF8 /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Channel.swift; path = Model/Channel.swift; sourceTree = "<group>"; };
+		FE28F3BB1C79E5F500E75BF8 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatViewController.swift; path = Controller/ChatViewController.swift; sourceTree = "<group>"; };
 		FEA7BDA51C78750F002A6535 /* uchat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uchat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEA7BDA81C78750F002A6535 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FEA7BDAD1C78750F002A6535 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -73,6 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE28F3961C79D0C700E75BF8 /* XCGLogger.framework in Frameworks */,
 				FE28F34F1C78E92400E75BF8 /* Bolts.framework in Frameworks */,
 				FEA7BDCB1C788069002A6535 /* libz.tbd in Frameworks */,
 				FEA7BDC91C788047002A6535 /* libsqlite3.tbd in Frameworks */,
@@ -90,7 +144,9 @@
 		FE28F3511C79A6AE00E75BF8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FE28F3BD1C7A0FBA00E75BF8 /* Parse */,
 				FE28F3541C79A6CA00E75BF8 /* Udacity */,
+				FE28F3B91C79D19000E75BF8 /* Channel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -99,6 +155,8 @@
 			isa = PBXGroup;
 			children = (
 				FE28F35D1C79A70D00E75BF8 /* LoginViewController.swift */,
+				FE28F3971C79D0F800E75BF8 /* ChannelsViewController.swift */,
+				FE28F3BB1C79E5F500E75BF8 /* ChatViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -147,9 +205,30 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
+		FE28F3821C79D09500E75BF8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FE28F38B1C79D09600E75BF8 /* XCGLogger.framework */,
+				FE28F38D1C79D09600E75BF8 /* XCGLogger.framework */,
+				FE28F38F1C79D09600E75BF8 /* XCGLogger.framework */,
+				FE28F3911C79D09600E75BF8 /* XCGLogger.framework */,
+				FE28F3931C79D09600E75BF8 /* XCGLoggerTests (iOS).xctest */,
+				FE28F3951C79D09600E75BF8 /* XCGLoggerTests (OS X).xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FE28F3BD1C7A0FBA00E75BF8 /* Parse */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Parse;
+			sourceTree = "<group>";
+		};
 		FEA7BD9C1C78750F002A6535 = {
 			isa = PBXGroup;
 			children = (
+				FE28F3811C79D09500E75BF8 /* XCGLogger.xcodeproj */,
 				FEA7BDA71C78750F002A6535 /* uchat */,
 				FEA7BDA61C78750F002A6535 /* Products */,
 			);
@@ -255,12 +334,63 @@
 			mainGroup = FEA7BD9C1C78750F002A6535;
 			productRefGroup = FEA7BDA61C78750F002A6535 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = FE28F3821C79D09500E75BF8 /* Products */;
+					ProjectRef = FE28F3811C79D09500E75BF8 /* XCGLogger.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				FEA7BDA41C78750F002A6535 /* uchat */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		FE28F38B1C79D09600E75BF8 /* XCGLogger.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = XCGLogger.framework;
+			remoteRef = FE28F38A1C79D09600E75BF8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FE28F38D1C79D09600E75BF8 /* XCGLogger.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = XCGLogger.framework;
+			remoteRef = FE28F38C1C79D09600E75BF8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FE28F38F1C79D09600E75BF8 /* XCGLogger.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = XCGLogger.framework;
+			remoteRef = FE28F38E1C79D09600E75BF8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FE28F3911C79D09600E75BF8 /* XCGLogger.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = XCGLogger.framework;
+			remoteRef = FE28F3901C79D09600E75BF8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FE28F3931C79D09600E75BF8 /* XCGLoggerTests (iOS).xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "XCGLoggerTests (iOS).xctest";
+			remoteRef = FE28F3921C79D09600E75BF8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FE28F3951C79D09600E75BF8 /* XCGLoggerTests (OS X).xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "XCGLoggerTests (OS X).xctest";
+			remoteRef = FE28F3941C79D09600E75BF8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		FEA7BDA31C78750F002A6535 /* Resources */ = {
@@ -280,15 +410,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE28F3981C79D0F800E75BF8 /* ChannelsViewController.swift in Sources */,
 				FE28F35E1C79A70D00E75BF8 /* LoginViewController.swift in Sources */,
 				FE28F37A1C79B1AE00E75BF8 /* Alerts.swift in Sources */,
 				FE28F35A1C79A6DF00E75BF8 /* UClient.swift in Sources */,
 				FE28F35B1C79A6DF00E75BF8 /* UConvenience.swift in Sources */,
 				FE28F3601C79AF4700E75BF8 /* LoginViewUI.swift in Sources */,
 				FE28F37C1C79B6AA00E75BF8 /* UdacityUser.swift in Sources */,
+				FE28F3BA1C79D19000E75BF8 /* Channel.swift in Sources */,
 				FE28F3671C79AF6900E75BF8 /* UdacityLoginButton.swift in Sources */,
 				FE28F3661C79AF6900E75BF8 /* BorderedButtonProtocol.swift in Sources */,
 				FE28F36A1C79AF6900E75BF8 /* SubmitUserDataButton.swift in Sources */,
+				FE28F3BC1C79E5F500E75BF8 /* ChatViewController.swift in Sources */,
 				FE28F35C1C79A6DF00E75BF8 /* UConstants.swift in Sources */,
 				FE28F3591C79A6DF00E75BF8 /* UFacebook.swift in Sources */,
 				FE28F36D1C79AF7D00E75BF8 /* OTMColors.swift in Sources */,
@@ -414,9 +547,11 @@
 				);
 				INFOPLIST_FILE = uchat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wojciechmaterka.uchat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -432,9 +567,11 @@
 				);
 				INFOPLIST_FILE = uchat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-DRELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wojciechmaterka.uchat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

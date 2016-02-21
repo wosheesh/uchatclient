@@ -32,8 +32,6 @@ class UClient: NSObject {
             request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(jsonBody, options: .PrettyPrinted)
         }
         
-        print("HTTPBODY: ", NSString(data: request.HTTPBody!, encoding: NSUTF8StringEncoding))
-        
         /* 3. Make the request */
         
         // Set the session interval timeout

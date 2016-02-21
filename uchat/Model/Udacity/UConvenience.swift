@@ -14,9 +14,9 @@ extension UClient {
     /// Authenticate with Udacity API with email and password, pull user data and update UserInformation
     func authenticateWithUserCredentials(email: String, password: String, completionHandler: (success: Bool, errorString: String?) -> Void) {
         if email.isEmpty {
-            completionHandler(success: false, errorString: "Email is Empty")
+            completionHandler(success: false, errorString: "Please enter your email.")
         } else if password.isEmpty {
-            completionHandler(success: false, errorString: "Password is Empty")
+            completionHandler(success: false, errorString: "Please enter your password.")
         } else {
             
             getSessionID(email, password: password, access_token: nil) { (success, sessionID, userID, errorString) in
@@ -54,8 +54,6 @@ extension UClient {
             var mutableMethod : String = Methods.UdacityUserData
             mutableMethod = UClient.subtituteKeyInMethod(mutableMethod, key: UClient.URLKeys.UserId, value: userID)!
             
-            print("------> getting \(userID)")
-            
             /* 2. Make the request */
             taskForGETMethod(mutableMethod) { JSONResult, error in
                 
@@ -70,6 +68,9 @@ extension UClient {
                         completionHandler(success: false, userData: nil, errorString: "There was an error establishing a session with Udacity server. Please try again later.")
                     }
                 } else if let userData = JSONResult[UClient.JSONResponseKeys.UserResults] as? [String : AnyObject] {
+                    
+                    log.verbose(" user data: \n \(JSONResult)")
+                    
                     completionHandler(success: true, userData: userData, errorString: nil)
                 } else {
                     completionHandler(success: false, userData: nil, errorString: "Could not parse getUserDataWithUserID")
@@ -94,7 +95,6 @@ extension UClient {
                 ]
             }
         } else if let access_token = access_token {
-            print(access_token)
             jsonBody = [
                 "facebook_mobile" : [
                     "access_token": access_token as String!
