@@ -43,6 +43,10 @@
 
 *.swp
 
+# XCGLogger
+logs/
+XCGLogger/
+
 #
 # *.lock - this is used and abused by many editors for many different things.
 #    For the main ones I use (e.g. Eclipse), it should be excluded 
