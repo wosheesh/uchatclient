@@ -7,16 +7,17 @@
 //
 
 import Foundation
+import XCGLogger
 
 struct UdacityUser {
     
     static var udacityKey : String? {
         willSet(userUdacityKey) {
-            print("setting user udacity Key to \(userUdacityKey)")
+            log.info("setting user udacity Key to \(userUdacityKey)")
         }
         didSet {
             if udacityKey != oldValue {
-                print("Changed user Udacity key from \(oldValue) to \(udacityKey)")
+                log.info("Changed user Udacity key from \(oldValue) to \(udacityKey)")
             }
         }
     }
