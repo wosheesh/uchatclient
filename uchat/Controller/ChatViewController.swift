@@ -15,10 +15,11 @@ class ChatViewController: UITableViewController {
     
     var channel: Channel!
     
-    // MARK - 🔄 Lifecycle
+    // MARK: - 🔄 Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        log.info("Selected channel: \(channel.name)")
     }
     
     override func viewWillAppear(animated: Bool) {

@@ -11,6 +11,7 @@
 //TODO: persist subscribed channels
 
 import UIKit
+import Parse
 
 class ChannelsViewController: UITableViewController {
     
@@ -28,6 +29,10 @@ class ChannelsViewController: UITableViewController {
         if let userChannels = UdacityUser.channels {
             channels.appendContentsOf(userChannels)
         }
+        
+        let currentUser = PFUser.currentUser()!
+        currentUser.username = UdacityUser.firstName!
+        log.info("username: \(currentUser.username)")
 
     }
     

@@ -144,6 +144,7 @@
 		FE28F3511C79A6AE00E75BF8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FE28F3BD1C7A0FBA00E75BF8 /* Parse */,
 				FE28F3541C79A6CA00E75BF8 /* Udacity */,
 				FE28F3B91C79D19000E75BF8 /* Channel.swift */,
 			);
@@ -215,6 +216,13 @@
 				FE28F3951C79D09600E75BF8 /* XCGLoggerTests (OS X).xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		FE28F3BD1C7A0FBA00E75BF8 /* Parse */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Parse;
 			sourceTree = "<group>";
 		};
 		FEA7BD9C1C78750F002A6535 = {
@@ -539,6 +547,7 @@
 				);
 				INFOPLIST_FILE = uchat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wojciechmaterka.uchat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -558,6 +567,7 @@
 				);
 				INFOPLIST_FILE = uchat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-DRELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wojciechmaterka.uchat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
