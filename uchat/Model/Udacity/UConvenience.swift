@@ -28,7 +28,7 @@ extension UClient {
                         
                         if success {
                             
-                            UserInformation.UserInformationFromUserData(userData!)
+                            UdacityUser.udacityUserFromUserData(userData!)
                             
                             completionHandler(success: success, errorString: errorString) // self.getUserDataWithUserID(userID!)
                             
@@ -156,7 +156,8 @@ extension UClient {
             } else if let _ = JSONResult.valueForKeyPath(UClient.JSONResponseKeys.SessionID) as? String {
                 
                 /* clear user information */
-                UserInformation.clearUserInformation()
+                
+                UdacityUser.clearUdacityUser()
                 
                 completionHandler(success: true, errorString: nil)
             } else {

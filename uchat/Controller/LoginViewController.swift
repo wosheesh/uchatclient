@@ -11,7 +11,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController, AlertRenderer {
+class LoginViewController: UIViewController {
     
     // MARK: Properties
     
@@ -105,7 +105,7 @@ class LoginViewController: UIViewController, AlertRenderer {
             self.setUIEnabled(enabled: true)
             if let errorString = errorString {
                 
-                self.presentAlert("On The Map", message: errorString)
+                Alerts().simpleAlert(self, message: errorString)
             }
         })
     }

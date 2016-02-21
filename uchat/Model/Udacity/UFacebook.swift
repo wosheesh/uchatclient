@@ -42,7 +42,7 @@ extension UClient {
                             
                             if success {
                                 /* update User Information with Udacity data */
-                                UserInformation.UserInformationFromUserData(userData!)
+                                UdacityUser.udacityUserFromUserData(userData!)
                                 
                                 completionHandler(success: success, error: nil)
                             } else {

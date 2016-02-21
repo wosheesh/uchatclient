@@ -14,6 +14,18 @@
 		FE28F35B1C79A6DF00E75BF8 /* UConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28F3571C79A6DF00E75BF8 /* UConvenience.swift */; };
 		FE28F35C1C79A6DF00E75BF8 /* UConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28F3581C79A6DF00E75BF8 /* UConstants.swift */; };
 		FE28F35E1C79A70D00E75BF8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28F35D1C79A70D00E75BF8 /* LoginViewController.swift */; };
+		FE28F3601C79AF4700E75BF8 /* LoginViewUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28F35F1C79AF4700E75BF8 /* LoginViewUI.swift */; };
+		FE28F3661C79AF6900E75BF8 /* BorderedButtonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28F3611C79AF6900E75BF8 /* BorderedButtonProtocol.swift */; };
+		FE28F3671C79AF6900E75BF8 /* UdacityLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28F3621C79AF6900E75BF8 /* UdacityLoginButton.swift */; };
+		FE28F3681C79AF6900E75BF8 /* FBLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28F3631C79AF6900E75BF8 /* FBLoginButton.swift */; };
+		FE28F3691C79AF6900E75BF8 /* FindOnTheMapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28F3641C79AF6900E75BF8 /* FindOnTheMapButton.swift */; };
+		FE28F36A1C79AF6900E75BF8 /* SubmitUserDataButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28F3651C79AF6900E75BF8 /* SubmitUserDataButton.swift */; };
+		FE28F36D1C79AF7D00E75BF8 /* OTMColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28F36C1C79AF7D00E75BF8 /* OTMColors.swift */; };
+		FE28F36F1C79AF8E00E75BF8 /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28F36E1C79AF8E00E75BF8 /* LoginTextField.swift */; };
+		FE28F37A1C79B1AE00E75BF8 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28F3791C79B1AE00E75BF8 /* Alerts.swift */; };
+		FE28F37C1C79B6AA00E75BF8 /* UdacityUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28F37B1C79B6AA00E75BF8 /* UdacityUser.swift */; };
+		FE28F37F1C79B87C00E75BF8 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE28F37D1C79B87C00E75BF8 /* FBSDKCoreKit.framework */; };
+		FE28F3801C79B87C00E75BF8 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE28F37E1C79B87C00E75BF8 /* FBSDKLoginKit.framework */; };
 		FEA7BDA91C78750F002A6535 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA7BDA81C78750F002A6535 /* AppDelegate.swift */; };
 		FEA7BDAE1C78750F002A6535 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEA7BDAC1C78750F002A6535 /* Main.storyboard */; };
 		FEA7BDB01C78750F002A6535 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEA7BDAF1C78750F002A6535 /* Assets.xcassets */; };
@@ -32,6 +44,18 @@
 		FE28F3571C79A6DF00E75BF8 /* UConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UConvenience.swift; path = Model/Udacity/UConvenience.swift; sourceTree = "<group>"; };
 		FE28F3581C79A6DF00E75BF8 /* UConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UConstants.swift; path = Model/Udacity/UConstants.swift; sourceTree = "<group>"; };
 		FE28F35D1C79A70D00E75BF8 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Controller/LoginViewController.swift; sourceTree = "<group>"; };
+		FE28F35F1C79AF4700E75BF8 /* LoginViewUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewUI.swift; path = View/LoginViewUI.swift; sourceTree = "<group>"; };
+		FE28F3611C79AF6900E75BF8 /* BorderedButtonProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedButtonProtocol.swift; sourceTree = "<group>"; };
+		FE28F3621C79AF6900E75BF8 /* UdacityLoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityLoginButton.swift; sourceTree = "<group>"; };
+		FE28F3631C79AF6900E75BF8 /* FBLoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBLoginButton.swift; sourceTree = "<group>"; };
+		FE28F3641C79AF6900E75BF8 /* FindOnTheMapButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindOnTheMapButton.swift; sourceTree = "<group>"; };
+		FE28F3651C79AF6900E75BF8 /* SubmitUserDataButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitUserDataButton.swift; sourceTree = "<group>"; };
+		FE28F36C1C79AF7D00E75BF8 /* OTMColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OTMColors.swift; path = View/OTMColors.swift; sourceTree = "<group>"; };
+		FE28F36E1C79AF8E00E75BF8 /* LoginTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginTextField.swift; path = View/LoginTextField.swift; sourceTree = "<group>"; };
+		FE28F3791C79B1AE00E75BF8 /* Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alerts.swift; path = Helpers/Alerts.swift; sourceTree = "<group>"; };
+		FE28F37B1C79B6AA00E75BF8 /* UdacityUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UdacityUser.swift; path = Model/Udacity/UdacityUser.swift; sourceTree = "<group>"; };
+		FE28F37D1C79B87C00E75BF8 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "Supporting Files/Frameworks/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
+		FE28F37E1C79B87C00E75BF8 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "Supporting Files/Frameworks/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		FEA7BDA51C78750F002A6535 /* uchat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uchat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEA7BDA81C78750F002A6535 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FEA7BDAD1C78750F002A6535 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -53,7 +77,9 @@
 				FEA7BDCB1C788069002A6535 /* libz.tbd in Frameworks */,
 				FEA7BDC91C788047002A6535 /* libsqlite3.tbd in Frameworks */,
 				FEA7BDC71C787C8A002A6535 /* AudioToolbox.framework in Frameworks */,
+				FE28F37F1C79B87C00E75BF8 /* FBSDKCoreKit.framework in Frameworks */,
 				FE28F3501C78E92400E75BF8 /* Parse.framework in Frameworks */,
+				FE28F3801C79B87C00E75BF8 /* FBSDKLoginKit.framework in Frameworks */,
 				FEA7BDC51C787C72002A6535 /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -80,6 +106,10 @@
 		FE28F3531C79A6BF00E75BF8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FE28F36B1C79AF7000E75BF8 /* Buttons */,
+				FE28F36E1C79AF8E00E75BF8 /* LoginTextField.swift */,
+				FE28F36C1C79AF7D00E75BF8 /* OTMColors.swift */,
+				FE28F35F1C79AF4700E75BF8 /* LoginViewUI.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -87,12 +117,34 @@
 		FE28F3541C79A6CA00E75BF8 /* Udacity */ = {
 			isa = PBXGroup;
 			children = (
+				FE28F37B1C79B6AA00E75BF8 /* UdacityUser.swift */,
 				FE28F3551C79A6DF00E75BF8 /* UFacebook.swift */,
 				FE28F3561C79A6DF00E75BF8 /* UClient.swift */,
 				FE28F3571C79A6DF00E75BF8 /* UConvenience.swift */,
 				FE28F3581C79A6DF00E75BF8 /* UConstants.swift */,
 			);
 			name = Udacity;
+			sourceTree = "<group>";
+		};
+		FE28F36B1C79AF7000E75BF8 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				FE28F3611C79AF6900E75BF8 /* BorderedButtonProtocol.swift */,
+				FE28F3621C79AF6900E75BF8 /* UdacityLoginButton.swift */,
+				FE28F3631C79AF6900E75BF8 /* FBLoginButton.swift */,
+				FE28F3641C79AF6900E75BF8 /* FindOnTheMapButton.swift */,
+				FE28F3651C79AF6900E75BF8 /* SubmitUserDataButton.swift */,
+			);
+			name = Buttons;
+			path = View/Buttons;
+			sourceTree = "<group>";
+		};
+		FE28F3781C79B16700E75BF8 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				FE28F3791C79B1AE00E75BF8 /* Alerts.swift */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		FEA7BD9C1C78750F002A6535 = {
@@ -114,14 +166,12 @@
 		FEA7BDA71C78750F002A6535 /* uchat */ = {
 			isa = PBXGroup;
 			children = (
+				FE28F3781C79B16700E75BF8 /* Helpers */,
 				FE28F3511C79A6AE00E75BF8 /* Model */,
 				FE28F3531C79A6BF00E75BF8 /* View */,
 				FE28F3521C79A6B400E75BF8 /* Controller */,
 				FEA7BDA81C78750F002A6535 /* AppDelegate.swift */,
 				FEA7BDAC1C78750F002A6535 /* Main.storyboard */,
-				FEA7BDAF1C78750F002A6535 /* Assets.xcassets */,
-				FEA7BDB11C78750F002A6535 /* LaunchScreen.storyboard */,
-				FEA7BDB41C78750F002A6535 /* Info.plist */,
 				FEA7BDBF1C78796A002A6535 /* Supporting Files */,
 			);
 			path = uchat;
@@ -130,6 +180,8 @@
 		FEA7BDBE1C787962002A6535 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FE28F37D1C79B87C00E75BF8 /* FBSDKCoreKit.framework */,
+				FE28F37E1C79B87C00E75BF8 /* FBSDKLoginKit.framework */,
 				FE28F34D1C78E92400E75BF8 /* Bolts.framework */,
 				FE28F34E1C78E92400E75BF8 /* Parse.framework */,
 				FEA7BDCA1C788069002A6535 /* libz.tbd */,
@@ -143,6 +195,9 @@
 		FEA7BDBF1C78796A002A6535 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FEA7BDAF1C78750F002A6535 /* Assets.xcassets */,
+				FEA7BDB41C78750F002A6535 /* Info.plist */,
+				FEA7BDB11C78750F002A6535 /* LaunchScreen.storyboard */,
 				FEA7BDBE1C787962002A6535 /* Frameworks */,
 			);
 			name = "Supporting Files";
@@ -226,11 +281,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE28F35E1C79A70D00E75BF8 /* LoginViewController.swift in Sources */,
+				FE28F37A1C79B1AE00E75BF8 /* Alerts.swift in Sources */,
 				FE28F35A1C79A6DF00E75BF8 /* UClient.swift in Sources */,
 				FE28F35B1C79A6DF00E75BF8 /* UConvenience.swift in Sources */,
+				FE28F3601C79AF4700E75BF8 /* LoginViewUI.swift in Sources */,
+				FE28F37C1C79B6AA00E75BF8 /* UdacityUser.swift in Sources */,
+				FE28F3671C79AF6900E75BF8 /* UdacityLoginButton.swift in Sources */,
+				FE28F3661C79AF6900E75BF8 /* BorderedButtonProtocol.swift in Sources */,
+				FE28F36A1C79AF6900E75BF8 /* SubmitUserDataButton.swift in Sources */,
 				FE28F35C1C79A6DF00E75BF8 /* UConstants.swift in Sources */,
 				FE28F3591C79A6DF00E75BF8 /* UFacebook.swift in Sources */,
+				FE28F36D1C79AF7D00E75BF8 /* OTMColors.swift in Sources */,
 				FEA7BDA91C78750F002A6535 /* AppDelegate.swift in Sources */,
+				FE28F3681C79AF6900E75BF8 /* FBLoginButton.swift in Sources */,
+				FE28F3691C79AF6900E75BF8 /* FindOnTheMapButton.swift in Sources */,
+				FE28F36F1C79AF8E00E75BF8 /* LoginTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,12 +410,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/uchat/Supporting",
-					Files/Frameworks,
-					"$(PROJECT_DIR)/uchat/Supporting",
-					Files/Frameworks,
-					"$(PROJECT_DIR)/uchat/Supporting",
-					Files/Frameworks,
+					"\"$(PROJECT_DIR)/uchat/Supporting Files/Frameworks\"",
 				);
 				INFOPLIST_FILE = uchat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -368,12 +428,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/uchat/Supporting",
-					Files/Frameworks,
-					"$(PROJECT_DIR)/uchat/Supporting",
-					Files/Frameworks,
-					"$(PROJECT_DIR)/uchat/Supporting",
-					Files/Frameworks,
+					"\"$(PROJECT_DIR)/uchat/Supporting Files/Frameworks\"",
 				);
 				INFOPLIST_FILE = uchat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
