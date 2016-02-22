@@ -6,6 +6,8 @@
 //  Copyright © 2016 Wojtek Materka. All rights reserved.
 //
 
+// TODO: Improve the chat bubbles UI
+
 import UIKit
 
 class ChatViewController: UIViewController {
@@ -23,16 +25,6 @@ class ChatViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let currentUser = User(username: UdacityUser.firstName!)
-        
-        print("\(User.currentUser().username) Entered channel: \(channel.name)")
-        
-        
-        
-        // DEBUG 1st message:
-        let msg = Message(body: "Hello there!", author: User.currentUser())
-        channel.messages.append(msg)
-        
         // Keyboard notifications
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
         
@@ -42,9 +34,8 @@ class ChatViewController: UIViewController {
         
         // Set up UI controls
         self.chatWall.rowHeight = UITableViewAutomaticDimension
-        self.chatWall.estimatedRowHeight = 66.0
+//        self.chatWall.estimatedRowHeight = 35.0
         self.chatWall.separatorStyle = .None
-        
         
     }
     
@@ -89,6 +80,7 @@ class ChatViewController: UIViewController {
     }
     
 }
+    // MARK: - 🔤 TextFieldDelegate
 
 extension ChatViewController: UITextFieldDelegate {
     
@@ -96,12 +88,12 @@ extension ChatViewController: UITextFieldDelegate {
         
             
         if let msgBody = chatTextField.text where msgBody != "" {
-            let message = Message(body: msgBody, author: User.currentUser())
+            let message = Message(body: msgBody, creator: User.currentUser())
             channel.messages.append(message)
             chatTextField.text = ""
             chatTextField.resignFirstResponder()
         
-            print("📤 new message posted by \(message.author.username) with body: '\(message.body)'")
+            print("📤 new message posted on \(message.date()) by \(message.author().username) with body: '\(message.text())'")
             
             // TODO: remove the reload after push is implemented - channel.messages should update on network push not client write
             chatWall.reloadData()
@@ -110,7 +102,7 @@ extension ChatViewController: UITextFieldDelegate {
     }
 }
 
-    // MARK: - 📄 TableView
+    // MARK: - 📄 TableViewDelegate
 
 extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -126,8 +118,8 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCellWithIdentifier("chatCell", forIndexPath: indexPath)
         let message = channel.messages[indexPath.row]
         
-        cell.detailTextLabel?.text = message.author.username
-        cell.textLabel?.text = message.body
+        cell.detailTextLabel?.text = message.author().username
+        cell.textLabel?.text = message.text()
         cell.selectionStyle = .None
         return cell
     }

@@ -8,10 +8,29 @@
 
 // TODO: Add timestamp
 
-import Parse
-
+// This struct doesn't allow editing of the messages
 struct Message {
-    var body: String
-    var author: User
+    private var body: String
+    private var creator: User
+    private var createdAt: NSDate {
+        return NSDate()
+    }
+    
+    init(body: String, creator: User) {
+        self.body = body
+        self.creator = creator
+    }
+    
+    func text() -> String! {
+        return self.body
+    }
+    
+    func author() -> User! {
+        return self.creator
+    }
+    
+    func date() -> NSDate! {
+        return self.createdAt
+    }
     
 }

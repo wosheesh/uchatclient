@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        let oneSignal = OneSignal(launchOptions: launchOptions, appId: "53a32274-2cd6-4e31-a835-121883f0fee1", handleNotification: nil)
+        _ = OneSignal(launchOptions: launchOptions, appId: "53a32274-2cd6-4e31-a835-121883f0fee1", handleNotification: nil)
         
         OneSignal.defaultClient().enableInAppAlertNotification(true)
         

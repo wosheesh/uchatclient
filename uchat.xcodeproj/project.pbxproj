@@ -445,8 +445,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(PROJECT_DIR)/uchat/Supporting Files/Frameworks\"",
-					"$(PROJECT_DIR)/uchat/Supporting",
-					Files/Frameworks,
 				);
 				INFOPLIST_FILE = uchat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -468,8 +466,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(PROJECT_DIR)/uchat/Supporting Files/Frameworks\"",
-					"$(PROJECT_DIR)/uchat/Supporting",
-					Files/Frameworks,
 				);
 				INFOPLIST_FILE = uchat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

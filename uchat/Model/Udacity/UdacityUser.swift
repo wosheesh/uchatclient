@@ -12,7 +12,7 @@ import Foundation
 
 struct UdacityUser {
     
-    static var udacityKey : String? {
+    private static var udacityKey : String? {
         willSet(userUdacityKey) {
             print("setting user udacity Key to \(userUdacityKey)")
         }
