@@ -6,8 +6,9 @@
 //  Copyright © 2016 Wojtek Materka. All rights reserved.
 //
 
+//TODO: Change the USer model to accommodate ultiple users
+
 import Foundation
-import XCGLogger
 
 struct UdacityUser {
     
@@ -29,6 +30,10 @@ struct UdacityUser {
         UdacityUser.udacityKey = udacityKey
         UdacityUser.firstName = firstName
         UdacityUser.lastName = lastName
+    }
+    
+    static func currentUser() -> UdacityUser {
+        return UdacityUser(udacityKey: udacityKey!, firstName: firstName!, lastName: lastName!)
     }
     
     /* Convert JSON result from UClient login to udacityUser */
@@ -58,7 +63,6 @@ struct UdacityUser {
         UdacityUser.lastName = nil
 
     }
-
     
     
 }

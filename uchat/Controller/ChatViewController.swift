@@ -7,15 +7,12 @@
 //
 
 import UIKit
-import XCGLogger
-
 
 class ChatViewController: UIViewController {
     
     // MARK: - 🎛 Properties
     
     var channel: Channel!
-    let user = PFUser.currentUser()!
     
     @IBOutlet weak var chatWall: UITableView!
     @IBOutlet weak var chatTextField: UITextField!
@@ -25,10 +22,15 @@ class ChatViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Entered channel: \(channel.name)")
+        
+//        let currentUser = User(username: UdacityUser.firstName!)
+        
+        print("\(User.currentUser().username) Entered channel: \(channel.name)")
+        
+        
         
         // DEBUG 1st message:
-        let msg = Message(body: "Hello there!", author: user)
+        let msg = Message(body: "Hello there!", author: User.currentUser())
         channel.messages.append(msg)
         
         // Keyboard notifications
@@ -94,12 +96,12 @@ extension ChatViewController: UITextFieldDelegate {
         
             
         if let msgBody = chatTextField.text where msgBody != "" {
-            let message = Message(body: msgBody, author: user)
+            let message = Message(body: msgBody, author: User.currentUser())
             channel.messages.append(message)
             chatTextField.text = ""
             chatTextField.resignFirstResponder()
-            
-            print("📤 new message posted by \(message.author.username) with body: '\(chatTextField.text)'")
+        
+            print("📤 new message posted by \(message.author.username) with body: '\(message.body)'")
             
             // TODO: remove the reload after push is implemented - channel.messages should update on network push not client write
             chatWall.reloadData()

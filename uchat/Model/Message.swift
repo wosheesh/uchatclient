@@ -12,5 +12,6 @@ import Parse
 
 struct Message {
     var body: String
-    var author: PFUser
+    var author: User
+    
 }

@@ -31,6 +31,7 @@
 		FE28F3BC1C79E5F500E75BF8 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28F3BB1C79E5F500E75BF8 /* ChatViewController.swift */; };
 		FE28F3C11C7A427D00E75BF8 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28F3C01C7A427D00E75BF8 /* Message.swift */; };
 		FE28F3D31C7B373600E75BF8 /* OneSignal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE28F3D21C7B373600E75BF8 /* OneSignal.framework */; };
+		FE28F3D51C7B4F8F00E75BF8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28F3D41C7B4F8F00E75BF8 /* User.swift */; };
 		FEA7BDA91C78750F002A6535 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA7BDA81C78750F002A6535 /* AppDelegate.swift */; };
 		FEA7BDAE1C78750F002A6535 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEA7BDAC1C78750F002A6535 /* Main.storyboard */; };
 		FEA7BDB01C78750F002A6535 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEA7BDAF1C78750F002A6535 /* Assets.xcassets */; };
@@ -67,6 +68,7 @@
 		FE28F3C01C7A427D00E75BF8 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Message.swift; path = Model/Message.swift; sourceTree = "<group>"; };
 		FE28F3C91C7B325800E75BF8 /* uchat-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "uchat-Bridging-Header.h"; sourceTree = "<group>"; };
 		FE28F3D21C7B373600E75BF8 /* OneSignal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OneSignal.framework; path = "Supporting Files/Frameworks/OneSignal.framework"; sourceTree = "<group>"; };
+		FE28F3D41C7B4F8F00E75BF8 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Model/User.swift; sourceTree = "<group>"; };
 		FEA7BDA51C78750F002A6535 /* uchat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uchat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEA7BDA81C78750F002A6535 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FEA7BDAD1C78750F002A6535 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				FE28F3BD1C7A0FBA00E75BF8 /* Parse */,
 				FE28F3541C79A6CA00E75BF8 /* Udacity */,
 				FE28F3B91C79D19000E75BF8 /* Channel.swift */,
+				FE28F3D41C7B4F8F00E75BF8 /* User.swift */,
 				FE28F3C01C7A427D00E75BF8 /* Message.swift */,
 			);
 			name = Model;
@@ -326,6 +329,7 @@
 				FE28F3C11C7A427D00E75BF8 /* Message.swift in Sources */,
 				FE28F3691C79AF6900E75BF8 /* FindOnTheMapButton.swift in Sources */,
 				FE28F36F1C79AF8E00E75BF8 /* LoginTextField.swift in Sources */,
+				FE28F3D51C7B4F8F00E75BF8 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

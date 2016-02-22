@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Parse
+//import Parse
 
 //Load env variables
 let envDict = NSProcessInfo.processInfo().environment
@@ -63,12 +63,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        log.info("Parse initialized ✅")
         
         // Register for notifications
-        let notificationTypes: UIUserNotificationType = [.Alert, .Badge, .Sound]
-        let notificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: nil)
-        
-        UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
-        
-        UIApplication.sharedApplication().registerForRemoteNotifications()
+//        let notificationTypes: UIUserNotificationType = [.Alert, .Badge, .Sound]
+//        let notificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: nil)
+//        
+//        UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+//        
+//        UIApplication.sharedApplication().registerForRemoteNotifications()
         
         
 
@@ -77,17 +77,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        let installation = PFInstallation.currentInstallation()
-        installation.setDeviceTokenFromData(deviceToken)
-        installation.saveInBackground()
-        
-        PFPush.subscribeToChannelInBackground("") { (succeeded: Bool, error: NSError?) in
-            if succeeded {
-                print("Successfully subscribed to push notifications on the broadcast channel. 📨 ✅ \n");
-            } else {
-                print("🆘 📨 Failed to subscribe to push notifications on the broadcast channel with error = \(error)")
-            }
-        }
+//        let installation = PFInstallation.currentInstallation()
+//        installation.setDeviceTokenFromData(deviceToken)
+//        installation.saveInBackground()
+//        
+//        PFPush.subscribeToChannelInBackground("") { (succeeded: Bool, error: NSError?) in
+//            if succeeded {
+//                print("Successfully subscribed to push notifications on the broadcast channel. 📨 ✅ \n");
+//            } else {
+//                print("🆘 📨 Failed to subscribe to push notifications on the broadcast channel with error = \(error)")
+//            }
+//        }
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
@@ -99,10 +99,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        PFPush.handlePush(userInfo)
-        if application.applicationState == UIApplicationState.Inactive {
-            PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
-        }
+//        PFPush.handlePush(userInfo)
+//        if application.applicationState == UIApplicationState.Inactive {
+//            PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
+//        }
     }
     
     
