@@ -8,10 +8,6 @@
 
 import UIKit
 import Parse
-import XCGLogger
-
-//XCLogger
-let log = XCGLogger.defaultInstance()
 
 //Load env variables
 let envDict = NSProcessInfo.processInfo().environment
@@ -23,49 +19,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        //XCLogger
-        log.setup(.Debug, showThreadName: true, showLogLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: "/Users/wmaterka/Documents/Code/iOS/uchat/uchatclient/logs/uchat.log", fileLogLevel: .Verbose)
+        let oneSignal = OneSignal(launchOptions: launchOptions, appId: "53a32274-2cd6-4e31-a835-121883f0fee1", handleNotification: nil)
         
+        OneSignal.defaultClient().enableInAppAlertNotification(true)
         
-        
-        // Enable storing and querying data from Local Datastore.
-        // Remove this line if you don't want to use Local Datastore features or want to use cachePolicy.
-        Parse.enableLocalDatastore()
-        
-        // Initialize Parse
-        Parse.initializeWithConfiguration(ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) -> Void in
-            configuration.applicationId = envDict["PARSE_APP_ID"]! as String
-            configuration.clientKey = envDict["PARSE_CLIENT_KEY"]! as String
-            configuration.server = envDict["PARSE_SERVER"]! as String
-        }))
-        
-        
-        PFUser.enableAutomaticUser()
-        
-        let defaultACL = PFACL();
-        
-        // If you would like all objects to be private by default, remove this line.
-        defaultACL.publicReadAccess = true
-        
-        PFACL.setDefaultACL(defaultACL, withAccessForCurrentUser: true)
-        
-        if application.applicationState != UIApplicationState.Background {
-            // Track an app open here if we launch with a push, unless
-            // "content_available" was used to trigger a background push (introduced in iOS 7).
-            // In that case, we skip tracking here to avoid double counting the app-open.
-            
-            let preBackgroundPush = !application.respondsToSelector("backgroundRefreshStatus")
-            let oldPushHandlerOnly = !self.respondsToSelector("application:didReceiveRemoteNotification:fetchCompletionHandler:")
-            var noPushPayload = false;
-            if let options = launchOptions {
-                noPushPayload = options[UIApplicationLaunchOptionsRemoteNotificationKey] != nil;
-            }
-            if (preBackgroundPush || oldPushHandlerOnly || noPushPayload) {
-                PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
-            }
-        }
-        
-        log.info("Parse initialized ✅")
+//        // Enable storing and querying data from Local Datastore.
+//        // Remove this line if you don't want to use Local Datastore features or want to use cachePolicy.
+//        Parse.enableLocalDatastore()
+//        
+//        // Initialize Parse
+//        Parse.initializeWithConfiguration(ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) -> Void in
+//            configuration.applicationId = envDict["PARSE_APP_ID"]! as String
+//            configuration.clientKey = envDict["PARSE_CLIENT_KEY"]! as String
+//            configuration.server = envDict["PARSE_SERVER"]! as String
+//        }))
+//        
+//        
+//        PFUser.enableAutomaticUser()
+//        
+//        let defaultACL = PFACL();
+//        
+//        // If you would like all objects to be private by default, remove this line.
+//        defaultACL.publicReadAccess = true
+//        
+//        PFACL.setDefaultACL(defaultACL, withAccessForCurrentUser: true)
+//        
+//        if application.applicationState != UIApplicationState.Background {
+//            // Track an app open here if we launch with a push, unless
+//            // "content_available" was used to trigger a background push (introduced in iOS 7).
+//            // In that case, we skip tracking here to avoid double counting the app-open.
+//            
+//            let preBackgroundPush = !application.respondsToSelector("backgroundRefreshStatus")
+//            let oldPushHandlerOnly = !self.respondsToSelector("application:didReceiveRemoteNotification:fetchCompletionHandler:")
+//            var noPushPayload = false;
+//            if let options = launchOptions {
+//                noPushPayload = options[UIApplicationLaunchOptionsRemoteNotificationKey] != nil;
+//            }
+//            if (preBackgroundPush || oldPushHandlerOnly || noPushPayload) {
+//                PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
+//            }
+//        }
+//        
+//        log.info("Parse initialized ✅")
         
         // Register for notifications
         let notificationTypes: UIUserNotificationType = [.Alert, .Badge, .Sound]
@@ -88,18 +83,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         PFPush.subscribeToChannelInBackground("") { (succeeded: Bool, error: NSError?) in
             if succeeded {
-                log.info("Successfully subscribed to push notifications on the broadcast channel. 📨 ✅ \n");
+                print("Successfully subscribed to push notifications on the broadcast channel. 📨 ✅ \n");
             } else {
-                log.error("🆘 📨 Failed to subscribe to push notifications on the broadcast channel with error = \(error)")
+                print("🆘 📨 Failed to subscribe to push notifications on the broadcast channel with error = \(error)")
             }
         }
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
         if error.code == 3010 {
-            log.warning("📵 📨 Push notifications are not supported in the iOS Simulator.\n")
+            print("📵 📨 Push notifications are not supported in the iOS Simulator.\n")
         } else {
-            log.error("🆘 📨 application:didFailToRegisterForRemoteNotificationsWithError: \(error)")
+            print("🆘 📨 application:didFailToRegisterForRemoteNotificationsWithError: \(error)")
         }
     }
     

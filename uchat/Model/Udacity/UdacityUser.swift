@@ -13,11 +13,11 @@ struct UdacityUser {
     
     static var udacityKey : String? {
         willSet(userUdacityKey) {
-            log.info("setting user udacity Key to \(userUdacityKey)")
+            print("setting user udacity Key to \(userUdacityKey)")
         }
         didSet {
             if udacityKey != oldValue {
-                log.info("Changed user Udacity key from \(oldValue) to \(udacityKey)")
+                print("Changed user Udacity key from \(oldValue) to \(udacityKey)")
             }
         }
     }
@@ -58,6 +58,7 @@ struct UdacityUser {
         UdacityUser.lastName = nil
 
     }
+
     
     
 }

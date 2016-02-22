@@ -69,7 +69,7 @@ extension UClient {
                     }
                 } else if let userData = JSONResult[UClient.JSONResponseKeys.UserResults] as? [String : AnyObject] {
                     
-                    log.verbose(" user data: \n \(JSONResult)")
+//                    print(" user data: \n \(JSONResult)")
                     
                     completionHandler(success: true, userData: userData, errorString: nil)
                 } else {

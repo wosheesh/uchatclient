@@ -10,4 +10,6 @@ import Foundation
 
 struct Channel {
     var name: String
+    var messages: [Message]
+    
 }

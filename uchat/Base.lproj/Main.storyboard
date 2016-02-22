@@ -208,24 +208,37 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="AGW-L5-aNE" id="IiU-Cy-vfG"/>
+                                        </connections>
                                     </textField>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="hUm-et-hDg" firstAttribute="top" secondItem="uRb-ln-Aca" secondAttribute="bottom" id="Hfi-fJ-xf2"/>
                             <constraint firstItem="hUm-et-hDg" firstAttribute="leading" secondItem="JG1-Qx-sgz" secondAttribute="leadingMargin" constant="-20" id="hcL-7d-ltN"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hUm-et-hDg" secondAttribute="trailing" constant="-20" id="jeW-IJ-v3m"/>
-                            <constraint firstItem="2lg-lQ-4kX" firstAttribute="top" secondItem="hUm-et-hDg" secondAttribute="bottom" id="xCl-IN-dB0"/>
+                            <constraint firstItem="2lg-lQ-4kX" firstAttribute="top" secondItem="hUm-et-hDg" secondAttribute="bottom" id="xCl-IN-dB0" userLabel="Bottom Constraint"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="109-jF-CLo" appends="YES" id="XBR-b5-oim"/>
+                        </connections>
                     </view>
                     <connections>
+                        <outlet property="bottomConstraint" destination="xCl-IN-dB0" id="bGr-Y9-L6Y"/>
                         <outlet property="chatTextField" destination="t9q-F5-ZzQ" id="8Xt-dq-bVL"/>
                         <outlet property="chatWall" destination="Nh9-bZ-Abl" id="4uP-HF-j5V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="beS-9X-Umf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="109-jF-CLo">
+                    <connections>
+                        <action selector="viewTapped:" destination="AGW-L5-aNE" id="SRp-iy-kwH"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1825" y="522"/>
         </scene>

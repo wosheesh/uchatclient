@@ -9,16 +9,16 @@
 //TODO: Sections in the table
 //TODO: subscribe and unsubsribe from channels - https://www.udacity.com/catalog-api
 //TODO: persist subscribed channels
+//TODO: Add logout
 
 import UIKit
-import Parse
 
 class ChannelsViewController: UITableViewController {
     
     //MARK: - 🎛 Properties
     
     //start with a general channel as default
-    var channels = [Channel(name: "General")]
+    var channels = [Channel(name: "General", messages: [])]
     
     //MARK: - 🔄 Lifecycle
     
@@ -31,13 +31,13 @@ class ChannelsViewController: UITableViewController {
         }
         
         // setup the current user's nickname
-        let currentUser = PFUser.currentUser()!
-        if let firstName = UdacityUser.firstName,
-            let lastName = UdacityUser.lastName {
-                currentUser.username = firstName + " " + lastName
-        }
+//        let currentUser = PFUser.currentUser()!
+//        if let firstName = UdacityUser.firstName,
+//            let lastName = UdacityUser.lastName {
+//                currentUser.username = firstName + " " + lastName
+//        }
         
-        log.info("username: \(currentUser.username)")
+        print("username: \(UdacityUser.firstName)")
 
     }
     
