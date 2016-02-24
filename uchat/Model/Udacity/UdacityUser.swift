@@ -33,18 +33,18 @@ struct UdacityUser {
     /// If channel is nil removes unsubscribes from last notification
     static func setChannel(channel: Channel?) {
         
-        print("currentChannel: \(UdacityUser.currentUser.currentChannel)")
-        
         if channel == nil {
-            OneSignal.deleteUserTag(Constants.OneSignal.CHANNEL_TAG)
+//            OneSignal.deleteUserTag(Constants.OneSignal.CHANNEL_TAG)
             UdacityUser.currentUser.currentChannel = nil
+            print("User unsubscribed from a channel")
         } else {
-            OneSignal.deleteUserTag(Constants.OneSignal.CHANNEL_TAG)
-            OneSignal.tagUser(withTag: Constants.OneSignal.CHANNEL_TAG, value: channel!.name)
+//            OneSignal.deleteUserTag(Constants.OneSignal.CHANNEL_TAG)
+//            OneSignal.tagUser(withTag: Constants.OneSignal.CHANNEL_TAG, value: channel!.name)
             UdacityUser.currentUser.currentChannel = channel
+            print("User now in channel: \(UdacityUser.currentUser.currentChannel?.name)")
         }
         
-        print("currentChannel: \(UdacityUser.currentUser.currentChannel)")
+        
         
     }
 

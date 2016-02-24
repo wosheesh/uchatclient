@@ -19,37 +19,8 @@ let envDict = NSProcessInfo.processInfo().environment
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var oneSignal: OneSignal?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
-//        oneSignal = OneSignal(launchOptions: launchOptions, appId: "53a32274-2cd6-4e31-a835-121883f0fee1") { (message, additionalData, isActive) in
-//            print("📬 OneSignal Notification opened:\nMessage: %@", message)
-//            
-//            if additionalData != nil {
-//                print("> additionalData: %@", additionalData)
-//                
-//                // Check for and read any custom values you added to the notification
-//                // This done with the "Additonal Data" section the dashbaord.
-//                // OR setting the 'data' field on our REST API.
-//                if let customKey = additionalData["customKey"] as! String? {
-//                    print("> customKey: %@", customKey)
-//                }
-//            }
-//        
-//            
-//            
-//        }
-//        
-//        OneSignal.defaultClient().enableInAppAlertNotification(false)
-    
-//        oneSignal!.IdsAvailable({ (userId, pushToken) in
-//            NSLog("UserId:%@", userId);
-//            if (pushToken != nil) {
-//                NSLog("Sending Test Noification to this device now");
-//                self.oneSignal!.postNotification(["contents": ["en": "Test Message"], "include_player_ids": [userId]]);
-//            }
-//        });
         
 //        // Enable storing and querying data from Local Datastore.
 //        // Remove this line if you don't want to use Local Datastore features or want to use cachePolicy.
@@ -139,7 +110,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
         
-        UdacityUser.setChannel(nil)
+//        UdacityUser.setChannel(nil)
     }
 
     func applicationDidEnterBackground(application: UIApplication) {

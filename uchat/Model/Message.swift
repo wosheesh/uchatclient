@@ -9,8 +9,9 @@
 // TODO: Add timestamps to created, sent and received
 
 // This struct doesn't allow editing of the messages
-import Foundation
+
 import UIKit
+import Parse
 
 struct Message {
     private var body: String
@@ -37,15 +38,18 @@ struct Message {
 
     func sendMessage(toChannel channel: String) {
         
-//        let data = ["author" : self.author().username!]
-//        let tags = ["key": "Channel", "relation": "=", "value": channel]
-//        
-////        [
-////            "author" : self.author().username!,
-////            "tags" : ["key": "Channel", "relation": "=", "value": channel]
-////        ]
-//        
-////        OneSignal.pushNotification(withBody: self.body, data: data, tags: tags)
+//        let push = PFPush()
+//        push.setChannel(channel)
+//        push.setMessage(self.text())
+//        push.sendPushInBackgroundWithBlock { (success, error) -> Void in
+//            if success {
+//                print("User sent message: \(self.text())")
+//            } else if let error = error {
+//                print("🆘 Failed to send a message: \(error.userInfo)")
+//            }
+//        }
+        
+        
 
     }
     
