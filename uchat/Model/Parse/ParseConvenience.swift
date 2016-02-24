@@ -18,7 +18,6 @@ extension ParseClient {
         let httpMethod: String = HttpMethods.PushNotification
         
         let jsonBody: [String: AnyObject] = [
-        
             "channels" : channel.name,
             "data": ["alert": message.text()]
         

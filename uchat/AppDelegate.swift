@@ -97,11 +97,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        print("application received a message: \(userInfo)")
+        
+        // Handle push while app is active
+        if application.applicationState == UIApplicationState.Active {
+            
+            let currentViewController = self.window!.rootViewController
+            
+            if currentViewController == ChatViewController() {
+                
+                Alerts().simpleAlert(currentViewController!, message: userInfo.description)
+                
+                print("message received: \(userInfo)")
+                
+            }
+            
+        }
+    }
+    
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        
+        
+        print("application received a message: \(userInfo)")
+        
+        
         PFPush.handlePush(userInfo)
         if application.applicationState == UIApplicationState.Inactive {
             PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
         }
+        
+        
+        
+
+        
     }
     
     
