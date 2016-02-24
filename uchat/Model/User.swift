@@ -8,10 +8,19 @@
 
 import Foundation
 
-struct User {
-    var username: String
+protocol chatUser {
+    var username: String? { get }
+    var currentChannel: Channel? { get set }
+}
+
+struct User: chatUser {
+    var username: String?
+    var currentChannel: Channel?
     
-    static func currentUser() -> User {
-        return User(username: UdacityUser.firstName!)
+    mutating func clearData() {
+        username = nil
+        currentChannel = nil
     }
 }
+    
+

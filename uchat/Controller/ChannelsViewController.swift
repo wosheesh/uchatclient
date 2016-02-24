@@ -13,6 +13,7 @@
 
 import UIKit
 
+
 class ChannelsViewController: UITableViewController {
     
     //MARK: - 🎛 Properties
@@ -26,15 +27,8 @@ class ChannelsViewController: UITableViewController {
         super.viewDidLoad()
         
         // add user's channels
-        if let userChannels = UdacityUser.channels {
-            channels.appendContentsOf(userChannels)
-        }
-        
-        // setup the current user's nickname
-//        let currentUser = PFUser.currentUser()!
-//        if let firstName = UdacityUser.firstName,
-//            let lastName = UdacityUser.lastName {
-//                currentUser.username = firstName + " " + lastName
+//        if let userChannels = UdacityUser.currentUser!.currentChannel {
+//            channels.appendContentsOf(userChannels)
 //        }
         
         print("username: \(UdacityUser.firstName)")

@@ -7,6 +7,7 @@
 //
 
 // TODO: Improve the chat bubbles UI
+// TODO: Enter channel bubble
 
 import UIKit
 
@@ -25,6 +26,16 @@ class ChatViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // subscribe user to notifications from the current channel
+        print(UdacityUser.currentUser.username)
+        UdacityUser.currentUser.currentChannel = channel
+        
+        var newUser = User(username: "newUser", currentChannel: channel)
+        print(newUser.username)
+        newUser.username = "hello"
+        
+
+        
         // Keyboard notifications
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
         
@@ -41,6 +52,11 @@ class ChatViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+//        OneSignal.
     }
     
     // MARK: - ⌨️ Keyboard scrolling
@@ -66,6 +82,8 @@ class ChatViewController: UIViewController {
     
     // MARK: - 🐵 Helpers
     
+
+    
     @IBAction func viewTapped(sender: AnyObject) {
         chatTextField.resignFirstResponder()
     }
@@ -88,12 +106,15 @@ extension ChatViewController: UITextFieldDelegate {
         
             
         if let msgBody = chatTextField.text where msgBody != "" {
-            let message = Message(body: msgBody, creator: User.currentUser())
+            let message = Message(body: msgBody, creator: UdacityUser.currentUser)
             channel.messages.append(message)
             chatTextField.text = ""
             chatTextField.resignFirstResponder()
+            
+            
+            message.sendMessage(toChannel: "General")
         
-            print("📤 new message posted on \(message.date()) by \(message.author().username) with body: '\(message.text())'")
+            
             
             // TODO: remove the reload after push is implemented - channel.messages should update on network push not client write
             chatWall.reloadData()

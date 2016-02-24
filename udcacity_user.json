@@ -1,0 +1,840 @@
+ {
+    user =     {
+        "_affiliate_profiles" =         (
+        );
+        "_badges" =         (
+        );
+        "_cohort_keys" =         (
+            5813653176844288
+        );
+        "_discourse_username" = "w_materka";
+        "_enrollments" =         (
+                        {
+                "email_ok" = 1;
+                "first_paid_enrollment_time" = "<null>";
+                "group_refs" =                 (
+                );
+                milestones =                 (
+                );
+                "node_key" = ud359;
+                "previous_states" =                 (
+                );
+                "product_variant" = STANDARD;
+                state = enrolled;
+            },
+                        {
+                "email_ok" = 1;
+                "first_paid_enrollment_time" = "<null>";
+                "group_refs" =                 (
+                );
+                milestones =                 (
+                );
+                "node_key" = ep245;
+                "previous_states" =                 (
+                    enrolled
+                );
+                "product_variant" = STANDARD;
+                state = unenrolled;
+            },
+                        {
+                "email_ok" = 1;
+                "first_paid_enrollment_time" = "<null>";
+                "group_refs" =                 (
+                );
+                milestones =                 (
+                );
+                "node_key" = cs101;
+                "previous_states" =                 (
+                    enrolled,
+                    unenrolled
+                );
+                "product_variant" = STANDARD;
+                state = enrolled;
+            },
+                        {
+                "email_ok" = 1;
+                "first_paid_enrollment_time" = "<null>";
+                "group_refs" =                 (
+                );
+                milestones =                 (
+                );
+                "node_key" = st101;
+                "previous_states" =                 (
+                );
+                "product_variant" = STANDARD;
+                state = enrolled;
+            },
+                        {
+                "email_ok" = 1;
+                "first_paid_enrollment_time" = "<null>";
+                "group_refs" =                 (
+                );
+                milestones =                 (
+                );
+                "node_key" = ud036;
+                "previous_states" =                 (
+                    enrolled
+                );
+                "product_variant" = STANDARD;
+                state = unenrolled;
+            },
+                        {
+                "email_ok" = 1;
+                "first_paid_enrollment_time" = "<null>";
+                "group_refs" =                 (
+                );
+                milestones =                 (
+                );
+                "node_key" = cs253;
+                "previous_states" =                 (
+                );
+                "product_variant" = STANDARD;
+                state = enrolled;
+            },
+                        {
+                "email_ok" = 1;
+                "first_paid_enrollment_time" = "<null>";
+                "group_refs" =                 (
+                                        {
+                        key = 5732204772065280;
+                        ref = Group;
+                    }
+                );
+                milestones =                 (
+                );
+                "node_key" = nd002;
+                "previous_states" =                 (
+                );
+                "product_variant" = STANDARD;
+                state = interested;
+            },
+                        {
+                "email_ok" = 1;
+                "first_paid_enrollment_time" = "<null>";
+                "group_refs" =                 (
+                );
+                milestones =                 (
+                );
+                "node_key" = ud585;
+                "previous_states" =                 (
+                );
+                "product_variant" = STANDARD;
+                state = enrolled;
+            },
+                        {
+                "email_ok" = 1;
+                "first_paid_enrollment_time" = "2015-10-23T11:46:26.624100Z";
+                "group_refs" =                 (
+                                        {
+                        key = 5059910595510272;
+                        ref = Group;
+                    },
+                                        {
+                        key = 6362577981669376;
+                        ref = Group;
+                    }
+                );
+                milestones =                 (
+                );
+                "node_key" = nd003;
+                "previous_states" =                 (
+                    interested
+                );
+                "product_variant" = STANDARD;
+                state = enrolled;
+            },
+                        {
+                "email_ok" = 1;
+                "first_paid_enrollment_time" = "<null>";
+                "group_refs" =                 (
+                );
+                milestones =                 (
+                );
+                "node_key" = ud509;
+                "previous_states" =                 (
+                );
+                "product_variant" = STANDARD;
+                state = enrolled;
+            },
+                        {
+                "email_ok" = 1;
+                "first_paid_enrollment_time" = "<null>";
+                "group_refs" =                 (
+                );
+                milestones =                 (
+                );
+                "node_key" = ud827;
+                "previous_states" =                 (
+                );
+                "product_variant" = STANDARD;
+                state = enrolled;
+            },
+                        {
+                "email_ok" = 1;
+                "first_paid_enrollment_time" = "<null>";
+                "group_refs" =                 (
+                                        {
+                        key = 6362577981669376;
+                        ref = Group;
+                    }
+                );
+                milestones =                 (
+                );
+                "node_key" = "ud585-nd";
+                "previous_states" =                 (
+                );
+                "product_variant" = STANDARD;
+                state = enrolled;
+            },
+                        {
+                "email_ok" = 1;
+                "first_paid_enrollment_time" = "<null>";
+                "group_refs" =                 (
+                                        {
+                        key = 6362577981669376;
+                        ref = Group;
+                    }
+                );
+                milestones =                 (
+                );
+                "node_key" = "ud775-nd";
+                "previous_states" =                 (
+                );
+                "product_variant" = STANDARD;
+                state = enrolled;
+            },
+                        {
+                "email_ok" = 1;
+                "first_paid_enrollment_time" = "<null>";
+                "group_refs" =                 (
+                                        {
+                        key = 6362577981669376;
+                        ref = Group;
+                    }
+                );
+                milestones =                 (
+                );
+                "node_key" = "ud788-nd";
+                "previous_states" =                 (
+                );
+                "product_variant" = STANDARD;
+                state = enrolled;
+            },
+                        {
+                "email_ok" = 1;
+                "first_paid_enrollment_time" = "<null>";
+                "group_refs" =                 (
+                                        {
+                        key = 6362577981669376;
+                        ref = Group;
+                    }
+                );
+                milestones =                 (
+                );
+                "node_key" = "ud421-nd";
+                "previous_states" =                 (
+                );
+                "product_variant" = STANDARD;
+                state = enrolled;
+            },
+                        {
+                "email_ok" = 1;
+                "first_paid_enrollment_time" = "<null>";
+                "group_refs" =                 (
+                                        {
+                        key = 6362577981669376;
+                        ref = Group;
+                    }
+                );
+                milestones =                 (
+                );
+                "node_key" = "ud325-nd";
+                "previous_states" =                 (
+                );
+                "product_variant" = STANDARD;
+                state = enrolled;
+            },
+                        {
+                "email_ok" = 1;
+                "first_paid_enrollment_time" = "<null>";
+                "group_refs" =                 (
+                                        {
+                        key = 6362577981669376;
+                        ref = Group;
+                    }
+                );
+                milestones =                 (
+                );
+                "node_key" = "ud607-nd";
+                "previous_states" =                 (
+                );
+                "product_variant" = STANDARD;
+                state = enrolled;
+            },
+                        {
+                "email_ok" = 1;
+                "first_paid_enrollment_time" = "<null>";
+                "group_refs" =                 (
+                                        {
+                        key = 6362577981669376;
+                        ref = Group;
+                    }
+                );
+                milestones =                 (
+                );
+                "node_key" = "ud774-nd";
+                "previous_states" =                 (
+                );
+                "product_variant" = STANDARD;
+                state = enrolled;
+            },
+                        {
+                "email_ok" = 1;
+                "first_paid_enrollment_time" = "<null>";
+                "group_refs" =                 (
+                                        {
+                        key = 6362577981669376;
+                        ref = Group;
+                    }
+                );
+                milestones =                 (
+                );
+                "node_key" = "ud902-nd";
+                "previous_states" =                 (
+                );
+                "product_variant" = STANDARD;
+                state = enrolled;
+            },
+                        {
+                "email_ok" = 1;
+                "first_paid_enrollment_time" = "<null>";
+                "group_refs" =                 (
+                                        {
+                        key = 6362577981669376;
+                        ref = Group;
+                    }
+                );
+                milestones =                 (
+                );
+                "node_key" = "ud788a-nd";
+                "previous_states" =                 (
+                );
+                "product_variant" = STANDARD;
+                state = enrolled;
+            },
+                        {
+                "email_ok" = 1;
+                "first_paid_enrollment_time" = "<null>";
+                "group_refs" =                 (
+                                        {
+                        key = 6362577981669376;
+                        ref = Group;
+                    }
+                );
+                milestones =                 (
+                );
+                "node_key" = "ud788b-nd";
+                "previous_states" =                 (
+                );
+                "product_variant" = STANDARD;
+                state = enrolled;
+            },
+                        {
+                "email_ok" = 1;
+                "first_paid_enrollment_time" = "<null>";
+                "group_refs" =                 (
+                                        {
+                        key = 6362577981669376;
+                        ref = Group;
+                    }
+                );
+                milestones =                 (
+                );
+                "node_key" = "ud576-nd";
+                "previous_states" =                 (
+                );
+                "product_variant" = STANDARD;
+                state = enrolled;
+            },
+                        {
+                "email_ok" = 1;
+                "first_paid_enrollment_time" = "<null>";
+                "group_refs" =                 (
+                );
+                milestones =                 (
+                );
+                "node_key" = ud953;
+                "previous_states" =                 (
+                );
+                "product_variant" = STANDARD;
+                state = enrolled;
+            },
+                        {
+                "email_ok" = 1;
+                "first_paid_enrollment_time" = "<null>";
+                "group_refs" =                 (
+                );
+                milestones =                 (
+                );
+                "node_key" = ud777;
+                "previous_states" =                 (
+                );
+                "product_variant" = STANDARD;
+                state = enrolled;
+            },
+                        {
+                "email_ok" = 1;
+                "first_paid_enrollment_time" = "<null>";
+                "group_refs" =                 (
+                );
+                milestones =                 (
+                );
+                "node_key" = ud576;
+                "previous_states" =                 (
+                );
+                "product_variant" = STANDARD;
+                state = enrolled;
+            }
+        );
+        "_facebook_id" = 231285847206021;
+        "_google_id" = 114688588840978112429;
+        "_has_password" = 1;
+        "_image" = "<null>";
+        "_image_url" = "//robohash.org/udacity-1217518784.png";
+        "_memberships" =         (
+                        {
+                "creation_time" = "<null>";
+                current = 1;
+                "expiration_time" = "<null>";
+                "group_ref" =                 {
+                    key = "everyone\\3aglobal";
+                    ref = ScopedRole;
+                };
+            },
+                        {
+                "creation_time" = "2014-12-14T12:07:58.960140Z";
+                current = 1;
+                "expiration_time" = "<null>";
+                "group_ref" =                 {
+                    key = 5732204772065280;
+                    ref = Group;
+                };
+            },
+                        {
+                "creation_time" = "2015-06-27T15:32:52.728250Z";
+                current = 1;
+                "expiration_time" = "<null>";
+                "group_ref" =                 {
+                    key = 5059910595510272;
+                    ref = Group;
+                };
+            },
+                        {
+                "creation_time" = "2015-10-23T11:46:25.707150Z";
+                current = 1;
+                "expiration_time" = "<null>";
+                "group_ref" =                 {
+                    key = 6362577981669376;
+                    ref = Group;
+                };
+            }
+        );
+        "_principals" =         (
+            "registered user\\3aglobal",
+            "enrollee\\3anode\\7ckNode\\2eud775-nd",
+            "prev-enrollee\\3anode\\7ckNode\\2eep245",
+            "enrollee\\3anode\\7ckNode\\2eud774-nd",
+            "enrollee\\3anode\\7ckNode\\2ecs253",
+            "enrollee\\3anode\\7ckNode\\2eud902-nd",
+            "enrollee\\3anode\\7ckNode\\2eud827",
+            "enrollee\\3anode\\7ckNode\\2eud509",
+            "enrollee\\3anode\\7ckNode\\2ecs101",
+            "enrollee\\3anode\\7ckNode\\2eud325-nd",
+            "enrollee\\3anode\\7ckNode\\2eud607-nd",
+            6362577981669376,
+            "prev-enrollee\\3anode\\7ckNode\\2eud036",
+            "enrollee\\3anode\\7ckNode\\2eud788a-nd",
+            "enrollee\\3anode\\7ckNode\\2eud585",
+            5059910595510272,
+            "enrollee\\3anode\\7ckNode\\2eud576",
+            "enrollee\\3anode\\7ckNode\\2end003",
+            1217518784,
+            5732204772065280,
+            "enrollee\\3anode\\7ckNode\\2eud777",
+            "enrollee\\3anode\\7ckNode\\2eud788b-nd",
+            "enrollee\\3anode\\7ckNode\\2eud421-nd",
+            "enrollee\\3anode\\7ckNode\\2eud359",
+            "interested\\3anode\\7ckNode\\2end002",
+            "email verified\\3aglobal",
+            "enrollee\\3anode\\7ckNode\\2eud576-nd",
+            "enrollee\\3anode\\7ckNode\\2eud953",
+            "enrollee\\3anode\\7ckNode\\2est101",
+            "enrollee\\3anode\\7ckNode\\2eud585-nd",
+            "enrollee\\3anode\\7ckNode\\2eud788-nd",
+            "everyone\\3aglobal"
+        );
+        "_registered" = 1;
+        "_resume" = "<null>";
+        "_signature" = "<null>";
+        "_stripe_customer_id" = "cus_7DV0Jtugi1drtx";
+        bio = "<null>";
+        "coaching_data" = "<null>";
+        email =         {
+            "_verification_code_sent" = 1;
+            "_verified" = 1;
+            address = "w.materka@gmail.com";
+        };
+        "email_preferences" =         {
+            "master_ok" = 1;
+            "ok_course" = 1;
+            "ok_user_research" = 1;
+        };
+        "employer_info" = "<null>";
+        "employer_sharing" = 1;
+        "external_accounts" =         (
+                        {
+                "affiliate_program_key" = github;
+                "professional_data" = "<null>";
+                "social_data" =                 {
+                    "affiliate_program_key" = "<null>";
+                    location = EU;
+                    login = wosheesh;
+                    "social_avatar" = "https://avatars.githubusercontent.com/u/732966?v=3";
+                    "social_id" = 732966;
+                    "social_name" = "Wojtek Materka";
+                    "social_url" = "https://github.com/wosheesh";
+                };
+            }
+        );
+        "first_name" = Wojtek;
+        guard =         {
+            "allowed_behaviors" =             (
+                edit,
+                "manage-payments",
+                register,
+                "send-message",
+                "update-currency",
+                view,
+                "view-all-progress",
+                "view-customer",
+                "view-employer",
+                "view-profiles",
+                "view-public",
+                "view-short"
+            );
+            "can_edit" = 1;
+            permissions =             (
+                                {
+                    behavior = "view-customer";
+                    derivation =                     (
+                        synthetic
+                    );
+                    "principal_ref" =                     {
+                        key = "staff\\3aglobal";
+                        ref = ScopedRole;
+                    };
+                },
+                                {
+                    behavior = "edit-coach-details";
+                    derivation =                     (
+                        synthetic
+                    );
+                    "principal_ref" =                     {
+                        key = "tutor-manager\\3aglobal";
+                        ref = ScopedRole;
+                    };
+                },
+                                {
+                    behavior = "send-message";
+                    derivation =                     (
+                        synthetic
+                    );
+                    "principal_ref" =                     {
+                        key = "registered user\\3aglobal";
+                        ref = ScopedRole;
+                    };
+                },
+                                {
+                    behavior = "view-contact-info";
+                    derivation =                     (
+                        inherited
+                    );
+                    "principal_ref" =                     {
+                        key = "staff\\3aglobal";
+                        ref = ScopedRole;
+                    };
+                },
+                                {
+                    behavior = "manage-payments";
+                    derivation =                     (
+                        synthetic
+                    );
+                    "principal_ref" =                     {
+                        key = "tutor\\3aglobal";
+                        ref = ScopedRole;
+                    };
+                },
+                                {
+                    behavior = "view-profiles";
+                    derivation =                     (
+                        synthetic
+                    );
+                    "principal_ref" =                     {
+                        key = "staff\\3aglobal";
+                        ref = ScopedRole;
+                    };
+                },
+                                {
+                    behavior = ungraduate;
+                    derivation =                     (
+                        synthetic
+                    );
+                    "principal_ref" =                     {
+                        key = "tutor-manager\\3aglobal";
+                        ref = ScopedRole;
+                    };
+                },
+                                {
+                    behavior = "view-coach-details";
+                    derivation =                     (
+                        synthetic
+                    );
+                    "principal_ref" =                     {
+                        key = "tutor-manager\\3aglobal";
+                        ref = ScopedRole;
+                    };
+                },
+                                {
+                    behavior = "edit-experience";
+                    derivation =                     (
+                        synthetic
+                    );
+                    "principal_ref" =                     {
+                        key = "staff\\3aglobal";
+                        ref = ScopedRole;
+                    };
+                },
+                                {
+                    behavior = "view-customer";
+                    derivation =                     (
+                        synthetic
+                    );
+                    "principal_ref" =                     {
+                        key = 1217518784;
+                        ref = Account;
+                    };
+                },
+                                {
+                    behavior = "view-public";
+                    derivation =                     (
+                        synthetic
+                    );
+                    "principal_ref" =                     {
+                        key = "everyone\\3aglobal";
+                        ref = ScopedRole;
+                    };
+                },
+                                {
+                    behavior = "view-short";
+                    derivation =                     (
+                        synthetic
+                    );
+                    "principal_ref" =                     {
+                        key = "everyone\\3aglobal";
+                        ref = ScopedRole;
+                    };
+                },
+                                {
+                    behavior = "manage-payments";
+                    derivation =                     (
+                        synthetic
+                    );
+                    "principal_ref" =                     {
+                        key = 1217518784;
+                        ref = Account;
+                    };
+                },
+                                {
+                    behavior = "manage-zendesk";
+                    derivation =                     (
+                        synthetic
+                    );
+                    "principal_ref" =                     {
+                        key = "staff\\3aglobal";
+                        ref = ScopedRole;
+                    };
+                },
+                                {
+                    behavior = "view-profiles";
+                    derivation =                     (
+                        synthetic
+                    );
+                    "principal_ref" =                     {
+                        key = 1217518784;
+                        ref = Account;
+                    };
+                },
+                                {
+                    behavior = "impersonate-read";
+                    derivation =                     (
+                        synthetic
+                    );
+                    "principal_ref" =                     {
+                        key = "tutor\\3aglobal";
+                        ref = ScopedRole;
+                    };
+                },
+                                {
+                    behavior = graduate;
+                    derivation =                     (
+                        synthetic
+                    );
+                    "principal_ref" =                     {
+                        key = "tutor\\3aglobal";
+                        ref = ScopedRole;
+                    };
+                },
+                                {
+                    behavior = "update-currency";
+                    derivation =                     (
+                        synthetic
+                    );
+                    "principal_ref" =                     {
+                        key = 1217518784;
+                        ref = Account;
+                    };
+                },
+                                {
+                    behavior = edit;
+                    derivation =                     (
+                        synthetic
+                    );
+                    "principal_ref" =                     {
+                        key = 1217518784;
+                        ref = Account;
+                    };
+                },
+                                {
+                    behavior = "edit-coaching-data";
+                    derivation =                     (
+                        synthetic
+                    );
+                    "principal_ref" =                     {
+                        key = "tutor\\3aglobal";
+                        ref = ScopedRole;
+                    };
+                },
+                                {
+                    behavior = "manage-coach";
+                    derivation =                     (
+                        synthetic
+                    );
+                    "principal_ref" =                     {
+                        key = "tutor-manager\\3aglobal";
+                        ref = ScopedRole;
+                    };
+                },
+                                {
+                    behavior = "view-employer";
+                    derivation =                     (
+                        synthetic
+                    );
+                    "principal_ref" =                     {
+                        key = "employer\\3aglobal";
+                        ref = ScopedRole;
+                    };
+                },
+                                {
+                    behavior = "edit-coaching-data";
+                    derivation =                     (
+                        synthetic
+                    );
+                    "principal_ref" =                     {
+                        key = "tutor-manager\\3aglobal";
+                        ref = ScopedRole;
+                    };
+                },
+                                {
+                    behavior = find;
+                    derivation =                     (
+                        synthetic
+                    );
+                    "principal_ref" =                     {
+                        key = "staff\\3aglobal";
+                        ref = ScopedRole;
+                    };
+                },
+                                {
+                    behavior = edit;
+                    derivation =                     (
+                        synthetic
+                    );
+                    "principal_ref" =                     {
+                        key = "tutor-manager\\3aglobal";
+                        ref = ScopedRole;
+                    };
+                },
+                                {
+                    behavior = register;
+                    derivation =                     (
+                        synthetic
+                    );
+                    "principal_ref" =                     {
+                        key = "everyone\\3aglobal";
+                        ref = ScopedRole;
+                    };
+                }
+            );
+            "subject_kind" = Account;
+        };
+        key = 1217518784;
+        languages = "<null>";
+        "last_name" = Materka;
+        "linkedin_url" = "<null>";
+        location = "<null>";
+        "mailing_address" = "<null>";
+        nickname = Wojtek;
+        occupation = "<null>";
+        "registration_time" = "2014-05-28T03:34:10.660520Z";
+        "site_preferences" = "<null>";
+        "social_accounts" =         (
+        );
+        tags =         (
+                        {
+                namespace = showaddtocalbanner;
+                tag = nd003;
+            },
+                        {
+                namespace = satismeternps;
+                tag = "2014-12-14t12:07:58.960z";
+            },
+                        {
+                namespace = course;
+                tag = upsellnd003seen;
+            },
+                        {
+                namespace = satismeternps;
+                tag = "1970-01-01t00:00:00.000z";
+            },
+                        {
+                namespace = shownotificationbanner;
+                tag = hidden;
+            },
+                        {
+                namespace = "downloadables_tour_complete";
+                tag = yes;
+            },
+                        {
+                namespace = showfiftybackbanner;
+                tag = nd003;
+            },
+                        {
+                namespace = course;
+                tag = upsellnd006seen;
+            }
+        );
+        timezone = "<null>";
+        "website_url" = "<null>";
+        "zendesk_id" = "<null>";
+    };
+}
