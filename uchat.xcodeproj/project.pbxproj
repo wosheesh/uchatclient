@@ -32,7 +32,6 @@
 		FE28F3C11C7A427D00E75BF8 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28F3C01C7A427D00E75BF8 /* Message.swift */; };
 		FE28F3D31C7B373600E75BF8 /* OneSignal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE28F3D21C7B373600E75BF8 /* OneSignal.framework */; };
 		FE28F3D51C7B4F8F00E75BF8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28F3D41C7B4F8F00E75BF8 /* User.swift */; };
-		FE28F3D81C7C469700E75BF8 /* OneSignal.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28F3D71C7C469700E75BF8 /* OneSignal.swift */; };
 		FEA7BDA91C78750F002A6535 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA7BDA81C78750F002A6535 /* AppDelegate.swift */; };
 		FEA7BDAE1C78750F002A6535 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEA7BDAC1C78750F002A6535 /* Main.storyboard */; };
 		FEA7BDB01C78750F002A6535 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEA7BDAF1C78750F002A6535 /* Assets.xcassets */; };
@@ -41,6 +40,7 @@
 		FEA7BDC71C787C8A002A6535 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA7BDC61C787C8A002A6535 /* AudioToolbox.framework */; };
 		FEA7BDC91C788047002A6535 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA7BDC81C788047002A6535 /* libsqlite3.tbd */; };
 		FEA7BDCB1C788069002A6535 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA7BDCA1C788069002A6535 /* libz.tbd */; };
+		FEB60EE91C7DE2E8005CE82B /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB60EE81C7DE2E8005CE82B /* ChatViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,7 +70,6 @@
 		FE28F3C91C7B325800E75BF8 /* uchat-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "uchat-Bridging-Header.h"; sourceTree = "<group>"; };
 		FE28F3D21C7B373600E75BF8 /* OneSignal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OneSignal.framework; path = "Supporting Files/Frameworks/OneSignal.framework"; sourceTree = "<group>"; };
 		FE28F3D41C7B4F8F00E75BF8 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Model/User.swift; sourceTree = "<group>"; };
-		FE28F3D71C7C469700E75BF8 /* OneSignal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OneSignal.swift; path = Helpers/oneSignal/OneSignal.swift; sourceTree = "<group>"; };
 		FEA7BDA51C78750F002A6535 /* uchat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uchat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEA7BDA81C78750F002A6535 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FEA7BDAD1C78750F002A6535 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -81,6 +80,7 @@
 		FEA7BDC61C787C8A002A6535 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		FEA7BDC81C788047002A6535 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		FEA7BDCA1C788069002A6535 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		FEB60EE81C7DE2E8005CE82B /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatViewController.swift; path = Controller/ChatViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,8 +120,8 @@
 			isa = PBXGroup;
 			children = (
 				FE28F35D1C79A70D00E75BF8 /* LoginViewController.swift */,
+				FEB60EE81C7DE2E8005CE82B /* ChatViewController.swift */,
 				FE28F3971C79D0F800E75BF8 /* ChannelsViewController.swift */,
-				FE28F3BB1C79E5F500E75BF8 /* OneSignal.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -180,7 +180,7 @@
 		FE28F3D61C7C45D200E75BF8 /* oneSignal */ = {
 			isa = PBXGroup;
 			children = (
-				FE28F3D71C7C469700E75BF8 /* OneSignal.swift */,
+				FE28F3BB1C79E5F500E75BF8 /* OneSignal.swift */,
 			);
 			name = oneSignal;
 			sourceTree = "<group>";
@@ -322,6 +322,7 @@
 			files = (
 				FE28F3981C79D0F800E75BF8 /* ChannelsViewController.swift in Sources */,
 				FE28F35E1C79A70D00E75BF8 /* LoginViewController.swift in Sources */,
+				FEB60EE91C7DE2E8005CE82B /* ChatViewController.swift in Sources */,
 				FE28F37A1C79B1AE00E75BF8 /* Alerts.swift in Sources */,
 				FE28F35A1C79A6DF00E75BF8 /* UClient.swift in Sources */,
 				FE28F35B1C79A6DF00E75BF8 /* UConvenience.swift in Sources */,
@@ -341,7 +342,6 @@
 				FE28F3691C79AF6900E75BF8 /* FindOnTheMapButton.swift in Sources */,
 				FE28F36F1C79AF8E00E75BF8 /* LoginTextField.swift in Sources */,
 				FE28F3D51C7B4F8F00E75BF8 /* User.swift in Sources */,
-				FE28F3D81C7C469700E75BF8 /* OneSignal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
