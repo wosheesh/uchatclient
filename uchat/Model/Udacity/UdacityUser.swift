@@ -8,7 +8,7 @@
 
 //TODO: Change the User model to accommodate ultiple users
 
-import Foundation
+import Parse
 
 struct UdacityUser {
     
@@ -29,23 +29,37 @@ struct UdacityUser {
     
     // MARK: - 🐵 Helpers
     
-    /// Changes channel for the currentUser and tags the user with it on OneSignal.
+    //TODO: throw error if change failed
+    
+    /// Changes channel for the currentUser and subscribes to its notifications
     /// If channel is nil removes unsubscribes from last notification
     static func setChannel(channel: Channel?) {
         
-        if channel == nil {
-//            OneSignal.deleteUserTag(Constants.OneSignal.CHANNEL_TAG)
-            UdacityUser.currentUser.currentChannel = nil
-            print("User unsubscribed from a channel")
-        } else {
-//            OneSignal.deleteUserTag(Constants.OneSignal.CHANNEL_TAG)
-//            OneSignal.tagUser(withTag: Constants.OneSignal.CHANNEL_TAG, value: channel!.name)
-            UdacityUser.currentUser.currentChannel = channel
-            print("User now in channel: \(UdacityUser.currentUser.currentChannel?.name)")
+        // unsubscribe from current channel if there is one
+        if let oldChannel = UdacityUser.currentUser.currentChannel {
+            PFPush.unsubscribeFromChannelInBackground(oldChannel.name, block: { (succeeded, error) -> Void in
+                if succeeded {
+                    UdacityUser.currentUser.currentChannel = nil
+                    print("🚀 Unsubscribed from \(oldChannel.name)")
+                } else {
+                    print("🆘 🚀 Failed to leave channel: \(oldChannel.name) with error: \n \(error)")
+                }
+            })
         }
         
-        
-        
+        // if the new channel is not nil subscribe to it
+        if let newChannel = channel {
+            
+            PFPush.subscribeToChannelInBackground(newChannel.name) { (succeeded: Bool, error: NSError?) in
+                if succeeded {
+                    UdacityUser.currentUser.currentChannel = newChannel
+                    print("🚀 Successfully subscribed to channel: \(newChannel.name).")
+                } else {
+                    print("🆘 🚀 Failed to subscribe to channel: \(newChannel.name) with error: \n \(error)")
+                }
+
+            }
+        }
     }
 
     

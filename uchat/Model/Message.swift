@@ -36,7 +36,7 @@ struct Message {
         return self.createdAt
     }
 
-    func sendMessage(toChannel channel: String) {
+    func sendMessage(toChannel channel: Channel) {
         
 //        let push = PFPush()
 //        push.setChannel(channel)
@@ -48,6 +48,10 @@ struct Message {
 //                print("🆘 Failed to send a message: \(error.userInfo)")
 //            }
 //        }
+        
+        
+        
+        ParseClient.sharedInstance.push(self, channel: channel)
         
         
 

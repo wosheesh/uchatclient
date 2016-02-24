@@ -114,7 +114,7 @@ extension ChatViewController: UITextFieldDelegate {
             chatTextField.resignFirstResponder()
             
             
-            message.sendMessage(toChannel: "General")
+            message.sendMessage(toChannel: self.channel)
         
             
             

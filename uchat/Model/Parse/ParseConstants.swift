@@ -15,14 +15,14 @@ extension ParseClient {
     struct Constants {
         
         // MARK: API and App ID and HTTPHeaders
-        static let ParseAppID : String = envDict["PARSE_APP_ID"]
+        static let ParseAppID : String = envDict["PARSE_APP_ID"]!
         static let ParseAppIDHTTPHeader: String = "X-Parse-Application-Id"
         
-        static let ParseRESTAPIKey : String = envDict["PARSE_MASTER_KEY"]
-        static let ParseRESTAPIKeyHTTPHeader: String = "X-Parse-REST-API-Key"
+        static let ParseMasterKey : String = envDict["PARSE_MASTER_KEY"]!
+        static let ParseMasterKeyHTTPHeader: String = "X-Parse-Master-Key"
         
         // MARK: URLs
-        static let BaseURLSecure : String = envDict["PARSE_SERVER"]
+        static let BaseURLSecure : String = envDict["PARSE_SERVER"]!
 
         // MARK: Timouts
         static let RequestTimeout : Double = 15
@@ -34,7 +34,7 @@ extension ParseClient {
     struct Methods {
         
         // MARK: Student Location
-        static let PushNotification = "/1/push"
+        static let PushNotification = "/push"
     }
     
     struct HttpMethods {

@@ -8,9 +8,13 @@
 
 import Foundation
 
-class ParseClient: NSObject {
+class ParseClient {
     
     // MARK: Properties
+    
+    // Singleton
+    static let sharedInstance = ParseClient()
+    private init() {}
 
     /* Shared session */
     var session: NSURLSession = NSURLSession.sharedSession()
@@ -35,7 +39,7 @@ class ParseClient: NSObject {
         /* 2. Build the HTTP Headers */
         // Values for the AppID and APIKey
         request.addValue(Constants.ParseAppID, forHTTPHeaderField: Constants.ParseAppIDHTTPHeader)
-        request.addValue(Constants.ParseRESTAPIKey, forHTTPHeaderField: Constants.ParseRESTAPIKeyHTTPHeader)
+        request.addValue(Constants.ParseMasterKey, forHTTPHeaderField: Constants.ParseMasterKeyHTTPHeader)
         
         //Parse doesn't need "GET" to be specified in HttpBody
         if httpMethod != "GET" { request.HTTPMethod = httpMethod }
@@ -43,9 +47,10 @@ class ParseClient: NSObject {
         if let jsonBody = jsonBody {
             do {
                 request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(jsonBody, options: .PrettyPrinted)
+
             }
         }
-        
+
         /* 3. Make the request */
         let task = session.dataTaskWithRequest(request) { (data, result, error) in
             
