@@ -41,6 +41,7 @@
 		FEA7BDC91C788047002A6535 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA7BDC81C788047002A6535 /* libsqlite3.tbd */; };
 		FEA7BDCB1C788069002A6535 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA7BDCA1C788069002A6535 /* libz.tbd */; };
 		FEB60EE91C7DE2E8005CE82B /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB60EE81C7DE2E8005CE82B /* ChatViewController.swift */; };
+		FEB60EEB1C7DE358005CE82B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB60EEA1C7DE358005CE82B /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +82,7 @@
 		FEA7BDC81C788047002A6535 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		FEA7BDCA1C788069002A6535 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		FEB60EE81C7DE2E8005CE82B /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatViewController.swift; path = Controller/ChatViewController.swift; sourceTree = "<group>"; };
+		FEB60EEA1C7DE358005CE82B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Model/Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				FE28F3B91C79D19000E75BF8 /* Channel.swift */,
 				FE28F3D41C7B4F8F00E75BF8 /* User.swift */,
 				FE28F3C01C7A427D00E75BF8 /* Message.swift */,
+				FEB60EEA1C7DE358005CE82B /* Constants.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 				FE28F37A1C79B1AE00E75BF8 /* Alerts.swift in Sources */,
 				FE28F35A1C79A6DF00E75BF8 /* UClient.swift in Sources */,
 				FE28F35B1C79A6DF00E75BF8 /* UConvenience.swift in Sources */,
+				FEB60EEB1C7DE358005CE82B /* Constants.swift in Sources */,
 				FE28F3601C79AF4700E75BF8 /* LoginViewUI.swift in Sources */,
 				FE28F37C1C79B6AA00E75BF8 /* UdacityUser.swift in Sources */,
 				FE28F3BA1C79D19000E75BF8 /* Channel.swift in Sources */,

@@ -26,11 +26,6 @@ class ChannelsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // add user's channels
-//        if let userChannels = UdacityUser.currentUser!.currentChannel {
-//            channels.appendContentsOf(userChannels)
-//        }
-        
         print("username: \(UdacityUser.firstName)")
 
     }

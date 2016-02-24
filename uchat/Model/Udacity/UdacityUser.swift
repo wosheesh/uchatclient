@@ -29,17 +29,22 @@ struct UdacityUser {
     
     // MARK: - 🐵 Helpers
     
-    /// Sets the current channel of the UdacityUser.currentUser
-    /// and subscribes to appropriate notifications. If channel is nil
-    /// removes unsubscribes from last notification
-    
-    static func setChannel(channel: Channel?) throws {
+    /// Changes channel for the currentUser and tags the user with it on OneSignal.
+    /// If channel is nil removes unsubscribes from last notification
+    static func setChannel(channel: Channel?) {
+        
+        print("currentChannel: \(UdacityUser.currentUser.currentChannel)")
         
         if channel == nil {
-            OneSignal.deleteUserTag(UdacityUser.currentUser.currentChannel)
+            OneSignal.deleteUserTag(Constants.OneSignal.CHANNEL_TAG)
             UdacityUser.currentUser.currentChannel = nil
-            
+        } else {
+            OneSignal.deleteUserTag(Constants.OneSignal.CHANNEL_TAG)
+            OneSignal.tagUser(withTag: Constants.OneSignal.CHANNEL_TAG, value: channel!.name)
+            UdacityUser.currentUser.currentChannel = channel
         }
+        
+        print("currentChannel: \(UdacityUser.currentUser.currentChannel)")
         
     }
 
@@ -54,6 +59,9 @@ struct UdacityUser {
     }
     
     static func logout() {
+        
+        UdacityUser.setChannel(nil)
+        
         udacityKey = nil
         firstName = nil
         lastName = nil

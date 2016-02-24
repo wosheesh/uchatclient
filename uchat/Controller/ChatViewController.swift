@@ -26,13 +26,11 @@ class ChatViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // subscribe user to notifications from the current channel
-        print(UdacityUser.currentUser.username)
-        UdacityUser.currentUser.currentChannel = channel
         
-        var newUser = User(username: "newUser", currentChannel: channel)
-        print(newUser.username)
-        newUser.username = "hello"
+        
+//        var newUser = User(username: "newUser", currentChannel: channel)
+//        print(newUser.username)
+//        newUser.username = "hello"
         
 
         
@@ -52,11 +50,15 @@ class ChatViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // subscribe user to notifications from the current channel
+        UdacityUser.setChannel(channel)
+        
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-//        OneSignal.
+        UdacityUser.setChannel(nil)
     }
     
     // MARK: - ⌨️ Keyboard scrolling

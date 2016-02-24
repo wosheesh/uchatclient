@@ -6,7 +6,7 @@
 //  Copyright © 2016 Wojtek Materka. All rights reserved.
 //
 
-// TODO: Add timestamp
+// TODO: Add timestamps to created, sent and received
 
 // This struct doesn't allow editing of the messages
 import Foundation
@@ -15,13 +15,12 @@ import UIKit
 struct Message {
     private var body: String
     private var creator: chatUser
-    private var createdAt: NSDate {
-        return NSDate()
-    }
+    private var createdAt: NSDate
     
     init(body: String, creator: chatUser) {
         self.body = body
         self.creator = creator
+        self.createdAt = NSDate()
     }
     
     func text() -> String! {
@@ -36,9 +35,17 @@ struct Message {
         return self.createdAt
     }
 
-    func sendMessage(toChannel channel: String!) {
+    func sendMessage(toChannel channel: String) {
         
-        OneSignal.pushNotification(withBody: self.body, data: ["channel" : channel, "author" : self.author().username!])
+//        let data = ["author" : self.author().username!]
+//        let tags = ["key": "Channel", "relation": "=", "value": channel]
+//        
+////        [
+////            "author" : self.author().username!,
+////            "tags" : ["key": "Channel", "relation": "=", "value": channel]
+////        ]
+//        
+////        OneSignal.pushNotification(withBody: self.body, data: data, tags: tags)
 
     }
     
