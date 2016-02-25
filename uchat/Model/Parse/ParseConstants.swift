@@ -32,8 +32,6 @@ extension ParseClient {
     // MARK: Methods
     
     struct Methods {
-        
-        // MARK: Student Location
         static let PushNotification = "/push"
     }
     
@@ -41,38 +39,16 @@ extension ParseClient {
         static let PushNotification = "POST"
     }
     
-
+    // MARK: PushNotifications Keys
     
-    // MARK: Parameter key
-    struct ParameterKeys {
-        static let ArrayQuery = "where"
-        static let LimitQuery = "limit"
-        static let OrderQuery = "order"
-        static let SkipQuery = "skip"
-        
+    struct PushKeys {
+        static let Type = "Type"
+        static let Channels = "channels"
+        static let MessageAuthor = "Author"
+        static let MessageBody = "alert"
+        static let CurrentChannel = "CurrentChannel"
     }
     
-    // MARK: JSON Response Keys
-    
-    struct JSONResponseKeys {
-        
-        // MARK: Student Location
-        static let ObjectId = "objectId"
-        static let UniqueKey = "uniqueKey"
-        static let FirstName = "firstName"
-        static let LastName = "lastName"
-        static let MapString = "mapString"
-        static let MediaURL = "mediaURL"
-        static let Latitude = "latitude"
-        static let Longitude = "longitude"
-        static let ObjectID = "objectId"
-        
-        static let Results = "results"
-        
-        // MARK: PUT/POST Method Response
-        static let POSTResponse = "createdAt"
-        static let PUTResponse = "updatedAt"
-    }
     
     
 }

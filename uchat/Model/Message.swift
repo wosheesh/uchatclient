@@ -36,25 +36,49 @@ struct Message {
         return self.createdAt
     }
 
-    func sendMessage(toChannel channel: Channel) {
-        
-//        let push = PFPush()
-//        push.setChannel(channel)
-//        push.setMessage(self.text())
-//        push.sendPushInBackgroundWithBlock { (success, error) -> Void in
-//            if success {
-//                print("User sent message: \(self.text())")
-//            } else if let error = error {
-//                print("🆘 Failed to send a message: \(error.userInfo)")
-//            }
-//        }
-        
-        
-        
+    func Send(toChannel channel: Channel) {
+
+        //TODO: throws error
         ParseClient.sharedInstance.push(self, channel: channel)
-        
-        
 
     }
+    
+    // MARK: - 💁 Convenience
+    enum MessageError: ErrorType {
+        case InvalidSyntax
+        case NoBodyFound
+        case NoAuthorFound
+        case NoChannelFound
+    }
+    
+    static func createFromPushNotification(userInfo: [NSObject : AnyObject]) throws -> Message {
+        
+        //TODO: Drop "current channel"
+        
+        guard let aps = userInfo["aps"] as? NSDictionary else {
+            throw MessageError.InvalidSyntax
+        }
+        
+        guard let body = aps[ParseClient.PushKeys.MessageBody] as? String else {
+            throw MessageError.NoBodyFound
+        }
+        
+        guard let authorName = userInfo[ParseClient.PushKeys.MessageAuthor] as? String else {
+            throw MessageError.NoAuthorFound
+        }
+        
+        guard let channelName = userInfo[ParseClient.PushKeys.CurrentChannel] as? String else {
+            throw MessageError.NoChannelFound
+        }
+        
+        let newChannel = Channel(name: channelName, messages: [])
+        let newUser = User(username: authorName, currentChannel: newChannel)
+        let message = Message(body: body, creator: newUser)
+                
+        return message
+
+    }
+    
+    
     
 }

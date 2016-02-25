@@ -25,15 +25,7 @@ class ChatViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
-//        var newUser = User(username: "newUser", currentChannel: channel)
-//        print(newUser.username)
-//        newUser.username = "hello"
-        
-
-        
+           
         // Keyboard notifications
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
         
@@ -56,9 +48,19 @@ class ChatViewController: UIViewController {
         
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "displayNewMessage:", name: "newMessage", object: nil)
+    }
+    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         UdacityUser.setChannel(nil)
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "newMessage", object: nil)
     }
     
     // MARK: - ⌨️ Keyboard scrolling
@@ -84,7 +86,31 @@ class ChatViewController: UIViewController {
     
     // MARK: - 🐵 Helpers
     
-
+    
+    func displayNewMessage(notification: NSNotification) {
+        
+        print("Local notification received")
+        
+        let userInfo = notification.object as! [NSObject : AnyObject]
+        do {
+            let newMessage = try Message.createFromPushNotification(userInfo)
+            channel.messages.append(newMessage)
+        } catch Message.MessageError.InvalidSyntax {
+            print("Invalid syntax")
+        } catch Message.MessageError.NoBodyFound {
+            print("Body couldn't be found")
+        } catch Message.MessageError.NoAuthorFound {
+            print("Author couldnt be found")
+        } catch Message.MessageError.NoChannelFound {
+            print("Channel couldnt be found")
+        } catch {
+            print("Message error not handled")
+        }
+        
+        chatWall.reloadData()
+        
+        
+    }
     
     @IBAction func viewTapped(sender: AnyObject) {
         chatTextField.resignFirstResponder()
@@ -109,12 +135,11 @@ extension ChatViewController: UITextFieldDelegate {
             
         if let msgBody = chatTextField.text where msgBody != "" {
             let message = Message(body: msgBody, creator: UdacityUser.currentUser)
-            channel.messages.append(message)
             chatTextField.text = ""
             chatTextField.resignFirstResponder()
             
             
-            message.sendMessage(toChannel: self.channel)
+            message.Send(toChannel: self.channel)
         
             
             

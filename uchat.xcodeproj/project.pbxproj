@@ -122,8 +122,8 @@
 			isa = PBXGroup;
 			children = (
 				FE28F35D1C79A70D00E75BF8 /* LoginViewController.swift */,
-				FEB60EE81C7DE2E8005CE82B /* ChatViewController.swift */,
 				FE28F3971C79D0F800E75BF8 /* ChannelsViewController.swift */,
+				FEB60EE81C7DE2E8005CE82B /* ChatViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -466,7 +466,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.wojciechmaterka.uchat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -489,7 +489,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.wojciechmaterka.uchat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

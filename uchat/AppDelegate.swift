@@ -97,43 +97,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-        print("application received a message: \(userInfo)")
-        
-        // Handle push while app is active
-        if application.applicationState == UIApplicationState.Active {
-            
-            let currentViewController = self.window!.rootViewController
-            
-            if currentViewController == ChatViewController() {
-                
-                Alerts().simpleAlert(currentViewController!, message: userInfo.description)
-                
-                print("message received: \(userInfo)")
-                
-            }
-            
-        }
-    }
+    // MARK: - 📩 Handle received notifications
     
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        NSLog("📬  \(__FUNCTION__): application received a message: \(userInfo)")
+//        PFPush.handlePush(userInfo)
         
-        
-        print("application received a message: \(userInfo)")
-        
-        
-        PFPush.handlePush(userInfo)
         if application.applicationState == UIApplicationState.Inactive {
+            NSLog("Notification received while app was inactive")
             PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
         }
         
-        
-        
+        // Handle push while app is active
+        if application.applicationState == UIApplicationState.Active {
+            NSLog("Notification received while app was Active")
+            guard let rootViewController = self.window?.rootViewController else {
+                print("root")
+                return
+            }
+            
+            if let currentViewController = getCurrentViewController(rootViewController) {
+                print("cvc: \(currentViewController)")
+                if currentViewController.isKindOfClass(ChatViewController) {
+                    print("cvc through")
+                    NSNotificationCenter.defaultCenter().postNotificationName("newMessage", object: userInfo)
+                    
+                    print(" message userinfo: \(userInfo.description)")
 
+                }
+            }
+            
+        }
         
+        //TODO: change for sending pictures
+//        completionHandler(UIBackgroundFetchResult.NoData)
     }
     
+//    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+//            PFPush.handlePush(userInfo)
+//        NSLog("Notification received 1")
+//                if application.applicationState == UIApplicationState.Inactive {
+//                    NSLog("Notification received 2")
+//                    PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
+//                }
+//
+//        
+//    }
     
+    // MARK: - 🔂 Application State management
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -158,6 +169,67 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    // MARK: - 🐵 Helpers
+    
+    /// Loops through the view hierarchy and returns the last view found, which is the active view.
+    func getCurrentViewController(vc: UIViewController) -> UIViewController? {
+        // Presented
+        if let pvc = vc.presentedViewController {
+            return getCurrentViewController(pvc)
+        }
+        // Split?
+        else if let svc = vc as? UISplitViewController where svc.viewControllers.count > 0 {
+            return getCurrentViewController(svc.viewControllers.last!)
+        }
+        // Nav?
+        else if let nc = vc as? UINavigationController where nc.viewControllers.count > 0 {
+            return getCurrentViewController(nc.topViewController!)
+        }
+        // Tab?
+        else if let tbc = vc as? UITabBarController {
+            if let svc = tbc.selectedViewController {
+                return getCurrentViewController(svc)
+            }
+        }
+        // return the last found.
+        return vc
+    }
+    
+    
+    
+    // Returns the most recently presented UIViewController (visible)
+//    class func getCurrentViewController() -> UIViewController? {
+//        
+//        // If the root view is a navigation controller, we can just return the visible ViewController
+//        if let navigationController = getNavigationController() {
+//            return navigationController.visibleViewController
+//        }
+//        
+//        // Otherwise, we must get the root UIViewController and iterate through presented views
+//        if let rootController = UIApplication.sharedApplication().keyWindow?.rootViewController {
+//            var currentController: UIViewController! = rootController
+//            
+//            // Each ViewController keeps track of the view it has presented, so we
+//            // can move from the head to the tail, which will always be the current view
+//            while( currentController.presentedViewController != nil ) {
+//                currentController = currentController.presentedViewController
+//            }
+//            
+//            return currentController
+//        }
+//        return nil
+//    }
+    
+    // Returns the navigation controller if it exists
+//    class func getNavigationController() -> UINavigationController? {
+//        
+//        if let navigationController = UIApplication.sharedApplication().keyWindow?.rootViewController  {
+//            
+//            return navigationController as? UINavigationController
+//        }
+//        return nil
+//    }
 
 
 }
