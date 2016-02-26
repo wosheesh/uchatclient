@@ -14,68 +14,62 @@ import UIKit
 import Parse
 
 struct Message {
-    private var body: String
-    private var creator: chatUser
-    private var createdAt: NSDate
+    var body: String
+    var authorName: String
+    var authorKey: String
+    var createdAt: NSDate
+    var receivedAt: NSDate?
     
-    init(body: String, creator: chatUser) {
+    init(body: String, authorName: String, authorKey: String) {
         self.body = body
-        self.creator = creator
+        self.authorName = authorName
+        self.authorKey = authorKey
         self.createdAt = NSDate()
     }
     
-    func text() -> String! {
-        return self.body
-    }
-    
-    func author() -> chatUser! {
-        return self.creator
-    }
-    
-    func date() -> NSDate! {
-        return self.createdAt
-    }
 
     func Send(toChannel channel: Channel) {
+        
+        let jsonBody: [String: AnyObject] = [
+            "channels" : [channel.name],
+            "data": [
+                ParseClient.PushKeys.MessageBody: self.body,
+                ParseClient.PushKeys.MessageAuthor: self.authorName,
+                ParseClient.PushKeys.AuthorKey: self.authorKey
+            ]
+            
+        ]
 
-        //TODO: throws error
-        ParseClient.sharedInstance.push(self, channel: channel)
+        ParseClient.sharedInstance.push(jsonBody)
 
     }
     
-    // MARK: - 💁 Convenience
     enum MessageError: ErrorType {
         case InvalidSyntax
-        case NoBodyFound
-        case NoAuthorFound
-        case NoChannelFound
+        case KeyNotFound
+        case BodyNotFound
+        case AuthorUsernameNotFound
     }
     
     static func createFromPushNotification(userInfo: [NSObject : AnyObject]) throws -> Message {
-        
-        //TODO: Drop "current channel"
         
         guard let aps = userInfo["aps"] as? NSDictionary else {
             throw MessageError.InvalidSyntax
         }
         
         guard let body = aps[ParseClient.PushKeys.MessageBody] as? String else {
-            throw MessageError.NoBodyFound
+            throw MessageError.BodyNotFound
         }
         
         guard let authorName = userInfo[ParseClient.PushKeys.MessageAuthor] as? String else {
-            throw MessageError.NoAuthorFound
+            throw MessageError.AuthorUsernameNotFound
         }
         
-        guard let channelName = userInfo[ParseClient.PushKeys.CurrentChannel] as? String else {
-            throw MessageError.NoChannelFound
+        guard let authorKey = userInfo[ParseClient.PushKeys.AuthorKey] as? String else {
+            throw MessageError.KeyNotFound
         }
-        
-        let newChannel = Channel(name: channelName, messages: [])
-        let newUser = User(username: authorName, currentChannel: newChannel)
-        let message = Message(body: body, creator: newUser)
-                
-        return message
+
+        return Message(body: body, authorName: authorName, authorKey: authorKey)
 
     }
     

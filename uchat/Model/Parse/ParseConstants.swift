@@ -46,7 +46,7 @@ extension ParseClient {
         static let Channels = "channels"
         static let MessageAuthor = "Author"
         static let MessageBody = "alert"
-        static let CurrentChannel = "CurrentChannel"
+        static let AuthorKey = "AuthorKey"
     }
     
     

@@ -19,14 +19,14 @@ class ChannelsViewController: UITableViewController {
     //MARK: - 🎛 Properties
     
     //start with a general channel as default
-    var channels = [Channel(name: "General", messages: [])]
+    var channels = [Channel(name: "General")]
     
     //MARK: - 🔄 Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("username: \(UdacityUser.firstName)")
+        print("username: \(UdacityUser.username)")
 
     }
     

@@ -11,24 +11,14 @@ import Foundation
 extension ParseClient {
     
     /// Push notification using Parse server's REST API
-    func push(message: Message, channel: Channel) {
+    func push(jsonBody: [String : AnyObject]) {
         
         let method: String = Methods.PushNotification
         let httpMethod: String = HttpMethods.PushNotification
         
-        let jsonBody: [String: AnyObject] = [
-            "channels" : [channel.name],
-            "data": [
-                "alert": message.text(),
-                ParseClient.PushKeys.MessageAuthor: message.author().username!,
-                ParseClient.PushKeys.CurrentChannel: channel.name
-            ] as [String: String]
-        
-        ]
-        
         print("🚀 Parse push: \(jsonBody)")
         
-        taskForHTTPMethod(method, httpMethod: httpMethod, parameters: nil, jsonBody: jsonBody) { (result, error) -> Void in
+        taskForHTTPMethod(method, httpMethod: httpMethod, parameters: nil, jsonBody: jsonBody) { result, error in
             if let error = error {
                 print("error: \(error)")
             } else {

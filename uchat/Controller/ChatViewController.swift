@@ -44,7 +44,7 @@ class ChatViewController: UIViewController {
         super.viewWillAppear(animated)
         
         // subscribe user to notifications from the current channel
-        UdacityUser.setChannel(channel)
+        channel.subscribeUser()
         
     }
     
@@ -53,13 +53,11 @@ class ChatViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "displayNewMessage:", name: "newMessage", object: nil)
     }
     
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        UdacityUser.setChannel(nil)
-    }
-    
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
+        
+        // unsubscribe user to notifications from the current channel
+        channel.unsubscribeUser()
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "newMessage", object: nil)
     }
     
@@ -97,12 +95,12 @@ class ChatViewController: UIViewController {
             channel.messages.append(newMessage)
         } catch Message.MessageError.InvalidSyntax {
             print("Invalid syntax")
-        } catch Message.MessageError.NoBodyFound {
+        } catch Message.MessageError.BodyNotFound {
             print("Body couldn't be found")
-        } catch Message.MessageError.NoAuthorFound {
-            print("Author couldnt be found")
-        } catch Message.MessageError.NoChannelFound {
-            print("Channel couldnt be found")
+        } catch Message.MessageError.AuthorUsernameNotFound {
+            print("AuthorUsername couldn't be found")
+        } catch Message.MessageError.KeyNotFound {
+            print("AuthorKey couldn't be found")
         } catch {
             print("Message error not handled")
         }
@@ -126,26 +124,22 @@ class ChatViewController: UIViewController {
     }
     
 }
-    // MARK: - 🔤 TextFieldDelegate
+    // MARK: - 🔤 Sending Messages
 
 extension ChatViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
-            
         if let msgBody = chatTextField.text where msgBody != "" {
-            let message = Message(body: msgBody, creator: UdacityUser.currentUser)
+            let message = Message(body: msgBody, authorName: UdacityUser.username!, authorKey: UdacityUser.udacityKey!)
+            
             chatTextField.text = ""
             chatTextField.resignFirstResponder()
             
-            
             message.Send(toChannel: self.channel)
-        
             
-            
-            // TODO: remove the reload after push is implemented - channel.messages should update on network push not client write
-            chatWall.reloadData()
         }
+        
     return true
     }
 }
@@ -166,8 +160,8 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCellWithIdentifier("chatCell", forIndexPath: indexPath)
         let message = channel.messages[indexPath.row]
         
-        cell.detailTextLabel?.text = message.author().username
-        cell.textLabel?.text = message.text()
+        cell.detailTextLabel?.text = message.authorName
+        cell.textLabel?.text = message.body
         cell.selectionStyle = .None
         return cell
     }
