@@ -8,19 +8,20 @@
 
 import UIKit
 
-class Alerts {
+public func simpleAlert(target: UIViewController, message: String, title: String = "uChat") {
+    print("Simple Alert called by \(target)")
     
-    func simpleAlert(target: UIViewController, message: String, title: String = "uChat") {
-        print("Simple Alert called by \(target)")
-        
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        
-        let OKAction = UIAlertAction(title: "OK", style: .Default) { action in
-            print("OK pressed on Alert Controller")
-        }
-        
-        alertController.addAction(OKAction)
-        
+    let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+    
+    let OKAction = UIAlertAction(title: "OK", style: .Default) { action in
+        print("OK pressed on Alert Controller")
+    }
+    
+    alertController.addAction(OKAction)
+    
+    updateUI { _ in
         target.presentViewController(alertController, animated: true, completion: nil)
     }
+    
 }
+

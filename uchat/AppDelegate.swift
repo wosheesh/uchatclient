@@ -6,8 +6,6 @@
 //  Copyright © 2016 Wojtek Materka. All rights reserved.
 //
 
-// TODO: distinguish between channel subscriptions and user tags
-
 import UIKit
 import Foundation
 import Parse
@@ -133,24 +131,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        completionHandler(UIBackgroundFetchResult.NoData)
     }
     
-//    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-//            PFPush.handlePush(userInfo)
-//        NSLog("Notification received 1")
-//                if application.applicationState == UIApplicationState.Inactive {
-//                    NSLog("Notification received 2")
-//                    PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
-//                }
-//
-//        
-//    }
     
     // MARK: - 🔂 Application State management
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-        
-//        UdacityUser.setChannel(nil)
     }
 
     func applicationDidEnterBackground(application: UIApplication) {

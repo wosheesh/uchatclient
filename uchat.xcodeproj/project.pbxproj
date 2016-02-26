@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FE11673A1C80D84B00C3D8AC /* ParseErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1167391C80D84B00C3D8AC /* ParseErrors.swift */; };
+		FE11673E1C80E33D00C3D8AC /* Dispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11673D1C80E33D00C3D8AC /* Dispatch.swift */; };
 		FE28F34F1C78E92400E75BF8 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE28F34D1C78E92400E75BF8 /* Bolts.framework */; };
 		FE28F3501C78E92400E75BF8 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE28F34E1C78E92400E75BF8 /* Parse.framework */; };
 		FE28F3591C79A6DF00E75BF8 /* UFacebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28F3551C79A6DF00E75BF8 /* UFacebook.swift */; };
@@ -44,6 +46,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FE1167391C80D84B00C3D8AC /* ParseErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParseErrors.swift; path = Model/Parse/ParseErrors.swift; sourceTree = "<group>"; };
+		FE11673D1C80E33D00C3D8AC /* Dispatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Dispatch.swift; path = Helpers/Dispatch.swift; sourceTree = "<group>"; };
 		FE28F34D1C78E92400E75BF8 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "Supporting Files/Frameworks/Bolts.framework"; sourceTree = "<group>"; };
 		FE28F34E1C78E92400E75BF8 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "Supporting Files/Frameworks/Parse.framework"; sourceTree = "<group>"; };
 		FE28F3551C79A6DF00E75BF8 /* UFacebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UFacebook.swift; path = Model/Udacity/UFacebook.swift; sourceTree = "<group>"; };
@@ -162,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				FE28F3791C79B1AE00E75BF8 /* Alerts.swift */,
+				FE11673D1C80E33D00C3D8AC /* Dispatch.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -172,6 +177,7 @@
 				FEB60EEC1C7E22B3005CE82B /* ParseClient.swift */,
 				FEB60EED1C7E22B3005CE82B /* ParseConstants.swift */,
 				FEB60EEE1C7E22B3005CE82B /* ParseConvenience.swift */,
+				FE1167391C80D84B00C3D8AC /* ParseErrors.swift */,
 			);
 			name = Parse;
 			sourceTree = "<group>";
@@ -332,7 +338,9 @@
 				FE28F3681C79AF6900E75BF8 /* FBLoginButton.swift in Sources */,
 				FE28F3C11C7A427D00E75BF8 /* Message.swift in Sources */,
 				FEB60EF11C7E22B3005CE82B /* ParseConvenience.swift in Sources */,
+				FE11673A1C80D84B00C3D8AC /* ParseErrors.swift in Sources */,
 				FE28F3691C79AF6900E75BF8 /* FindOnTheMapButton.swift in Sources */,
+				FE11673E1C80E33D00C3D8AC /* Dispatch.swift in Sources */,
 				FE28F36F1C79AF8E00E75BF8 /* LoginTextField.swift in Sources */,
 				FEB60EF01C7E22B3005CE82B /* ParseConstants.swift in Sources */,
 			);

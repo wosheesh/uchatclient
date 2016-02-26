@@ -6,10 +6,6 @@
 //  Copyright © 2016 Wojtek Materka. All rights reserved.
 //
 
-// TODO: Add timestamps to created, sent and received
-
-// This struct doesn't allow editing of the messages
-
 import UIKit
 import Parse
 
@@ -28,8 +24,9 @@ struct Message {
     }
     
 
-    func Send(toChannel channel: Channel) {
+    func Send(toChannel channel: Channel, sender: UIViewController) {
         
+        // create message body
         let jsonBody: [String: AnyObject] = [
             "channels" : [channel.name],
             "data": [
@@ -40,8 +37,10 @@ struct Message {
             
         ]
 
-        ParseClient.sharedInstance.push(jsonBody)
-
+        // send the message with completion block
+        ParseClient.sharedInstance.push(jsonBody) { success, errorString in
+            if !success { simpleAlert(sender, message: errorString!) }
+        }
     }
     
     enum MessageError: ErrorType {

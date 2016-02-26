@@ -6,8 +6,7 @@
 //  Copyright © 2016 Wojtek Materka. All rights reserved.
 //
 
-//TODO: Sections in the table
-//TODO: subscribe and unsubsribe from channels - https://www.udacity.com/catalog-api
+//TODO: add all channels - https://www.udacity.com/catalog-api
 //TODO: persist subscribed channels
 //TODO: Add logout
 

@@ -6,8 +6,6 @@
 //  Copyright © 2016 Wojtek Materka. All rights reserved.
 //
 
-//TODO: Change the User model to accommodate ultiple users
-
 import Parse
 
 struct UdacityUser {

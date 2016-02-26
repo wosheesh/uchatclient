@@ -7,7 +7,6 @@
 //
 
 // TODO: add app Transport security for Udacity servers
-// TODO: verify channels
 
 import UIKit
 

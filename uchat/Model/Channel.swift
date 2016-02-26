@@ -35,6 +35,10 @@ extension Channel {
 
 // MARK: - (un)Subscribe user to channel
 
+// This is currently done as notification channel subscription.
+// There is no channel object on the server for global data persistence, perhaps in a next version?
+// So it kinda works like CB-Radio 📻
+
 import Parse
 
 extension Channel {
