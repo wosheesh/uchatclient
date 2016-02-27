@@ -20,14 +20,14 @@ extension LoginViewController {
     func setupUI() {
         
         /* Configure background gradient */
-        self.view.backgroundColor = UIColor.clearColor()
-        let colorTop = OTMColors.bgLightOrange.CGColor
-        let colorBottom = OTMColors.bgDarkOrange.CGColor
-        let backgroundGradient = CAGradientLayer()
-        backgroundGradient.colors = [colorTop, colorBottom]
-        backgroundGradient.locations = [0.0, 1.0]
-        backgroundGradient.frame = view.frame
-        self.view.layer.insertSublayer(backgroundGradient, atIndex: 0)
+        self.view.backgroundColor = UIColor.whiteColor()
+//        let colorTop = OTMColors.bgLight.CGColor
+//        let colorBottom = OTMColors.bgDark.CGColor
+//        let backgroundGradient = CAGradientLayer()
+//        backgroundGradient.colors = [colorTop, colorBottom]
+//        backgroundGradient.locations = [0.0, 1.0]
+//        backgroundGradient.frame = view.frame
+//        self.view.layer.insertSublayer(backgroundGradient, atIndex: 0)
         
     }
     
