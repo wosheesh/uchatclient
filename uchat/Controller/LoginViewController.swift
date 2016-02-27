@@ -127,7 +127,7 @@ class LoginViewController: UIViewController {
             self.setUIEnabled(enabled: true)
             if let errorString = errorString {
                 
-                Alerts().simpleAlert(self, message: errorString)
+                simpleAlert(self, message: errorString)
             }
         })
     }

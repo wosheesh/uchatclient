@@ -24,14 +24,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        // Remove this line if you don't want to use Local Datastore features or want to use cachePolicy.
 //        Parse.enableLocalDatastore()
 //        
+
         // Initialize Parse
         Parse.initializeWithConfiguration(ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) -> Void in
-            configuration.applicationId = envDict["PARSE_APP_ID"]! as String
-            configuration.clientKey = envDict["PARSE_CLIENT_KEY"]! as String
-            configuration.server = envDict["PARSE_SERVER"]! as String
+            configuration.applicationId = "uchatapp" as String
+            configuration.clientKey = "8022802" as String
+            configuration.server = "https://intense-river-39239.herokuapp.com/parse" as String
         }))
-//
-//        
+
+        
         PFUser.enableAutomaticUser()
         
         let defaultACL = PFACL();

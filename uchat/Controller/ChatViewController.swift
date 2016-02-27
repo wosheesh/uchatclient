@@ -41,7 +41,7 @@ class ChatViewController: UIViewController {
         
         // Set up UI controls
         self.chatWall.rowHeight = UITableViewAutomaticDimension
-//        self.chatWall.estimatedRowHeight = 35.0
+        self.chatWall.estimatedRowHeight = 40.0
         self.chatWall.separatorStyle = .None
         
     }
@@ -63,7 +63,7 @@ class ChatViewController: UIViewController {
         super.viewDidDisappear(animated)
         
         // unsubscribe user to notifications from the current channel
-        channel.unsubscribeUser()
+//        channel.unsubscribeUser()
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "newMessage", object: nil)
     }
     
@@ -166,7 +166,13 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCellWithIdentifier("chatCell", forIndexPath: indexPath)
         let message = channel.messages[indexPath.row]
         
+    
+        
         cell.detailTextLabel?.text = message.authorName
+        if message.authorKey == UdacityUser.udacityKey {
+            cell.detailTextLabel?.textColor = UIColor.greenColor()
+        }
+        
         cell.textLabel?.text = message.body
         cell.selectionStyle = .None
         return cell

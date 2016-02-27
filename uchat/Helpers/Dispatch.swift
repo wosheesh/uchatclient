@@ -11,8 +11,8 @@ import Foundation
 public typealias update_ui_block = () -> Void
 
 public func updateUI(block: update_ui_block) {
-    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+    dispatch_async(dispatch_get_main_queue()) { 
         block()
-    })
+    }
 
 }
