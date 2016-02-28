@@ -11,10 +11,11 @@ import Foundation
 
 class ChatTextView: UITextView {
     
-    // Hardcoded for now.
+
     // TODO: change the intrinsic size depending on parent view
     override func intrinsicContentSize() -> CGSize {
-        return CGSize(width: 0.0, height: 30.0)
+        // Hardcoded for now.
+        return CGSize(width: 0.0, height: ChatViewController.chatTextViewMinHeight)
     }
     
     
@@ -24,8 +25,6 @@ class ChatTextView: UITextView {
         var height: CGFloat = 0.0
         let minHeight: CGFloat = self.minChatTextViewHeight()
         let numberOfLines = self.numberOfLines()
-        
-        print(self.numberOfLines())
         
         if numberOfLines == 1 {
             height = minHeight

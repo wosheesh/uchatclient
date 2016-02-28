@@ -25,6 +25,8 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var chatTextViewHeightConst: NSLayoutConstraint!
     
+    static let chatTextViewMinHeight = 30.0
+    
     // MARK: - 🔄 Lifecycle
     
     override func viewDidLoad() {
@@ -55,7 +57,6 @@ class ChatViewController: UIViewController {
         
         // some aesthetics
         navigationController?.navigationBar.tintColor = OTMColors.UBlue
-//        navigationController?.navigationBar.
         
         // subscribe user to notifications from the current channel
         channel.subscribeUser()
@@ -71,14 +72,19 @@ class ChatViewController: UIViewController {
         super.viewDidDisappear(animated)
         
         // unsubscribe user to notifications from the current channel
-//        channel.unsubscribeUser()
+        channel.unsubscribeUser()
+        
+        // and the view from all other local notifications
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "newMessage", object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(UIKeyboardDidShowNotification)
+        NSNotificationCenter.defaultCenter().removeObserver(UIKeyboardWillShowNotification)
+        NSNotificationCenter.defaultCenter().removeObserver(UIKeyboardWillHideNotification)
     }
     
     // MARK: - ⌨️ Keyboard scrolling
     
     func keyboardWillShow(notification: NSNotification) {
-        let keyboardHeight = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey]?.CGRectValue.height
+        let keyboardHeight = notification.userInfo![UIKeyboardFrameEndUserInfoKey]?.CGRectValue.height
         UIView.animateWithDuration(0.1) { () -> Void in
             self.bottomConstraint.constant = keyboardHeight! + 10
             self.view.layoutIfNeeded()
@@ -86,7 +92,7 @@ class ChatViewController: UIViewController {
     }
     
     func keyboardDidShow(notification: NSNotification) {
-        self.scrollToBottomMessage() // probably not needed
+        self.scrollToBottomMessage() // arguable if users prefer this...
     }
     
     func keyboardWillHide(notification: NSNotification) {
@@ -100,26 +106,23 @@ class ChatViewController: UIViewController {
     
     func displayNewMessage(notification: NSNotification) {
         
-        print("Local notification received")
-        
         let userInfo = notification.object as! [NSObject : AnyObject]
         do {
             let newMessage = try Message.createFromPushNotification(userInfo)
             channel.messages.append(newMessage)
         } catch Message.MessageError.InvalidSyntax {
-            print("Invalid syntax")
+            print("🆘 📫 Invalid message syntax")
         } catch Message.MessageError.BodyNotFound {
-            print("Body couldn't be found")
+            print("🆘 📫 Message body couldn't be found")
         } catch Message.MessageError.AuthorUsernameNotFound {
-            print("AuthorUsername couldn't be found")
+            print("🆘 📫 Message AuthorUsername couldn't be found")
         } catch Message.MessageError.KeyNotFound {
-            print("AuthorKey couldn't be found")
+            print("🆘 📫 Message AuthorKey couldn't be found")
         } catch {
-            print("Message error not handled")
+            print("🆘 📫 Message error not handled")
         }
         
         chatWall.reloadData()
-    
     }
     
     @IBAction func viewTapped(sender: AnyObject) {
@@ -139,7 +142,6 @@ class ChatViewController: UIViewController {
         }
     }
     
-    
     func scrollToBottomMessage() {
         if channel.messages.count == 0 {
             return
@@ -155,16 +157,10 @@ class ChatViewController: UIViewController {
 
 extension ChatViewController: UITextViewDelegate {
     
-    func textViewDidEndEditing(textView: UITextView) {
-    }
-    
-    
     func textViewDidChange(textView: UITextView) {
         chatTextViewHeightConst.constant = chatTextView.appropriateHeight()
-        print("changed text view lines to: \(chatTextView.numberOfLines())")
     }
     
-
 }
 
 // MARK: - 📄 TableViewDelegate
