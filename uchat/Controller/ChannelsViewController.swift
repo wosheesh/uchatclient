@@ -26,7 +26,13 @@ class ChannelsViewController: UITableViewController {
         super.viewDidLoad()
         UIApplication.sharedApplication().statusBarStyle = .LightContent
         
-        print("username: \(UdacityUser.username)")
+        UClient.sharedInstance().downloadUdacityCourseCatalogue() { success, errorString in
+            if success {
+                print("catalogue downloaded succesfully")
+            } else {
+                print(errorString)
+            }
+        }
 
     }
     

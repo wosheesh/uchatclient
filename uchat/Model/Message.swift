@@ -10,10 +10,10 @@ import UIKit
 import Parse
 
 struct Message {
-    var body: String
-    var authorName: String
-    var authorKey: String
-    var createdAt: NSDate
+    let body: String
+    let authorName: String
+    let authorKey: String // If want to allow students communicate directly in next ver of the app. For now it is used to distinguish messages of the current user from that of others'
+    let createdAt: NSDate
     var receivedAt: NSDate?
     
     init(body: String, authorName: String, authorKey: String) {

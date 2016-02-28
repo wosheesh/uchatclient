@@ -69,7 +69,7 @@ class UClient: NSObject {
         return task
     }
     
-    func taskForGETMethod(method: String, completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    func taskForGETMethod(method: String, concatenate: Bool, completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
         /* 1. Build the URL */
         let urlString = Constants.BaseURL + method
@@ -89,15 +89,17 @@ class UClient: NSObject {
             }
             
             /* GUARD: Was there any data returned? */
-            guard let data = data else {
+            guard var data = data else {
                 print("\(__FUNCTION__) in \(__FILE__) returned no data")
                 return
             }
             
-            let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
+            if concatenate {
+                data = data.subdataWithRange(NSMakeRange(5, data.length - 5))
+            }
             
             /* 3. Parse the data and use the data in completion handler */
-            UClient.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
+            UClient.parseJSONWithCompletionHandler(data, completionHandler: completionHandler)
         }
         
         /* 4. Start the request */

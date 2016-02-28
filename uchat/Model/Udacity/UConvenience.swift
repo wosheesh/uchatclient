@@ -55,7 +55,7 @@ extension UClient {
             mutableMethod = UClient.subtituteKeyInMethod(mutableMethod, key: UClient.URLKeys.UserId, value: userID)!
             
             /* 2. Make the request */
-            taskForGETMethod(mutableMethod) { JSONResult, error in
+            taskForGETMethod(mutableMethod, concatenate: true) { JSONResult, error in
                 
                 /* 3. send the results to completionHandler */
                 
@@ -69,7 +69,6 @@ extension UClient {
                     }
                 } else if let userData = JSONResult[UClient.JSONResponseKeys.UserResults] as? [String : AnyObject] {
                     
-//                    print(" user data: \n \(JSONResult)")
                     
                     completionHandler(success: true, userData: userData, errorString: nil)
                 } else {
@@ -153,6 +152,7 @@ extension UClient {
             
             if let error = error {
                 print(error)
+                completionHandler(success: false, errorString: "There was an error while trying to logout from Udacity. Please try again later.")
             } else if let _ = JSONResult.valueForKeyPath(UClient.JSONResponseKeys.SessionID) as? String {
                 
                 // clear user information
@@ -166,5 +166,30 @@ extension UClient {
         }
         
     }
+    
+    //MARK: - Course Catalogue
+    
+    // TODO: only perform if file is older than a week.
+    
+    /// Get the course catalogue and save it to Documents folder
+    func downloadUdacityCourseCatalogue(completionHandler: (success: Bool, errorString: String?) -> Void) {
+        let udacityMethod = Methods.CourseCatalogue
+        
+        taskForGETMethod(udacityMethod, concatenate: false) { (JSONResult, error) -> Void in
+            if let error = error {
+                print("Error trying to download course catalogue: \(error)")
+                completionHandler(success: false, errorString: "Couldn't download course catalogue")
+            } else if let catalogue = JSONResult as? [String : AnyObject] {
+                print(catalogue)
+                completionHandler(success: true, errorString: nil)
+            } else {
+                print("Couldn't download course catalogue")
+                completionHandler(success: false, errorString: "There was an error while trying to download course catalogue")
+                
+            }
+        }
+        
+    }
+    
 
 }
