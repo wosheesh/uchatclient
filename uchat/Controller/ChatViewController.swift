@@ -81,6 +81,63 @@ class ChatViewController: UIViewController {
         NSNotificationCenter.defaultCenter().removeObserver(UIKeyboardWillHideNotification)
     }
     
+    // MARK: - 📬 Receive and display messages
+    
+    func displayNewMessage(notification: NSNotification) {
+        let userInfo = notification.object as! [NSObject : AnyObject]
+        do {
+            
+            // create a newMessage object when push is received
+            let newMessage = try Message.createFromPushNotification(userInfo)
+            
+            // add it to the Channel's messages array
+            channel.messages.append(newMessage)
+            
+        } catch Message.MessageError.InvalidSyntax {
+            print("🆘 📫 Invalid message syntax")
+        } catch Message.MessageError.BodyNotFound {
+            print("🆘 📫 Message body couldn't be found")
+        } catch Message.MessageError.AuthorUsernameNotFound {
+            print("🆘 📫 Message AuthorUsername couldn't be found")
+        } catch Message.MessageError.KeyNotFound {
+            print("🆘 📫 Message AuthorKey couldn't be found")
+        } catch {
+            print("🆘 📫 Message error not handled")
+        }
+        
+        chatWall.reloadData()
+    }
+    
+    // MARK: - 📮 Send a message to current channel
+    
+    @IBAction func sendButtonTouchUp(sender: AnyObject) {
+        if let msgBody = chatTextView.text where msgBody != "" {
+            let message = Message(body: msgBody, authorName: UdacityUser.username!, authorKey: UdacityUser.udacityKey!)
+            
+            chatTextView.text = ""
+            chatTextView.resignFirstResponder()
+            chatTextViewHeightConst.constant = chatTextView.minChatTextViewHeight()
+            
+            message.Send(toChannel: self.channel, sender: self)
+            
+        }
+    }
+    
+    // MARK: - 🐵 Helpers
+
+    @IBAction func viewTapped(sender: AnyObject) {
+        chatTextView.resignFirstResponder()
+    }
+    
+    func scrollToBottomMessage() {
+        if channel.messages.count == 0 {
+            return
+        }
+        
+        let bottomMessageIndex = NSIndexPath(forRow: chatWall.numberOfRowsInSection(0) - 1, inSection: 0)
+        chatWall.scrollToRowAtIndexPath(bottomMessageIndex, atScrollPosition: .Bottom, animated: true)
+    }
+    
     // MARK: - ⌨️ Keyboard scrolling
     
     func keyboardWillShow(notification: NSNotification) {
@@ -100,55 +157,6 @@ class ChatViewController: UIViewController {
             self.bottomConstraint.constant = 0
             self.view.layoutIfNeeded()
         }
-    }
-    
-    // MARK: - 🐵 Helpers
-    
-    func displayNewMessage(notification: NSNotification) {
-        
-        let userInfo = notification.object as! [NSObject : AnyObject]
-        do {
-            let newMessage = try Message.createFromPushNotification(userInfo)
-            channel.messages.append(newMessage)
-        } catch Message.MessageError.InvalidSyntax {
-            print("🆘 📫 Invalid message syntax")
-        } catch Message.MessageError.BodyNotFound {
-            print("🆘 📫 Message body couldn't be found")
-        } catch Message.MessageError.AuthorUsernameNotFound {
-            print("🆘 📫 Message AuthorUsername couldn't be found")
-        } catch Message.MessageError.KeyNotFound {
-            print("🆘 📫 Message AuthorKey couldn't be found")
-        } catch {
-            print("🆘 📫 Message error not handled")
-        }
-        
-        chatWall.reloadData()
-    }
-    
-    @IBAction func viewTapped(sender: AnyObject) {
-        chatTextView.resignFirstResponder()
-    }
-    
-    @IBAction func sendButtonTouchUp(sender: AnyObject) {
-        if let msgBody = chatTextView.text where msgBody != "" {
-            let message = Message(body: msgBody, authorName: UdacityUser.username!, authorKey: UdacityUser.udacityKey!)
-            
-            chatTextView.text = ""
-            chatTextView.resignFirstResponder()
-            chatTextViewHeightConst.constant = chatTextView.minChatTextViewHeight()
-            
-            message.Send(toChannel: self.channel, sender: self)
-            
-        }
-    }
-    
-    func scrollToBottomMessage() {
-        if channel.messages.count == 0 {
-            return
-        }
-        
-        let bottomMessageIndex = NSIndexPath(forRow: chatWall.numberOfRowsInSection(0) - 1, inSection: 0)
-        chatWall.scrollToRowAtIndexPath(bottomMessageIndex, atScrollPosition: .Bottom, animated: true)
     }
     
 }
