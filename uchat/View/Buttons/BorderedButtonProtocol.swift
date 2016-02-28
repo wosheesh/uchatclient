@@ -39,7 +39,7 @@ extension BorderedButtonProtocol where Self : UIButton {
         self.backingColor = lighterFace
         self.backgroundColor = lighterFace
         self.setTitleColor(titleColor, forState: .Normal)
-        self.titleLabel?.font = UIFont(name: "Roboto-Medium", size: titleLabelFontSize)
+        self.titleLabel?.font = UIFont(name: "Cabin-Regular", size: titleLabelFontSize)
     }
     
     private func setBackingColor(backingColor : UIColor) -> Void {

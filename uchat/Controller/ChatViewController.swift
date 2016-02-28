@@ -8,6 +8,7 @@
 
 // TODO: Improve the chat bubbles UI
 // TODO: Enter channel bubble
+// FIXME: resignfirsresponder sends the message
 
 import UIKit
 
@@ -18,8 +19,11 @@ class ChatViewController: UIViewController {
     var channel: Channel!
     
     @IBOutlet weak var chatWall: UITableView!
-    @IBOutlet weak var chatTextField: UITextField!
+    @IBOutlet weak var chatTextView: ChatTextView!
+    @IBOutlet weak var inputBar: UIView!
+    @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var chatTextViewHeightConst: NSLayoutConstraint!
     
     // MARK: - 🔄 Lifecycle
     
@@ -48,6 +52,10 @@ class ChatViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // some aesthetics
+        navigationController?.navigationBar.tintColor = OTMColors.UBlue
+//        navigationController?.navigationBar.
         
         // subscribe user to notifications from the current channel
         channel.subscribeUser()
@@ -90,7 +98,6 @@ class ChatViewController: UIViewController {
     
     // MARK: - 🐵 Helpers
     
-    
     func displayNewMessage(notification: NSNotification) {
         
         print("Local notification received")
@@ -112,13 +119,26 @@ class ChatViewController: UIViewController {
         }
         
         chatWall.reloadData()
-        
-        
+    
     }
     
     @IBAction func viewTapped(sender: AnyObject) {
-        chatTextField.resignFirstResponder()
+        chatTextView.resignFirstResponder()
     }
+    
+    @IBAction func sendButtonTouchUp(sender: AnyObject) {
+        if let msgBody = chatTextView.text where msgBody != "" {
+            let message = Message(body: msgBody, authorName: UdacityUser.username!, authorKey: UdacityUser.udacityKey!)
+            
+            chatTextView.text = ""
+            chatTextView.resignFirstResponder()
+            chatTextViewHeightConst.constant = chatTextView.minChatTextViewHeight()
+            
+            message.Send(toChannel: self.channel, sender: self)
+            
+        }
+    }
+    
     
     func scrollToBottomMessage() {
         if channel.messages.count == 0 {
@@ -130,27 +150,24 @@ class ChatViewController: UIViewController {
     }
     
 }
-    // MARK: - 🔤 Sending Messages
 
-extension ChatViewController: UITextFieldDelegate {
+// MARK: - 🔤 TextViewDelegate
+
+extension ChatViewController: UITextViewDelegate {
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        
-        if let msgBody = chatTextField.text where msgBody != "" {
-            let message = Message(body: msgBody, authorName: UdacityUser.username!, authorKey: UdacityUser.udacityKey!)
-            
-            chatTextField.text = ""
-            chatTextField.resignFirstResponder()
-            
-            message.Send(toChannel: self.channel, sender: self)
-            
-        }
-        
-    return true
+    func textViewDidEndEditing(textView: UITextView) {
     }
+    
+    
+    func textViewDidChange(textView: UITextView) {
+        chatTextViewHeightConst.constant = chatTextView.appropriateHeight()
+        print("changed text view lines to: \(chatTextView.numberOfLines())")
+    }
+    
+
 }
 
-    // MARK: - 📄 TableViewDelegate
+// MARK: - 📄 TableViewDelegate
 
 extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -166,11 +183,9 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCellWithIdentifier("chatCell", forIndexPath: indexPath)
         let message = channel.messages[indexPath.row]
         
-    
-        
         cell.detailTextLabel?.text = message.authorName
         if message.authorKey == UdacityUser.udacityKey {
-            cell.detailTextLabel?.textColor = UIColor.greenColor()
+            cell.detailTextLabel?.textColor = UIColor(red: 0.145, green: 0.784, blue: 0.506, alpha: 1.00)
         }
         
         cell.textLabel?.text = message.body

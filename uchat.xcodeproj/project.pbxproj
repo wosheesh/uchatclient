@@ -33,6 +33,7 @@
 		FE7288361C81F5E400813803 /* Cabin-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = FE7288321C81F5E400813803 /* Cabin-Medium.otf */; };
 		FE7288371C81F5E400813803 /* Cabin-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = FE7288331C81F5E400813803 /* Cabin-Regular.otf */; };
 		FE7288381C81F5E400813803 /* Cabin-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FE7288341C81F5E400813803 /* Cabin-SemiBold.otf */; };
+		FE72883C1C831B2B00813803 /* ChatTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE72883B1C831B2B00813803 /* ChatTextView.swift */; };
 		FEA7BDA91C78750F002A6535 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA7BDA81C78750F002A6535 /* AppDelegate.swift */; };
 		FEA7BDAE1C78750F002A6535 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEA7BDAC1C78750F002A6535 /* Main.storyboard */; };
 		FEA7BDB01C78750F002A6535 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEA7BDAF1C78750F002A6535 /* Assets.xcassets */; };
@@ -74,6 +75,7 @@
 		FE7288321C81F5E400813803 /* Cabin-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Cabin-Medium.otf"; path = "Supporting Files/Fonts/Cabin-Medium.otf"; sourceTree = "<group>"; };
 		FE7288331C81F5E400813803 /* Cabin-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Cabin-Regular.otf"; path = "Supporting Files/Fonts/Cabin-Regular.otf"; sourceTree = "<group>"; };
 		FE7288341C81F5E400813803 /* Cabin-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Cabin-SemiBold.otf"; path = "Supporting Files/Fonts/Cabin-SemiBold.otf"; sourceTree = "<group>"; };
+		FE72883B1C831B2B00813803 /* ChatTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatTextView.swift; path = View/ChatTextView.swift; sourceTree = "<group>"; };
 		FEA7BDA51C78750F002A6535 /* uchat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uchat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEA7BDA81C78750F002A6535 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FEA7BDAD1C78750F002A6535 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				FE28F36E1C79AF8E00E75BF8 /* LoginTextField.swift */,
 				FE28F36C1C79AF7D00E75BF8 /* OTMColors.swift */,
 				FE28F35F1C79AF4700E75BF8 /* LoginViewUI.swift */,
+				FE72883B1C831B2B00813803 /* ChatTextView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				FEB60EF11C7E22B3005CE82B /* ParseConvenience.swift in Sources */,
 				FE11673A1C80D84B00C3D8AC /* ParseErrors.swift in Sources */,
 				FE11673E1C80E33D00C3D8AC /* Dispatch.swift in Sources */,
+				FE72883C1C831B2B00813803 /* ChatTextView.swift in Sources */,
 				FE28F36F1C79AF8E00E75BF8 /* LoginTextField.swift in Sources */,
 				FEB60EF01C7E22B3005CE82B /* ParseConstants.swift in Sources */,
 			);

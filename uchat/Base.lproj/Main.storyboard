@@ -6,11 +6,18 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Roboto-Regular.ttf">
-            <string>Roboto-Regular</string>
-            <string>Roboto-Regular</string>
-            <string>Roboto-Regular</string>
-            <string>Roboto-Regular</string>
+        <mutableArray key="Cabin-Medium.otf">
+            <string>Cabin-Medium</string>
+            <string>Cabin-Medium</string>
+            <string>Cabin-Medium</string>
+        </mutableArray>
+        <mutableArray key="Cabin-Regular.otf">
+            <string>Cabin-Regular</string>
+            <string>Cabin-Regular</string>
+            <string>Cabin-Regular</string>
+            <string>Cabin-Regular</string>
+            <string>Cabin-Regular</string>
+            <string>Cabin-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -27,36 +34,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vYN-C7-yhp" customClass="LoginTextField" customModule="uchat" customModuleProvider="target">
-                                <rect key="frame" x="20" y="191" width="560" height="30"/>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="emailAddress"/>
+                                <rect key="frame" x="20" y="190" width="560" height="30"/>
+                                <fontDescription key="fontDescription" name="Cabin-Medium" family="Cabin" pointSize="19"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login to Udacity Chat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8wX-bX-ko0">
-                                <rect key="frame" x="214" y="154" width="172" height="22"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
+                                <rect key="frame" x="223" y="154" width="155" height="21"/>
+                                <fontDescription key="fontDescription" name="Cabin-Regular" family="Cabin" pointSize="17"/>
                                 <color key="textColor" red="0.18039215689999999" green="0.23921568630000001" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aUg-B7-A7W" customClass="UdacityLoginButton" customModule="uchat" customModuleProvider="target">
-                                <rect key="frame" x="100" y="291" width="400" height="36"/>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
+                                <rect key="frame" x="50" y="290" width="500" height="37"/>
+                                <fontDescription key="fontDescription" name="Cabin-Regular" family="Cabin" pointSize="20"/>
                                 <state key="normal" title="Login with Udacity"/>
                                 <connections>
                                     <action selector="loginButtonTouch:" destination="HhH-Fe-e37" eventType="touchUpInside" id="7aR-XZ-nQ9"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zma-N5-m9V" customClass="FBLoginButton" customModule="uchat" customModuleProvider="target">
-                                <rect key="frame" x="101" y="337" width="400" height="36"/>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
-                                <state key="normal" title="Login with Facebook"/>
-                                <connections>
-                                    <action selector="loginWithFBButtonTouchUp:" destination="HhH-Fe-e37" eventType="touchUpInside" id="V3I-Pn-cy5"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="VuZ-gw-Q1l" customClass="LoginTextField" customModule="uchat" customModuleProvider="target">
-                                <rect key="frame" x="20" y="231" width="560" height="30"/>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" spellCheckingType="no" returnKeyType="go" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                                <rect key="frame" x="20" y="230" width="560" height="30"/>
+                                <fontDescription key="fontDescription" name="Cabin-Medium" family="Cabin" pointSize="19"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="HhH-Fe-e37" id="QDX-F7-fFs"/>
                                 </connections>
@@ -67,14 +66,22 @@
                                     <constraint firstAttribute="height" constant="100" id="Mt1-S9-CAH"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SYQ-xJ-rn9">
-                                <rect key="frame" x="173" y="528" width="254" height="34"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SYQ-xJ-rn9">
+                                <rect key="frame" x="193" y="528" width="214" height="32"/>
+                                <fontDescription key="fontDescription" name="Cabin-Regular" family="Cabin" pointSize="16"/>
                                 <state key="normal" title="Don't have an account? Sign Up">
                                     <color key="titleColor" red="0.18039215689999999" green="0.23921568630000001" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="signUpButtonTouchUp:" destination="HhH-Fe-e37" eventType="touchUpInside" id="OqE-S3-BEH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zma-N5-m9V" customClass="FBLoginButton" customModule="uchat" customModuleProvider="target">
+                                <rect key="frame" x="50" y="337" width="500" height="37"/>
+                                <fontDescription key="fontDescription" name="Cabin-Regular" family="Cabin" pointSize="20"/>
+                                <state key="normal" title="Login with Facebook"/>
+                                <connections>
+                                    <action selector="loginWithFBButtonTouchUp:" destination="HhH-Fe-e37" eventType="touchUpInside" id="V3I-Pn-cy5"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -87,8 +94,8 @@
                             <constraint firstItem="vYN-C7-yhp" firstAttribute="top" secondItem="8wX-bX-ko0" secondAttribute="bottom" constant="15" id="KuE-aP-eBc"/>
                             <constraint firstItem="8wX-bX-ko0" firstAttribute="top" secondItem="OY9-rH-0fJ" secondAttribute="bottom" constant="15" id="MJu-jD-daP"/>
                             <constraint firstItem="SYQ-xJ-rn9" firstAttribute="centerX" secondItem="cY0-Qq-mQO" secondAttribute="centerX" id="MlY-6d-Mkp"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="aUg-B7-A7W" secondAttribute="trailing" constant="80" id="N9J-eF-fwz"/>
-                            <constraint firstItem="aUg-B7-A7W" firstAttribute="leading" secondItem="cY0-Qq-mQO" secondAttribute="leadingMargin" constant="80" id="TYl-yY-UvB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="aUg-B7-A7W" secondAttribute="trailing" constant="30" id="N9J-eF-fwz"/>
+                            <constraint firstItem="aUg-B7-A7W" firstAttribute="leading" secondItem="cY0-Qq-mQO" secondAttribute="leadingMargin" constant="30" id="TYl-yY-UvB"/>
                             <constraint firstAttribute="trailingMargin" secondItem="VuZ-gw-Q1l" secondAttribute="trailing" id="YP4-ea-Biq"/>
                             <constraint firstItem="aUg-B7-A7W" firstAttribute="centerX" secondItem="cY0-Qq-mQO" secondAttribute="centerX" id="Zhf-Hs-8nN"/>
                             <constraint firstItem="zma-N5-m9V" firstAttribute="top" secondItem="aUg-B7-A7W" secondAttribute="bottom" constant="10" id="brc-xj-g3h"/>
@@ -122,15 +129,25 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="VQu-6L-6Un">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.98039215690000003" green="0.98431372549999996" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="channelCell" id="dzl-l3-bvF">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="channelCell" textLabel="2gS-ki-A7O" style="IBUITableViewCellStyleDefault" id="dzl-l3-bvF">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dzl-l3-bvF" id="rxm-g0-egG">
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2gS-ki-A7O">
+                                            <rect key="frame" x="15" y="0.0" width="550" height="43"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="Cabin-Regular" family="Cabin" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.98039215690000003" green="0.98431372549999996" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <segue destination="AGW-L5-aNE" kind="show" identifier="enterChannel" id="OmA-Nd-qNG"/>
                                 </connections>
@@ -162,9 +179,9 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hUm-et-hDg">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="43" sectionHeaderHeight="1" sectionFooterHeight="9" translatesAutoresizingMaskIntoConstraints="NO" id="Nh9-bZ-Abl">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="43" sectionHeaderHeight="1" sectionFooterHeight="9" translatesAutoresizingMaskIntoConstraints="NO" id="Nh9-bZ-Abl">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="486"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.98039215690000003" green="0.98431372549999996" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationWidth="10" reuseIdentifier="chatCell" textLabel="P6q-ir-cys" detailTextLabel="YMl-I8-1Kv" style="IBUITableViewCellStyleSubtitle" id="Xo0-vc-IMJ">
                                                 <rect key="frame" x="0.0" y="1" width="600" height="43"/>
@@ -174,9 +191,9 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="P6q-ir-cys">
-                                                            <rect key="frame" x="15" y="4" width="32" height="20"/>
+                                                            <rect key="frame" x="15" y="4" width="30" height="20"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <fontDescription key="fontDescription" name="Cabin-Regular" family="Cabin" pointSize="16"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -189,6 +206,7 @@
                                                         </label>
                                                     </subviews>
                                                 </tableViewCellContentView>
+                                                <color key="backgroundColor" red="0.98039215690000003" green="0.98431372549999996" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
                                             </tableViewCell>
                                         </prototypes>
                                         <connections>
@@ -196,35 +214,46 @@
                                             <outlet property="delegate" destination="AGW-L5-aNE" id="uV4-pA-ZpI"/>
                                         </connections>
                                     </tableView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Azf-c8-s7y">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Azf-c8-s7y" userLabel="InputBar">
                                         <rect key="frame" x="0.0" y="486" width="600" height="50"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter message..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t9q-F5-ZzQ">
-                                                <rect key="frame" x="20" y="8" width="480" height="34"/>
-                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <connections>
-                                                    <outlet property="delegate" destination="AGW-L5-aNE" id="IiU-Cy-vfG"/>
-                                                </connections>
-                                            </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4dS-Ak-iHJ">
-                                                <rect key="frame" x="505" y="10" width="90" height="30"/>
+                                                <rect key="frame" x="505" y="10" width="80" height="30"/>
+                                                <color key="backgroundColor" red="0.12941176469999999" green="0.75686274509999996" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="90" id="PNJ-KW-9Eg"/>
+                                                    <constraint firstAttribute="width" constant="80" id="64I-oK-jzc"/>
+                                                    <constraint firstAttribute="height" constant="30" id="kD9-Ac-tZI"/>
                                                 </constraints>
-                                                <state key="normal" title="Send"/>
+                                                <fontDescription key="fontDescription" name="Cabin-Medium" family="Cabin" pointSize="14"/>
+                                                <state key="normal" title="Send">
+                                                    <color key="titleColor" red="0.98039215690000003" green="0.98431372549999996" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="sendButtonTouchUp:" destination="AGW-L5-aNE" eventType="touchUpInside" id="TRp-kK-NMc"/>
+                                                </connections>
                                             </button>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LuV-dt-CSw" customClass="ChatTextView" customModule="uchat">
+                                                <rect key="frame" x="15" y="10" width="475" height="30"/>
+                                                <color key="backgroundColor" red="0.98039215690000003" green="0.98431372549999996" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="hxC-YE-rxW"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="AGW-L5-aNE" id="eNv-Cq-MYW"/>
+                                                </connections>
+                                            </textView>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.086274509799999996" green="0.69803921570000005" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.18039215689999999" green="0.23137254900000001" blue="0.2784313725" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstItem="t9q-F5-ZzQ" firstAttribute="top" secondItem="Azf-c8-s7y" secondAttribute="top" constant="8" id="Bx4-l5-FCc"/>
-                                            <constraint firstAttribute="height" constant="50" id="ErR-3C-NfX"/>
-                                            <constraint firstItem="4dS-Ak-iHJ" firstAttribute="centerY" secondItem="t9q-F5-ZzQ" secondAttribute="centerY" id="LpA-FQ-WrL"/>
-                                            <constraint firstItem="t9q-F5-ZzQ" firstAttribute="leading" secondItem="Azf-c8-s7y" secondAttribute="leading" constant="20" id="Q3b-qN-hU1"/>
-                                            <constraint firstAttribute="bottom" secondItem="t9q-F5-ZzQ" secondAttribute="bottom" constant="8" id="RO9-6K-Enh"/>
-                                            <constraint firstAttribute="trailing" secondItem="4dS-Ak-iHJ" secondAttribute="trailing" constant="5" id="UjI-fs-NWq"/>
-                                            <constraint firstItem="4dS-Ak-iHJ" firstAttribute="leading" secondItem="t9q-F5-ZzQ" secondAttribute="trailing" constant="5" id="l5e-0N-aeN"/>
+                                            <constraint firstAttribute="trailing" secondItem="4dS-Ak-iHJ" secondAttribute="trailing" constant="15" id="UjI-fs-NWq"/>
+                                            <constraint firstItem="LuV-dt-CSw" firstAttribute="centerY" secondItem="Azf-c8-s7y" secondAttribute="centerY" id="f5k-Pn-rQ7"/>
+                                            <constraint firstItem="LuV-dt-CSw" firstAttribute="top" secondItem="Azf-c8-s7y" secondAttribute="top" constant="10" id="gwm-fN-Jkt"/>
+                                            <constraint firstItem="4dS-Ak-iHJ" firstAttribute="leading" secondItem="LuV-dt-CSw" secondAttribute="trailing" constant="15" id="hco-Eo-HC4"/>
+                                            <constraint firstAttribute="bottom" secondItem="LuV-dt-CSw" secondAttribute="bottom" constant="10" id="iBD-4o-JmF"/>
+                                            <constraint firstItem="LuV-dt-CSw" firstAttribute="leading" secondItem="Azf-c8-s7y" secondAttribute="leading" constant="15" id="mgM-yX-mTd"/>
+                                            <constraint firstAttribute="bottom" secondItem="4dS-Ak-iHJ" secondAttribute="bottom" constant="10" id="uvu-wj-0an"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -234,7 +263,7 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.98039215690000003" green="0.98431372549999996" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="hUm-et-hDg" firstAttribute="top" secondItem="uRb-ln-Aca" secondAttribute="bottom" id="Hfi-fJ-xf2"/>
@@ -246,10 +275,14 @@
                             <outletCollection property="gestureRecognizers" destination="109-jF-CLo" appends="YES" id="XBR-b5-oim"/>
                         </connections>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="bottomConstraint" destination="xCl-IN-dB0" id="bGr-Y9-L6Y"/>
-                        <outlet property="chatTextField" destination="t9q-F5-ZzQ" id="8Xt-dq-bVL"/>
+                        <outlet property="chatTextView" destination="LuV-dt-CSw" id="Sy0-eZ-RzO"/>
+                        <outlet property="chatTextViewHeightConst" destination="hxC-YE-rxW" id="3uH-2b-zkc"/>
                         <outlet property="chatWall" destination="Nh9-bZ-Abl" id="4uP-HF-j5V"/>
+                        <outlet property="inputBar" destination="Azf-c8-s7y" id="cHy-8N-5hs"/>
+                        <outlet property="sendButton" destination="4dS-Ak-iHJ" id="9Pi-pz-OWO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="beS-9X-Umf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -259,16 +292,23 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1825" y="522"/>
+            <point key="canvasLocation" x="1811" y="414"/>
         </scene>
-        <!--Channels-->
+        <!--Navigation Controller-->
         <scene sceneID="BOH-JR-Obn">
             <objects>
-                <navigationController storyboardIdentifier="ChatNav" title="Channels" automaticallyAdjustsScrollViewInsets="NO" id="CzI-7o-YWd" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ChatNav" automaticallyAdjustsScrollViewInsets="NO" id="CzI-7o-YWd" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="MDJ-DL-mDn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.18039215689999999" green="0.23137254900000001" blue="0.2784313725" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Cabin-Regular" family="Cabin" pointSize="14"/>
+                            <color key="textColor" red="0.98039215690000003" green="0.98431372549999996" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

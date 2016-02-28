@@ -6,13 +6,10 @@
 //  Copyright © 2016 Wojtek Materka. All rights reserved.
 //
 
-//        CUSTOM FONT NAMES
-//            == Roboto-Thin
-//            == Roboto-Regular
-//            == Roboto-Medium
 
 import UIKit
 
+@IBDesignable
 extension LoginViewController {
     
     // MARK: setupUI for LoginViewController

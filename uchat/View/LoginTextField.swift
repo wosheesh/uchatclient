@@ -8,6 +8,7 @@
 
 import UIKit
 
+@IBDesignable
 class LoginTextField : UITextField {
     
     let textFieldFontSize : CGFloat = 20.0
@@ -30,7 +31,7 @@ class LoginTextField : UITextField {
     
     func themeLoginTextField() {
         self.backgroundColor = OTMColors.loginTextFieldBg
-        self.font = UIFont(name: "Roboto-Regular", size: textFieldFontSize)
+        self.font = UIFont(name: "Cabin-Regular", size: textFieldFontSize)
         self.textColor = OTMColors.loginTextFieldTextColor
         self.layer.cornerRadius = loginTextFieldCornerRadius
         self.borderStyle = .None

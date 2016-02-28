@@ -24,6 +24,7 @@ class ChannelsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
         
         print("username: \(UdacityUser.username)")
 

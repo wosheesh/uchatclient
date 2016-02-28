@@ -10,6 +10,7 @@
 
 import UIKit
 
+@IBDesignable
 class LoginViewController: UIViewController {
     
     // MARK: - 🎛 Properties
@@ -33,6 +34,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        UIApplication.sharedApplication().statusBarStyle = .Default
         
         /* Get the shared URL session */
         session = NSURLSession.sharedSession()
