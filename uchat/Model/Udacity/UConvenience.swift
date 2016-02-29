@@ -169,18 +169,47 @@ extension UClient {
     
     //MARK: - Course Catalogue
     
-    // TODO: only perform if file is older than a week.
+    var courseCatalogueFilePath : String {
+        let manager = NSFileManager.defaultManager()
+        let url = manager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first! as NSURL
+        return url.URLByAppendingPathComponent("courseDictionary.plist").path!
+    }
     
-    /// Get the course catalogue and save it to Documents folder
+    
+    /// Get the course catalogue and save it to Documents folder at courseCatalogueFilePath
     func downloadUdacityCourseCatalogue(completionHandler: (success: Bool, errorString: String?) -> Void) {
-        let udacityMethod = Methods.CourseCatalogue
+        // check if the course catalogue file exists
+        if NSFileManager.defaultManager().fileExistsAtPath(courseCatalogueFilePath) {
+            
+            // check if its modification date is < 7 days
+            do {
+                let fileAttributes = try NSFileManager.defaultManager().attributesOfItemAtPath(courseCatalogueFilePath)
+                let modificationDate = fileAttributes[NSFileModificationDate] as! NSDate
+                let timeDifference = modificationDate.daysFrom(NSDate())
+                
+                print("Course Catalogue modified \(timeDifference) days ago")
+                
+                // no need to download the file if it's relatively new
+                if timeDifference < 7 { return }
+                
+            } catch {
+                print("Error trying to access file attributes of the course catalogue file with path: \(courseCatalogueFilePath)")
+                fatalError() // crash the app deliberately if we cannot read the file attributes
+            }
+        }
         
-        taskForGETMethod(udacityMethod, concatenate: false) { (JSONResult, error) -> Void in
+        // download the file
+        taskForGETMethod(Methods.CourseCatalogue, concatenate: false) { (JSONResult, error) -> Void in
             if let error = error {
                 print("Error trying to download course catalogue: \(error)")
                 completionHandler(success: false, errorString: "Couldn't download course catalogue")
-            } else if let catalogue = JSONResult as? [String : AnyObject] {
-                print(catalogue)
+            } else if let catalogue = JSONResult.valueForKey(JSONResponseKeys.Courses) as? NSArray {
+                
+                // Save the catalogue dictionary as a .plist
+                catalogue.writeToFile(self.courseCatalogueFilePath, atomically: true)
+                
+                print("Course catalogue saved to: \(self.courseCatalogueFilePath)")
+                
                 completionHandler(success: true, errorString: nil)
             } else {
                 print("Couldn't download course catalogue")

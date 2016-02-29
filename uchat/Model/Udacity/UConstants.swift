@@ -70,5 +70,12 @@ extension UClient {
         static let Enrollments = "_enrollments"
         static let CourseKey = "node_key"
         
+        // MARK: Course Catalogue
+        static let Courses = "courses"
+        static let CourseKeyCatalogue = "key"
+        static let CourseTitle = "title"
+        static let CourseSubtitle = "subtitle"
+        static let CourseImage = "image"
+        
     }
 }
