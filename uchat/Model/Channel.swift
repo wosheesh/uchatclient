@@ -13,11 +13,13 @@ struct Channel {
     
     // MARK: - Properties
     
-    var name: String
+    let name: String
+    let tagline: String
     var messages: [Message] = []
     
-    init(name: String) {
+    init(name: String, tagline: String) {
         self.name = name
+        self.tagline = tagline
     }
 }
 

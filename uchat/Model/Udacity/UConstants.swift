@@ -76,6 +76,7 @@ extension UClient {
         static let CourseTitle = "title"
         static let CourseSubtitle = "subtitle"
         static let CourseImage = "image"
+        static let CourseBannerImage = "banner_image"
         
     }
 }

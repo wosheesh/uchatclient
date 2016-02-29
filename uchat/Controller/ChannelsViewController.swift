@@ -12,13 +12,12 @@
 
 import UIKit
 
-
 class ChannelsViewController: UITableViewController {
     
-    //MARK: - 🎛 Properties
+    // MARK: - 🎛 Properties
     
     //start with a general channel as default
-    var channels = [Channel(name: "General")]
+    var channels = [Channel(name: "General", tagline: "Channel open to all students")]
     
     //MARK: - 🔄 Lifecycle
     
@@ -26,9 +25,11 @@ class ChannelsViewController: UITableViewController {
         super.viewDidLoad()
         UIApplication.sharedApplication().statusBarStyle = .LightContent
         
-        UClient.sharedInstance().downloadUdacityCourseCatalogue() { success, errorString in
+        // update the course catalogue
+        UClient.sharedInstance().updateUdacityCourseCatalogue() { success, errorString in
             if success {
-                print("catalogue downloaded succesfully")
+                print("Updating the channels list with catalogue...")
+                self.updateChannels()
             } else {
                 print(errorString)
             }
@@ -36,7 +37,35 @@ class ChannelsViewController: UITableViewController {
 
     }
     
-    //MARK: - ➡️ Segues
+    // MARK: - 🐵 Helpers
+    
+    func updateChannels() {
+        
+        // Check if the user has any course enrollments
+        guard let coursesEnrolled = UdacityUser.enrolledCourses else {
+            print("User has no courses enrolled. Only General channel available")
+            return
+        }
+        
+        // Match user's courses with the catalogue
+        let courseCatalogue = NSArray(contentsOfFile: UClient.sharedInstance().courseCatalogueFilePath) as! [[String : AnyObject]]
+        let coursesMatching = courseCatalogue.filter { course in
+            coursesEnrolled.contains(course[UClient.JSONResponseKeys.CourseKeyCatalogue] as! String)
+        }
+        
+        print("found \(coursesMatching.count ) matching courses.")
+        
+        //Update the channels array
+        for course in coursesMatching {
+            let newChannel = Channel(name: course[UClient.JSONResponseKeys.CourseTitle] as! String,
+                tagline: course[UClient.JSONResponseKeys.CourseSubtitle] as! String)
+            
+            channels.append(newChannel)
+        }
+    }
+    
+    // MARK: - ➡️ Segues
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "enterChannel" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
@@ -50,17 +79,19 @@ class ChannelsViewController: UITableViewController {
         }
     }
     
-    //MARK: - 📄 TableViewController
+    // MARK: - 📄 TableViewController
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.channels.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("channelCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("channelCell", forIndexPath: indexPath) as! ChannelTableCell
         
         let channel = channels[indexPath.row]
-        cell.textLabel?.text = channel.name
+        cell.courseTitleLabel.text = channel.name
+        cell.courseSubtitleLabel.text = channel.tagline
+        
         
         return cell
     }

@@ -177,11 +177,14 @@ extension UClient {
     
     
     /// Get the course catalogue and save it to Documents folder at courseCatalogueFilePath
-    func downloadUdacityCourseCatalogue(completionHandler: (success: Bool, errorString: String?) -> Void) {
+    func updateUdacityCourseCatalogue(completionHandler: (success: Bool, errorString: String?) -> Void) {
+        
         // check if the course catalogue file exists
         if NSFileManager.defaultManager().fileExistsAtPath(courseCatalogueFilePath) {
             
-            // check if its modification date is < 7 days
+            print("Found a course catalogue at: \(courseCatalogueFilePath)")
+            
+            // ... and check if its modification date is < 7 days
             do {
                 let fileAttributes = try NSFileManager.defaultManager().attributesOfItemAtPath(courseCatalogueFilePath)
                 let modificationDate = fileAttributes[NSFileModificationDate] as! NSDate
@@ -190,7 +193,10 @@ extension UClient {
                 print("Course Catalogue modified \(timeDifference) days ago")
                 
                 // no need to download the file if it's relatively new
-                if timeDifference < 7 { return }
+                if timeDifference < 7 {
+                    completionHandler(success: true, errorString: nil)
+                    return
+                }
                 
             } catch {
                 print("Error trying to access file attributes of the course catalogue file with path: \(courseCatalogueFilePath)")
@@ -198,8 +204,9 @@ extension UClient {
             }
         }
         
-        // download the file
+        // otherwise download the file
         taskForGETMethod(Methods.CourseCatalogue, concatenate: false) { (JSONResult, error) -> Void in
+            print("Downloading the course catalogue")
             if let error = error {
                 print("Error trying to download course catalogue: \(error)")
                 completionHandler(success: false, errorString: "Couldn't download course catalogue")

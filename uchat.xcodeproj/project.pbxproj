@@ -43,6 +43,7 @@
 		FEA7BDC91C788047002A6535 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA7BDC81C788047002A6535 /* libsqlite3.tbd */; };
 		FEA7BDCB1C788069002A6535 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA7BDCA1C788069002A6535 /* libz.tbd */; };
 		FEA9F9DB1C8451CB0000213A /* Dates.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA9F9DA1C8451CB0000213A /* Dates.swift */; };
+		FEA9F9DD1C8473540000213A /* ChannelTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA9F9DC1C8473540000213A /* ChannelTableCell.swift */; };
 		FEB60EE91C7DE2E8005CE82B /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB60EE81C7DE2E8005CE82B /* ChatViewController.swift */; };
 		FEB60EEF1C7E22B3005CE82B /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB60EEC1C7E22B3005CE82B /* ParseClient.swift */; };
 		FEB60EF01C7E22B3005CE82B /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB60EED1C7E22B3005CE82B /* ParseConstants.swift */; };
@@ -88,6 +89,7 @@
 		FEA7BDC81C788047002A6535 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		FEA7BDCA1C788069002A6535 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		FEA9F9DA1C8451CB0000213A /* Dates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Dates.swift; path = Helpers/Dates.swift; sourceTree = "<group>"; };
+		FEA9F9DC1C8473540000213A /* ChannelTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChannelTableCell.swift; path = View/ChannelTableCell.swift; sourceTree = "<group>"; };
 		FEB60EE81C7DE2E8005CE82B /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatViewController.swift; path = Controller/ChatViewController.swift; sourceTree = "<group>"; };
 		FEB60EEC1C7E22B3005CE82B /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParseClient.swift; path = Model/Parse/ParseClient.swift; sourceTree = "<group>"; };
 		FEB60EED1C7E22B3005CE82B /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParseConstants.swift; path = Model/Parse/ParseConstants.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				FE28F36C1C79AF7D00E75BF8 /* OTMColors.swift */,
 				FE28F35F1C79AF4700E75BF8 /* LoginViewUI.swift */,
 				FE72883B1C831B2B00813803 /* ChatTextView.swift */,
+				FEA9F9DC1C8473540000213A /* ChannelTableCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				FE28F35B1C79A6DF00E75BF8 /* UConvenience.swift in Sources */,
 				FEA9F9DB1C8451CB0000213A /* Dates.swift in Sources */,
 				FEB60EEF1C7E22B3005CE82B /* ParseClient.swift in Sources */,
+				FEA9F9DD1C8473540000213A /* ChannelTableCell.swift in Sources */,
 				FE28F3601C79AF4700E75BF8 /* LoginViewUI.swift in Sources */,
 				FE28F37C1C79B6AA00E75BF8 /* UdacityUser.swift in Sources */,
 				FE28F3BA1C79D19000E75BF8 /* Channel.swift in Sources */,
