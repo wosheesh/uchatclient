@@ -12,10 +12,13 @@
 
 import UIKit
 import CoreImage
+import CoreData
 
-class ChannelsViewController: UITableViewController {
+class ChannelsViewController: UITableViewController, ManagedObjectContextSettable {
     
     // MARK: - 🎛 Properties
+
+    var managedObjectContext: NSManagedObjectContext!
     
     @IBOutlet var channelsTable: UITableView!
     

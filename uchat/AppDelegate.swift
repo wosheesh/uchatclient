@@ -17,13 +17,9 @@ let envDict = NSProcessInfo.processInfo().environment
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let managedObjectContext = createUchatMainContext()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
-//        // Enable storing and querying data from Local Datastore.
-//        // Remove this line if you don't want to use Local Datastore features or want to use cachePolicy.
-//        Parse.enableLocalDatastore()
-//        
 
         // Initialize Parse
         Parse.initializeWithConfiguration(ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) -> Void in
@@ -60,16 +56,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         print("Parse initialized ✅")
         
-//         Register for notifications
+        // Register for notifications
         let notificationTypes: UIUserNotificationType = [.Alert, .Badge, .Sound]
         let notificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: nil)
-        
         UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
-        
         UIApplication.sharedApplication().registerForRemoteNotifications()
         
         
-
+        // Core Data
+        guard let controller = window?.rootViewController as? ManagedObjectContextSettable else {
+            fatalError("Wrong view controller type")
+        }
+        controller.managedObjectContext = managedObjectContext
         
         return true
     }

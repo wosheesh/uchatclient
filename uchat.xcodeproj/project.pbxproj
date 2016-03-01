@@ -34,6 +34,8 @@
 		FE7288371C81F5E400813803 /* Cabin-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = FE7288331C81F5E400813803 /* Cabin-Regular.otf */; };
 		FE7288381C81F5E400813803 /* Cabin-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FE7288341C81F5E400813803 /* Cabin-SemiBold.otf */; };
 		FE72883C1C831B2B00813803 /* ChatTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE72883B1C831B2B00813803 /* ChatTextView.swift */; };
+		FE7AA9AC1C85AAED003F1F16 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7AA9AB1C85AAED003F1F16 /* Utilities.swift */; };
+		FE7AA9AF1C85AD8B003F1F16 /* ManagedObjectContextSettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7AA9AE1C85AD8B003F1F16 /* ManagedObjectContextSettable.swift */; };
 		FEA7BDA91C78750F002A6535 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA7BDA81C78750F002A6535 /* AppDelegate.swift */; };
 		FEA7BDAE1C78750F002A6535 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEA7BDAC1C78750F002A6535 /* Main.storyboard */; };
 		FEA7BDB01C78750F002A6535 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEA7BDAF1C78750F002A6535 /* Assets.xcassets */; };
@@ -83,6 +85,8 @@
 		FE7288331C81F5E400813803 /* Cabin-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Cabin-Regular.otf"; path = "Supporting Files/Fonts/Cabin-Regular.otf"; sourceTree = "<group>"; };
 		FE7288341C81F5E400813803 /* Cabin-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Cabin-SemiBold.otf"; path = "Supporting Files/Fonts/Cabin-SemiBold.otf"; sourceTree = "<group>"; };
 		FE72883B1C831B2B00813803 /* ChatTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatTextView.swift; path = View/ChatTextView.swift; sourceTree = "<group>"; };
+		FE7AA9AB1C85AAED003F1F16 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = Helpers/Utilities.swift; sourceTree = "<group>"; };
+		FE7AA9AE1C85AD8B003F1F16 /* ManagedObjectContextSettable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ManagedObjectContextSettable.swift; path = Protocols/ManagedObjectContextSettable.swift; sourceTree = "<group>"; };
 		FEA7BDA51C78750F002A6535 /* uchat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uchat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEA7BDA81C78750F002A6535 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FEA7BDAD1C78750F002A6535 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -99,7 +103,7 @@
 		FEA9F9E01C84D53A0000213A /* ImageFilters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageFilters.swift; path = Helpers/ImageFilters.swift; sourceTree = "<group>"; };
 		FEA9F9E31C8597A50000213A /* CoreStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreStack.swift; path = Model/CoreData/CoreStack.swift; sourceTree = "<group>"; };
 		FEA9F9E61C85980C0000213A /* uchat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = uchat.xcdatamodel; sourceTree = "<group>"; };
-		FEA9F9E91C859A470000213A /* ManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ManagedObject.swift; path = Helpers/CoreDataHelpers/ManagedObject.swift; sourceTree = "<group>"; };
+		FEA9F9E91C859A470000213A /* ManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ManagedObject.swift; path = Model/CoreData/ManagedObject.swift; sourceTree = "<group>"; };
 		FEB60EE81C7DE2E8005CE82B /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatViewController.swift; path = Controller/ChatViewController.swift; sourceTree = "<group>"; };
 		FEB60EEC1C7E22B3005CE82B /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParseClient.swift; path = Model/Parse/ParseClient.swift; sourceTree = "<group>"; };
 		FEB60EED1C7E22B3005CE82B /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParseConstants.swift; path = Model/Parse/ParseConstants.swift; sourceTree = "<group>"; };
@@ -192,6 +196,7 @@
 				FEA9F9DA1C8451CB0000213A /* Dates.swift */,
 				FEA9F9DE1C848E730000213A /* PictureCache.swift */,
 				FEA9F9E01C84D53A0000213A /* ImageFilters.swift */,
+				FE7AA9AB1C85AAED003F1F16 /* Utilities.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -218,6 +223,14 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
+		FE7AA9AD1C85AD4C003F1F16 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				FE7AA9AE1C85AD8B003F1F16 /* ManagedObjectContextSettable.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
 		FEA7BD9C1C78750F002A6535 = {
 			isa = PBXGroup;
 			children = (
@@ -237,6 +250,7 @@
 		FEA7BDA71C78750F002A6535 /* uchat */ = {
 			isa = PBXGroup;
 			children = (
+				FE7AA9AD1C85AD4C003F1F16 /* Protocols */,
 				FE28F3781C79B16700E75BF8 /* Helpers */,
 				FE28F3511C79A6AE00E75BF8 /* Model */,
 				FE28F3531C79A6BF00E75BF8 /* View */,
@@ -278,6 +292,7 @@
 		FEA9F9E21C85976D0000213A /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				FEA9F9E91C859A470000213A /* ManagedObject.swift */,
 				FEA9F9E31C8597A50000213A /* CoreStack.swift */,
 				FEA9F9E51C85980C0000213A /* uchat.xcdatamodeld */,
 			);
@@ -287,7 +302,6 @@
 		FEA9F9E81C859A1B0000213A /* CoreDataHelpers */ = {
 			isa = PBXGroup;
 			children = (
-				FEA9F9E91C859A470000213A /* ManagedObject.swift */,
 			);
 			name = CoreDataHelpers;
 			sourceTree = "<group>";
@@ -382,6 +396,8 @@
 				FEA9F9E71C85980C0000213A /* uchat.xcdatamodeld in Sources */,
 				FEA9F9E41C8597A50000213A /* CoreStack.swift in Sources */,
 				FEB60EE91C7DE2E8005CE82B /* ChatViewController.swift in Sources */,
+				FE7AA9AC1C85AAED003F1F16 /* Utilities.swift in Sources */,
+				FE7AA9AF1C85AD8B003F1F16 /* ManagedObjectContextSettable.swift in Sources */,
 				FE28F37A1C79B1AE00E75BF8 /* Alerts.swift in Sources */,
 				FE28F35A1C79A6DF00E75BF8 /* UClient.swift in Sources */,
 				FE28F35B1C79A6DF00E75BF8 /* UConvenience.swift in Sources */,

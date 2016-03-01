@@ -6,7 +6,7 @@
 //  Copyright © 2016 Wojtek Materka. All rights reserved.
 //
 
-import Foundation
+import CoreData
 
 
 public final class Channel: ManagedObject {
@@ -15,35 +15,34 @@ public final class Channel: ManagedObject {
     @NSManaged public private(set) var code: String
     @NSManaged public private(set) var name: String
     @NSManaged public private(set) var tagline: String
-    var picturePath: String?
-    var messages: [Message] = []
+    @NSManaged public private(set) var picturePath: String?
+    @NSManaged public var messages: [Message]
     
-    init(code: String, name: String, tagline: String) {
-        self.code = code
-        self.name = name
-        self.tagline = tagline
-    }
+//    init(code: String, name: String, tagline: String) {
+//        self.code = code
+//        self.name = name
+//        self.tagline = tagline
+//    }
     
     // TODO: hold image as UIImage in memory after loading
-    func pictureFilename() -> String {
-        return code + ".jpg"
-    }
+//    func pictureFilename() -> String {
+//        return code + ".jpg"
+//    }
 }
 
 // MARK: - Receive new message in channel
 
 extension Channel {
     
-    mutating func Receive(var message: Message) -> Message {
-        message.receivedAt = NSDate()
-        self.messages.append(message)
-        return message
-    }
+//    mutating func Receive(var message: Message) -> Message {
+//        message.receivedAt = NSDate()
+//        self.messages.append(message)
+//        return message
+//    }
     
 }
 
 // MARK: - (un)Subscribe user to channel
-
 // This is currently done as notification channel subscription.
 
 import Parse
@@ -51,7 +50,7 @@ import Parse
 extension Channel {
     
     // Subscribe user
-    mutating func subscribeUser() {
+    func subscribeUser() {
             
         PFPush.subscribeToChannelInBackground(self.code) { succeeded, error in
             if succeeded {
@@ -63,7 +62,7 @@ extension Channel {
     }
     
     // Unsubscribe user
-    mutating func unsubscribeUser() {
+    func unsubscribeUser() {
 
         PFPush.unsubscribeFromChannelInBackground(self.code) { succeeded, error in
             if succeeded {

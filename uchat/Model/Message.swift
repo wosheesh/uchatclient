@@ -6,15 +6,16 @@
 //  Copyright © 2016 Wojtek Materka. All rights reserved.
 //
 
-import UIKit
+import CoreData
 import Parse
 
-struct Message {
-    let body: String
-    let authorName: String
-    let authorKey: String // If want to allow students communicate directly in next ver of the app. For now it is used to distinguish messages of the current user from that of others'
-    let createdAt: NSDate
-    var receivedAt: NSDate?
+public final class Message: ManagedObject {
+    @NSManaged public private(set) var body: String
+    @NSManaged public private(set) var authorName: String
+    @NSManaged public private(set) var authorKey: String // If want to allow students communicate directly in next ver of the app. For now it is used to distinguish messages of the current user from that of others'
+    @NSManaged public private(set) var createdAt: NSDate
+    @NSManaged public var receivedAt: NSDate?
+    @NSManaged public var channel: Channel?
     
     init(body: String, authorName: String, authorKey: String) {
         self.body = body

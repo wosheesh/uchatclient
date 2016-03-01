@@ -9,9 +9,10 @@
 // TODO: add app Transport security for Udacity servers
 
 import UIKit
+import CoreData
 
 @IBDesignable
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, ManagedObjectContextSettable {
     
     // MARK: - 🎛 Properties
     
@@ -22,22 +23,20 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var signupButton: UIButton!
     @IBOutlet weak var loginWithFBButton: FBLoginButton!
     
-    /* for progress view */
+    // ManagedObjectContextSettable
+    var managedObjectContext: NSManagedObjectContext!
+    
+    
+    // for progress view
     var messageFrame = UIView()
     var activityIndicator = UIActivityIndicatorView()
     var strLabel = UILabel()
-    
-    /* shared session */
-    var session: NSURLSession!
     
     // MARK: - 🔄 Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         UIApplication.sharedApplication().statusBarStyle = .Default
-        
-        /* Get the shared URL session */
-        session = NSURLSession.sharedSession()
         
         // Debugging
         
@@ -135,13 +134,20 @@ class LoginViewController: UIViewController {
     }
     
     func completeLogin() {
+        
         dispatch_async(dispatch_get_main_queue(), {
-            
             self.messageFrame.removeFromSuperview()
             self.setUIEnabled(enabled: false)
-            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("ChatNav") as! UINavigationController
-            self.presentViewController(controller, animated: true, completion: nil)
         })
+        
+        guard let nc = storyboard!.instantiateViewControllerWithIdentifier("ChatNav") as? UINavigationController,
+            let vc = nc.viewControllers.first as? ManagedObjectContextSettable else {
+                    fatalError("Wrong view controller type")
+        }
+        // if next controller adheres to protocol, pass the MOC
+        vc.managedObjectContext = managedObjectContext
+        presentViewController(nc, animated: true, completion: nil)
+        
     }
     
     /* open with Safari helper */
