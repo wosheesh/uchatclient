@@ -16,3 +16,15 @@ class ChannelTableCell: UITableViewCell {
     
     
 }
+
+extension ChannelTableCell: ConfigurableCell {
+    
+    func configureForObject(channel: Channel) {
+        courseTitleLabel.text = channel.name
+        courseSubtitleLabel.text = channel.tagline
+        
+        //TODO: Picture background
+        
+    }
+    
+}

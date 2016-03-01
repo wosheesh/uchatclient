@@ -36,6 +36,8 @@
 		FE72883C1C831B2B00813803 /* ChatTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE72883B1C831B2B00813803 /* ChatTextView.swift */; };
 		FE7AA9AC1C85AAED003F1F16 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7AA9AB1C85AAED003F1F16 /* Utilities.swift */; };
 		FE7AA9AF1C85AD8B003F1F16 /* ManagedObjectContextSettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7AA9AE1C85AD8B003F1F16 /* ManagedObjectContextSettable.swift */; };
+		FE7AA9B11C85BA49003F1F16 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7AA9B01C85BA49003F1F16 /* DataProvider.swift */; };
+		FE7AA9B31C85BC31003F1F16 /* FetchedResultsDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7AA9B21C85BC31003F1F16 /* FetchedResultsDataProvider.swift */; };
 		FEA7BDA91C78750F002A6535 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA7BDA81C78750F002A6535 /* AppDelegate.swift */; };
 		FEA7BDAE1C78750F002A6535 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEA7BDAC1C78750F002A6535 /* Main.storyboard */; };
 		FEA7BDB01C78750F002A6535 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEA7BDAF1C78750F002A6535 /* Assets.xcassets */; };
@@ -51,6 +53,10 @@
 		FEA9F9E41C8597A50000213A /* CoreStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA9F9E31C8597A50000213A /* CoreStack.swift */; };
 		FEA9F9E71C85980C0000213A /* uchat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FEA9F9E51C85980C0000213A /* uchat.xcdatamodeld */; };
 		FEA9F9EA1C859A470000213A /* ManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA9F9E91C859A470000213A /* ManagedObject.swift */; };
+		FEAD23481C85D22000E82F3A /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAD23471C85D22000E82F3A /* TableViewDataSource.swift */; };
+		FEAD234A1C85D2D000E82F3A /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAD23491C85D2D000E82F3A /* DataSource.swift */; };
+		FEAD234C1C85D33700E82F3A /* ConfigurableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAD234B1C85D33700E82F3A /* ConfigurableCell.swift */; };
+		FEAD234F1C85E55900E82F3A /* NSManagedObjectContext+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAD234E1C85E55900E82F3A /* NSManagedObjectContext+Extensions.swift */; };
 		FEB60EE91C7DE2E8005CE82B /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB60EE81C7DE2E8005CE82B /* ChatViewController.swift */; };
 		FEB60EEF1C7E22B3005CE82B /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB60EEC1C7E22B3005CE82B /* ParseClient.swift */; };
 		FEB60EF01C7E22B3005CE82B /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB60EED1C7E22B3005CE82B /* ParseConstants.swift */; };
@@ -87,6 +93,8 @@
 		FE72883B1C831B2B00813803 /* ChatTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatTextView.swift; path = View/ChatTextView.swift; sourceTree = "<group>"; };
 		FE7AA9AB1C85AAED003F1F16 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = Helpers/Utilities.swift; sourceTree = "<group>"; };
 		FE7AA9AE1C85AD8B003F1F16 /* ManagedObjectContextSettable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ManagedObjectContextSettable.swift; path = Protocols/ManagedObjectContextSettable.swift; sourceTree = "<group>"; };
+		FE7AA9B01C85BA49003F1F16 /* DataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataProvider.swift; path = "Data Sources and Providers/DataProvider.swift"; sourceTree = "<group>"; };
+		FE7AA9B21C85BC31003F1F16 /* FetchedResultsDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchedResultsDataProvider.swift; path = "Data Sources and Providers/FetchedResultsDataProvider.swift"; sourceTree = "<group>"; };
 		FEA7BDA51C78750F002A6535 /* uchat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uchat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEA7BDA81C78750F002A6535 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FEA7BDAD1C78750F002A6535 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -104,6 +112,10 @@
 		FEA9F9E31C8597A50000213A /* CoreStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreStack.swift; path = Model/CoreData/CoreStack.swift; sourceTree = "<group>"; };
 		FEA9F9E61C85980C0000213A /* uchat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = uchat.xcdatamodel; sourceTree = "<group>"; };
 		FEA9F9E91C859A470000213A /* ManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ManagedObject.swift; path = Model/CoreData/ManagedObject.swift; sourceTree = "<group>"; };
+		FEAD23471C85D22000E82F3A /* TableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewDataSource.swift; path = "Data Sources and Providers/TableViewDataSource.swift"; sourceTree = "<group>"; };
+		FEAD23491C85D2D000E82F3A /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataSource.swift; path = "Data Sources and Providers/DataSource.swift"; sourceTree = "<group>"; };
+		FEAD234B1C85D33700E82F3A /* ConfigurableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConfigurableCell.swift; path = Protocols/ConfigurableCell.swift; sourceTree = "<group>"; };
+		FEAD234E1C85E55900E82F3A /* NSManagedObjectContext+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSManagedObjectContext+Extensions.swift"; path = "Helpers/CoreData/NSManagedObjectContext+Extensions.swift"; sourceTree = "<group>"; };
 		FEB60EE81C7DE2E8005CE82B /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatViewController.swift; path = Controller/ChatViewController.swift; sourceTree = "<group>"; };
 		FEB60EEC1C7E22B3005CE82B /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParseClient.swift; path = Model/Parse/ParseClient.swift; sourceTree = "<group>"; };
 		FEB60EED1C7E22B3005CE82B /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParseConstants.swift; path = Model/Parse/ParseConstants.swift; sourceTree = "<group>"; };
@@ -190,7 +202,7 @@
 		FE28F3781C79B16700E75BF8 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				FEA9F9E81C859A1B0000213A /* CoreDataHelpers */,
+				FEAD234D1C85E53300E82F3A /* CoreData */,
 				FE28F3791C79B1AE00E75BF8 /* Alerts.swift */,
 				FE11673D1C80E33D00C3D8AC /* Dispatch.swift */,
 				FEA9F9DA1C8451CB0000213A /* Dates.swift */,
@@ -227,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				FE7AA9AE1C85AD8B003F1F16 /* ManagedObjectContextSettable.swift */,
+				FEAD234B1C85D33700E82F3A /* ConfigurableCell.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -250,6 +263,7 @@
 		FEA7BDA71C78750F002A6535 /* uchat */ = {
 			isa = PBXGroup;
 			children = (
+				FEAD23461C85D17700E82F3A /* Data Sources and Providers */,
 				FE7AA9AD1C85AD4C003F1F16 /* Protocols */,
 				FE28F3781C79B16700E75BF8 /* Helpers */,
 				FE28F3511C79A6AE00E75BF8 /* Model */,
@@ -299,11 +313,23 @@
 			name = CoreData;
 			sourceTree = "<group>";
 		};
-		FEA9F9E81C859A1B0000213A /* CoreDataHelpers */ = {
+		FEAD23461C85D17700E82F3A /* Data Sources and Providers */ = {
 			isa = PBXGroup;
 			children = (
+				FE7AA9B21C85BC31003F1F16 /* FetchedResultsDataProvider.swift */,
+				FEAD23471C85D22000E82F3A /* TableViewDataSource.swift */,
+				FEAD23491C85D2D000E82F3A /* DataSource.swift */,
+				FE7AA9B01C85BA49003F1F16 /* DataProvider.swift */,
 			);
-			name = CoreDataHelpers;
+			name = "Data Sources and Providers";
+			sourceTree = "<group>";
+		};
+		FEAD234D1C85E53300E82F3A /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				FEAD234E1C85E55900E82F3A /* NSManagedObjectContext+Extensions.swift */,
+			);
+			name = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -399,6 +425,7 @@
 				FE7AA9AC1C85AAED003F1F16 /* Utilities.swift in Sources */,
 				FE7AA9AF1C85AD8B003F1F16 /* ManagedObjectContextSettable.swift in Sources */,
 				FE28F37A1C79B1AE00E75BF8 /* Alerts.swift in Sources */,
+				FE7AA9B31C85BC31003F1F16 /* FetchedResultsDataProvider.swift in Sources */,
 				FE28F35A1C79A6DF00E75BF8 /* UClient.swift in Sources */,
 				FE28F35B1C79A6DF00E75BF8 /* UConvenience.swift in Sources */,
 				FEA9F9DB1C8451CB0000213A /* Dates.swift in Sources */,
@@ -406,7 +433,11 @@
 				FEB60EEF1C7E22B3005CE82B /* ParseClient.swift in Sources */,
 				FEA9F9DD1C8473540000213A /* ChannelTableCell.swift in Sources */,
 				FE28F3601C79AF4700E75BF8 /* LoginViewUI.swift in Sources */,
+				FEAD234F1C85E55900E82F3A /* NSManagedObjectContext+Extensions.swift in Sources */,
 				FE28F37C1C79B6AA00E75BF8 /* UdacityUser.swift in Sources */,
+				FEAD234C1C85D33700E82F3A /* ConfigurableCell.swift in Sources */,
+				FEAD23481C85D22000E82F3A /* TableViewDataSource.swift in Sources */,
+				FEAD234A1C85D2D000E82F3A /* DataSource.swift in Sources */,
 				FE28F3BA1C79D19000E75BF8 /* Channel.swift in Sources */,
 				FE28F3671C79AF6900E75BF8 /* UdacityLoginButton.swift in Sources */,
 				FE28F3661C79AF6900E75BF8 /* BorderedButtonProtocol.swift in Sources */,
@@ -420,6 +451,7 @@
 				FEB60EF11C7E22B3005CE82B /* ParseConvenience.swift in Sources */,
 				FE11673A1C80D84B00C3D8AC /* ParseErrors.swift in Sources */,
 				FE11673E1C80E33D00C3D8AC /* Dispatch.swift in Sources */,
+				FE7AA9B11C85BA49003F1F16 /* DataProvider.swift in Sources */,
 				FE72883C1C831B2B00813803 /* ChatTextView.swift in Sources */,
 				FE28F36F1C79AF8E00E75BF8 /* LoginTextField.swift in Sources */,
 				FEB60EF01C7E22B3005CE82B /* ParseConstants.swift in Sources */,

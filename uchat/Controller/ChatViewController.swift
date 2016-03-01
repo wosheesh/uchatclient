@@ -85,25 +85,25 @@ class ChatViewController: UIViewController {
     
     func displayNewMessage(notification: NSNotification) {
         let userInfo = notification.object as! [NSObject : AnyObject]
-        do {
-            
-            // create a newMessage object when push is received
-            let newMessage = try Message.createFromPushNotification(userInfo)
-            
-            // add it to the Channel's messages array
-            channel.messages.append(newMessage)
-            
-        } catch Message.MessageError.InvalidSyntax {
-            print("🆘 📫 Invalid message syntax")
-        } catch Message.MessageError.BodyNotFound {
-            print("🆘 📫 Message body couldn't be found")
-        } catch Message.MessageError.AuthorUsernameNotFound {
-            print("🆘 📫 Message AuthorUsername couldn't be found")
-        } catch Message.MessageError.KeyNotFound {
-            print("🆘 📫 Message AuthorKey couldn't be found")
-        } catch {
-            print("🆘 📫 Message error not handled")
-        }
+//        do {
+//            
+////            // create a newMessage object when push is received
+////            let newMessage = try Message.createFromPushNotification(userInfo)
+////            
+////            // add it to the Channel's messages array
+////            channel.messages.append(newMessage)
+////            
+////        } catch Message.MessageError.InvalidSyntax {
+////            print("🆘 📫 Invalid message syntax")
+////        } catch Message.MessageError.BodyNotFound {
+////            print("🆘 📫 Message body couldn't be found")
+////        } catch Message.MessageError.AuthorUsernameNotFound {
+////            print("🆘 📫 Message AuthorUsername couldn't be found")
+////        } catch Message.MessageError.KeyNotFound {
+////            print("🆘 📫 Message AuthorKey couldn't be found")
+////        } catch {
+////            print("🆘 📫 Message error not handled")
+////        }
         
         chatWall.reloadData()
     }
@@ -111,16 +111,16 @@ class ChatViewController: UIViewController {
     // MARK: - 📮 Send a message to current channel
     
     @IBAction func sendButtonTouchUp(sender: AnyObject) {
-        if let msgBody = chatTextView.text where msgBody != "" {
-            let message = Message(body: msgBody, authorName: UdacityUser.username!, authorKey: UdacityUser.udacityKey!)
-            
-            chatTextView.text = ""
-            chatTextView.resignFirstResponder()
-            chatTextViewHeightConst.constant = chatTextView.minChatTextViewHeight()
-            
-            message.Send(toChannel: self.channel, sender: self)
-            
-        }
+//        if let msgBody = chatTextView.text where msgBody != "" {
+//            let message = Message(body: msgBody, authorName: UdacityUser.username!, authorKey: UdacityUser.udacityKey!)
+//            
+//            chatTextView.text = ""
+//            chatTextView.resignFirstResponder()
+//            chatTextViewHeightConst.constant = chatTextView.minChatTextViewHeight()
+//            
+//            message.Send(toChannel: self.channel, sender: self)
+//            
+//        }
     }
     
     // MARK: - 🐵 Helpers
@@ -173,30 +173,30 @@ extension ChatViewController: UITextViewDelegate {
 
 // MARK: - 📄 TableViewDelegate
 
-extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return channel.messages.count
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("chatCell", forIndexPath: indexPath)
-        let message = channel.messages[indexPath.row]
-        
-        cell.detailTextLabel?.text = message.authorName
-        if message.authorKey == UdacityUser.udacityKey {
-            cell.detailTextLabel?.textColor = UIColor(red: 0.145, green: 0.784, blue: 0.506, alpha: 1.00)
-        }
-        
-        cell.textLabel?.text = message.body
-        cell.selectionStyle = .None
-        return cell
-    }
-    
-    
-}
+//extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
+//    
+//    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+//        return 1
+//    }
+//    
+//    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return channel.messages.count
+//    }
+//    
+//    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+////        let cell = tableView.dequeueReusableCellWithIdentifier("chatCell", forIndexPath: indexPath)
+////        let message = channel.messages[indexPath.row]
+////        
+////        cell.detailTextLabel?.text = message.authorName
+////        if message.authorKey == UdacityUser.udacityKey {
+////            cell.detailTextLabel?.textColor = UIColor(red: 0.145, green: 0.784, blue: 0.506, alpha: 1.00)
+////        }
+////        
+////        cell.textLabel?.text = message.body
+////        cell.selectionStyle = .None
+////        return cell
+//    }
+//    
+//    
+//}
 

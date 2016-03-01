@@ -193,7 +193,7 @@ extension UClient {
                 print("Course Catalogue modified \(timeDifference) days ago")
                 
                 // no need to download the file if it's relatively new
-                if timeDifference < 7 {
+                if timeDifference < -7 {
                     completionHandler(success: true, errorString: nil)
                     return
                 }

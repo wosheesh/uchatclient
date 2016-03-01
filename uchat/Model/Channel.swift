@@ -12,11 +12,22 @@ import CoreData
 public final class Channel: ManagedObject {
     
     // MARK: - Properties
+    
     @NSManaged public private(set) var code: String
     @NSManaged public private(set) var name: String
     @NSManaged public private(set) var tagline: String
     @NSManaged public private(set) var picturePath: String?
-    @NSManaged public var messages: [Message]
+    @NSManaged public private(set) var messages: Set<Message>
+    
+    // This in effect is the init
+    public static func insertIntoContext(moc: NSManagedObjectContext, code: String, name: String, tagline: String, picturePath: String?) -> Channel {
+        let channel: Channel = moc.insertObject()
+        channel.code = code
+        channel.name = name
+        channel.tagline = tagline
+        channel.picturePath = picturePath
+        return channel
+    }
     
 //    init(code: String, name: String, tagline: String) {
 //        self.code = code
@@ -30,8 +41,20 @@ public final class Channel: ManagedObject {
 //    }
 }
 
-// MARK: - Receive new message in channel
 
+
+extension Channel: ManagedObjectType {
+    public static var entityName: String {
+        return "Channel"
+    }
+    
+    public static var defaultSortDescriptors: [NSSortDescriptor] {
+        return [] // not needed?
+    }
+}
+
+
+// MARK: - Receive new message in channel
 extension Channel {
     
 //    mutating func Receive(var message: Message) -> Message {
