@@ -12,6 +12,7 @@ class ChannelTableCell: UITableViewCell {
     
     @IBOutlet weak var courseTitleLabel: UILabel!
     @IBOutlet weak var courseSubtitleLabel: UILabel!
+    @IBOutlet weak var courseBackgroundPicture: UIImageView!
     
     
 }

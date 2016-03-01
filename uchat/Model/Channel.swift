@@ -9,17 +9,24 @@
 import Foundation
 
 
-struct Channel {
+public final class Channel: ManagedObject {
     
     // MARK: - Properties
-    
-    let name: String
-    let tagline: String
+    @NSManaged public private(set) var code: String
+    @NSManaged public private(set) var name: String
+    @NSManaged public private(set) var tagline: String
+    var picturePath: String?
     var messages: [Message] = []
     
-    init(name: String, tagline: String) {
+    init(code: String, name: String, tagline: String) {
+        self.code = code
         self.name = name
         self.tagline = tagline
+    }
+    
+    // TODO: hold image as UIImage in memory after loading
+    func pictureFilename() -> String {
+        return code + ".jpg"
     }
 }
 
@@ -38,8 +45,6 @@ extension Channel {
 // MARK: - (un)Subscribe user to channel
 
 // This is currently done as notification channel subscription.
-// There is no channel object on the server for global data persistence, perhaps in a next version?
-// So it kinda works like CB-Radio 📻
 
 import Parse
 
@@ -48,11 +53,11 @@ extension Channel {
     // Subscribe user
     mutating func subscribeUser() {
             
-        PFPush.subscribeToChannelInBackground(self.name) { succeeded, error in
+        PFPush.subscribeToChannelInBackground(self.code) { succeeded, error in
             if succeeded {
-                print("🚀 Successfully subscribed to channel: \(self.name).")
+                print("🚀 Successfully subscribed to channel: \(self.code).")
             } else {
-                print("🆘 🚀 Failed to subscribe to channel: \(self.name) with Parse error: \n \(error)")
+                print("🆘 🚀 Failed to subscribe to channel: \(self.code) with Parse error: \n \(error)")
             }
         }
     }
@@ -60,11 +65,11 @@ extension Channel {
     // Unsubscribe user
     mutating func unsubscribeUser() {
 
-        PFPush.unsubscribeFromChannelInBackground(self.name) { succeeded, error in
+        PFPush.unsubscribeFromChannelInBackground(self.code) { succeeded, error in
             if succeeded {
-                print("🚀 Unsubscribed from \(self.name)")
+                print("🚀 Unsubscribed from \(self.code)")
             } else {
-                print("🆘 🚀 Failed to leave channel: \(self.name) with Parse error: \n \(error)")
+                print("🆘 🚀 Failed to leave channel: \(self.code) with Parse error: \n \(error)")
             }
         }
     }

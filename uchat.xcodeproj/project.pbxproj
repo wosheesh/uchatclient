@@ -44,6 +44,11 @@
 		FEA7BDCB1C788069002A6535 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA7BDCA1C788069002A6535 /* libz.tbd */; };
 		FEA9F9DB1C8451CB0000213A /* Dates.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA9F9DA1C8451CB0000213A /* Dates.swift */; };
 		FEA9F9DD1C8473540000213A /* ChannelTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA9F9DC1C8473540000213A /* ChannelTableCell.swift */; };
+		FEA9F9DF1C848E730000213A /* PictureCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA9F9DE1C848E730000213A /* PictureCache.swift */; };
+		FEA9F9E11C84D53A0000213A /* ImageFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA9F9E01C84D53A0000213A /* ImageFilters.swift */; };
+		FEA9F9E41C8597A50000213A /* CoreStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA9F9E31C8597A50000213A /* CoreStack.swift */; };
+		FEA9F9E71C85980C0000213A /* uchat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FEA9F9E51C85980C0000213A /* uchat.xcdatamodeld */; };
+		FEA9F9EA1C859A470000213A /* ManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA9F9E91C859A470000213A /* ManagedObject.swift */; };
 		FEB60EE91C7DE2E8005CE82B /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB60EE81C7DE2E8005CE82B /* ChatViewController.swift */; };
 		FEB60EEF1C7E22B3005CE82B /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB60EEC1C7E22B3005CE82B /* ParseClient.swift */; };
 		FEB60EF01C7E22B3005CE82B /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB60EED1C7E22B3005CE82B /* ParseConstants.swift */; };
@@ -90,6 +95,11 @@
 		FEA7BDCA1C788069002A6535 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		FEA9F9DA1C8451CB0000213A /* Dates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Dates.swift; path = Helpers/Dates.swift; sourceTree = "<group>"; };
 		FEA9F9DC1C8473540000213A /* ChannelTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChannelTableCell.swift; path = View/ChannelTableCell.swift; sourceTree = "<group>"; };
+		FEA9F9DE1C848E730000213A /* PictureCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PictureCache.swift; path = Helpers/PictureCache.swift; sourceTree = "<group>"; };
+		FEA9F9E01C84D53A0000213A /* ImageFilters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageFilters.swift; path = Helpers/ImageFilters.swift; sourceTree = "<group>"; };
+		FEA9F9E31C8597A50000213A /* CoreStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreStack.swift; path = Model/CoreData/CoreStack.swift; sourceTree = "<group>"; };
+		FEA9F9E61C85980C0000213A /* uchat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = uchat.xcdatamodel; sourceTree = "<group>"; };
+		FEA9F9E91C859A470000213A /* ManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ManagedObject.swift; path = Helpers/CoreDataHelpers/ManagedObject.swift; sourceTree = "<group>"; };
 		FEB60EE81C7DE2E8005CE82B /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatViewController.swift; path = Controller/ChatViewController.swift; sourceTree = "<group>"; };
 		FEB60EEC1C7E22B3005CE82B /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParseClient.swift; path = Model/Parse/ParseClient.swift; sourceTree = "<group>"; };
 		FEB60EED1C7E22B3005CE82B /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParseConstants.swift; path = Model/Parse/ParseConstants.swift; sourceTree = "<group>"; };
@@ -118,6 +128,7 @@
 		FE28F3511C79A6AE00E75BF8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FEA9F9E21C85976D0000213A /* CoreData */,
 				FE28F3BD1C7A0FBA00E75BF8 /* Parse */,
 				FE28F3541C79A6CA00E75BF8 /* Udacity */,
 				FE28F37B1C79B6AA00E75BF8 /* UdacityUser.swift */,
@@ -175,9 +186,12 @@
 		FE28F3781C79B16700E75BF8 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				FEA9F9E81C859A1B0000213A /* CoreDataHelpers */,
 				FE28F3791C79B1AE00E75BF8 /* Alerts.swift */,
 				FE11673D1C80E33D00C3D8AC /* Dispatch.swift */,
 				FEA9F9DA1C8451CB0000213A /* Dates.swift */,
+				FEA9F9DE1C848E730000213A /* PictureCache.swift */,
+				FEA9F9E01C84D53A0000213A /* ImageFilters.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -259,6 +273,23 @@
 				FEA7BDBE1C787962002A6535 /* Frameworks */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FEA9F9E21C85976D0000213A /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				FEA9F9E31C8597A50000213A /* CoreStack.swift */,
+				FEA9F9E51C85980C0000213A /* uchat.xcdatamodeld */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
+		FEA9F9E81C859A1B0000213A /* CoreDataHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				FEA9F9E91C859A470000213A /* ManagedObject.swift */,
+			);
+			name = CoreDataHelpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -346,12 +377,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE28F3981C79D0F800E75BF8 /* ChannelsViewController.swift in Sources */,
+				FEA9F9E11C84D53A0000213A /* ImageFilters.swift in Sources */,
 				FE28F35E1C79A70D00E75BF8 /* LoginViewController.swift in Sources */,
+				FEA9F9E71C85980C0000213A /* uchat.xcdatamodeld in Sources */,
+				FEA9F9E41C8597A50000213A /* CoreStack.swift in Sources */,
 				FEB60EE91C7DE2E8005CE82B /* ChatViewController.swift in Sources */,
 				FE28F37A1C79B1AE00E75BF8 /* Alerts.swift in Sources */,
 				FE28F35A1C79A6DF00E75BF8 /* UClient.swift in Sources */,
 				FE28F35B1C79A6DF00E75BF8 /* UConvenience.swift in Sources */,
 				FEA9F9DB1C8451CB0000213A /* Dates.swift in Sources */,
+				FEA9F9DF1C848E730000213A /* PictureCache.swift in Sources */,
 				FEB60EEF1C7E22B3005CE82B /* ParseClient.swift in Sources */,
 				FEA9F9DD1C8473540000213A /* ChannelTableCell.swift in Sources */,
 				FE28F3601C79AF4700E75BF8 /* LoginViewUI.swift in Sources */,
@@ -365,6 +400,7 @@
 				FEA7BDA91C78750F002A6535 /* AppDelegate.swift in Sources */,
 				FE28F3681C79AF6900E75BF8 /* FBLoginButton.swift in Sources */,
 				FE28F3C11C7A427D00E75BF8 /* Message.swift in Sources */,
+				FEA9F9EA1C859A470000213A /* ManagedObject.swift in Sources */,
 				FEB60EF11C7E22B3005CE82B /* ParseConvenience.swift in Sources */,
 				FE11673A1C80D84B00C3D8AC /* ParseErrors.swift in Sources */,
 				FE11673E1C80E33D00C3D8AC /* Dispatch.swift in Sources */,
@@ -545,6 +581,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		FEA9F9E51C85980C0000213A /* uchat.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FEA9F9E61C85980C0000213A /* uchat.xcdatamodel */,
+			);
+			currentVersion = FEA9F9E61C85980C0000213A /* uchat.xcdatamodel */;
+			name = uchat.xcdatamodeld;
+			path = Model/CoreData/uchat.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = FEA7BD9D1C78750F002A6535 /* Project object */;
 }

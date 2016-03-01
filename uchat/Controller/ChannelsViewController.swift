@@ -11,13 +11,16 @@
 //TODO: Add logout
 
 import UIKit
+import CoreImage
 
 class ChannelsViewController: UITableViewController {
     
     // MARK: - 🎛 Properties
     
+    @IBOutlet var channelsTable: UITableView!
+    
     //start with a general channel as default
-    var channels = [Channel(name: "General", tagline: "Channel open to all students")]
+    var channels = [Channel(code: "0", name: "General", tagline: "Channel open to all students")]
     
     //MARK: - 🔄 Lifecycle
     
@@ -30,6 +33,7 @@ class ChannelsViewController: UITableViewController {
             if success {
                 print("Updating the channels list with catalogue...")
                 self.updateChannels()
+                
             } else {
                 print(errorString)
             }
@@ -55,14 +59,88 @@ class ChannelsViewController: UITableViewController {
         
         print("found \(coursesMatching.count ) matching courses.")
         
+        
+        //TODO: Move this to channel init from catalogue data
+        
         //Update the channels array
         for course in coursesMatching {
-            let newChannel = Channel(name: course[UClient.JSONResponseKeys.CourseTitle] as! String,
-                tagline: course[UClient.JSONResponseKeys.CourseSubtitle] as! String)
+            let channelCode = course[UClient.JSONResponseKeys.CourseKeyCatalogue] as! String
+            let channelName = course[UClient.JSONResponseKeys.CourseTitle] as! String
+            let channelTagline = course[UClient.JSONResponseKeys.CourseSubtitle] as! String
+            let imagePathOnline = course[UClient.JSONResponseKeys.CourseImage] as! String
             
+            
+            var newChannel = Channel(code: channelCode, name: channelName, tagline: channelTagline)
+            let localPictureName = PictureCache().pathForIdentifier(newChannel.code + ".jpg")
+            
+            // If there's an image already downloaded add its path and append new channel
+            guard !NSFileManager.defaultManager().fileExistsAtPath(localPictureName) else {
+                newChannel.picturePath = localPictureName
+                channels.append(newChannel)
+                continue
+            }
+                
+            // Check if the catalogue has an image url available
+            if let pictureUrl = NSURL(string: imagePathOnline)  {
+                print("downloading: \(pictureUrl)")
+                
+                do {
+                    try PictureCache().downloadPictureToDocuments(pictureUrl, filename: newChannel.code + ".jpg") { success, errorString in
+                        if success {
+                            newChannel.picturePath = localPictureName
+                            self.applyFilters(localPictureName)
+                            self.channelsTable.reloadData()
+                        } else {
+                            print(errorString)
+                        }
+                    }
+                } catch PictureCache.Errors.NoFileFoundAtURL {
+                    print("No image path specified in the catalogue, will use the default image")
+                } catch {
+                    print("Error while downloading picture for channel")
+                }
+            }
+            
+            
+            
+            // append new channel even if no file for image found
             channels.append(newChannel)
+            
+
         }
+        
     }
+    
+    func applyFilters(fileURLString: String) {
+        
+        let fileURL = NSURL(fileURLWithPath: fileURLString)
+        
+        guard var beginImage = CIImage(contentsOfURL: fileURL) else {
+            print("couldn't find a picture")
+            return
+        }
+        
+        beginImage = blur(5.0)(beginImage)
+        beginImage = sepia(0.5)(beginImage)
+            
+//            let context = CIContext(options: nil)
+        // https://developer.apple.com/library/mac/documentation/GraphicsImaging/Conceptual/CoreImaging/ci_tasks/ci_tasks.html#//apple_ref/doc/uid/TP30001185-CH3-SW19
+        let myEAGLContext = EAGLContext(API: EAGLRenderingAPI.OpenGLES2)
+        let options = [kCIContextWorkingColorSpace : NSNull()]
+        let eagContext = CIContext(EAGLContext: myEAGLContext, options: options)
+        let cgimg = eagContext.createCGImage(beginImage, fromRect: beginImage.extent)
+        
+        let newImage = UIImage(CGImage: cgimg)
+        
+        let fileName = fileURL.lastPathComponent
+        
+        print("Saving filtered image as: \(fileName)")
+        
+        PictureCache().storePicture(newImage, withIdentifier: fileName!)
+        
+    }
+        
+    
     
     // MARK: - ➡️ Segues
     
@@ -91,8 +169,10 @@ class ChannelsViewController: UITableViewController {
         let channel = channels[indexPath.row]
         cell.courseTitleLabel.text = channel.name
         cell.courseSubtitleLabel.text = channel.tagline
-        
-        
+        if let picture = channel.picturePath {
+            print("found a picture for table at \(channel.picturePath)")
+            cell.courseBackgroundPicture.image = UIImage(contentsOfFile: picture)
+        }
         return cell
     }
     

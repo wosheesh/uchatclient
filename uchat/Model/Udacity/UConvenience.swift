@@ -6,7 +6,7 @@
 //  Copyright © 2016 Wojtek Materka. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension UClient {
     
@@ -167,7 +167,7 @@ extension UClient {
         
     }
     
-    //MARK: - Course Catalogue
+    // MARK: - Course Catalogue
     
     var courseCatalogueFilePath : String {
         let manager = NSFileManager.defaultManager()

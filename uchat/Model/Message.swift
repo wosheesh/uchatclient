@@ -28,7 +28,7 @@ struct Message {
         
         // create message body
         let jsonBody: [String: AnyObject] = [
-            "channels" : [channel.name],
+            "channels" : [channel.code],
             "data": [
                 ParseClient.PushKeys.MessageBody: self.body,
                 ParseClient.PushKeys.MessageAuthor: self.authorName,
