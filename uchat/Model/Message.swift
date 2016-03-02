@@ -12,9 +12,9 @@ import Parse
 public final class Message: ManagedObject {
     @NSManaged public private(set) var body: String
     @NSManaged public private(set) var authorName: String
-    @NSManaged public private(set) var authorKey: String // If want to allow students communicate directly in next ver of the app. For now it is used to distinguish messages of the current user from that of others'
+    @NSManaged public private(set) var authorKey: String
     @NSManaged public private(set) var createdAt: NSDate
-    @NSManaged public var receivedAt: NSDate?
+    @NSManaged public private(set) var receivedAt: NSDate?
     @NSManaged public private(set) var channel: Channel
     
 //    init(body: String, authorName: String, authorKey: String) {
@@ -31,7 +31,7 @@ extension Message: ManagedObjectType {
     }
     
     public static var defaultSortDescriptors: [NSSortDescriptor] {
-        return [NSSortDescriptor(key: "receivedAt", ascending: false)]
+        return [NSSortDescriptor(key: "receivedAt", ascending: true)]
     }
 }
 

@@ -11,10 +11,13 @@
 // FIXME: resignfirsresponder sends the message
 
 import UIKit
+import CoreData
 
-class ChatViewController: UIViewController {
+class ChatViewController: UIViewController, ManagedObjectContextSettable {
     
     // MARK: - 🎛 Properties
+    
+    var managedObjectContext: NSManagedObjectContext!
     
     var channel: Channel!
     
@@ -31,6 +34,8 @@ class ChatViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupDataSource()
            
         // Keyboard notifications
         NSNotificationCenter.defaultCenter().addObserver(self,
@@ -105,7 +110,7 @@ class ChatViewController: UIViewController {
 ////            print("🆘 📫 Message error not handled")
 ////        }
         
-        chatWall.reloadData()
+        updateUI { self.chatWall.reloadData() }
     }
     
     // MARK: - 📮 Send a message to current channel
@@ -159,7 +164,38 @@ class ChatViewController: UIViewController {
         }
     }
     
+    // MARK: Private
+    
+    private typealias Data = FetchedResultsDataProvider<ChatViewController>
+    private var dataSource: TableViewDataSource<ChatViewController, Data, ChatTableCell>!
+    
+    private func setupDataSource() {
+        let request = Message.sortedFetchRequest
+        request.predicate = NSPredicate(format: "channel == %@", channel)
+        print("running fetch request on Message")
+        let frc = NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        print("configuring dataProvider for ChatTable")
+        let dataProvider = FetchedResultsDataProvider(fetchedResultsController: frc, delegate: self)
+        print("configuring dataSource for ChatTable")
+        dataSource = TableViewDataSource(tableView: chatWall, dataProvider: dataProvider, delegate: self)
+    }
 }
+
+
+// MARK: - 🎩 DataProviderDelegate & DataSourceDelegate
+
+extension ChatViewController: DataProviderDelegate {
+    func dataProviderDidUpdate(updates: [DataProviderUpdate<Message>]?) {
+        dataSource.processUpdates(updates)
+    }
+}
+
+extension ChatViewController: DataSourceDelegate {
+    func cellIdentifierForObject(object: Message) -> String {
+        return "ChatCell"
+    }
+}
+
 
 // MARK: - 🔤 TextViewDelegate
 

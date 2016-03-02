@@ -62,6 +62,7 @@
 		FEB60EF01C7E22B3005CE82B /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB60EED1C7E22B3005CE82B /* ParseConstants.swift */; };
 		FEB60EF11C7E22B3005CE82B /* ParseConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB60EEE1C7E22B3005CE82B /* ParseConvenience.swift */; };
 		FEEA33E11C86FF9D004A27E1 /* SegueHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEA33E01C86FF9D004A27E1 /* SegueHandlerType.swift */; };
+		FEFD1AB01C876E3300B9F631 /* ChatTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFD1AAF1C876E3300B9F631 /* ChatTableCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,6 +123,7 @@
 		FEB60EED1C7E22B3005CE82B /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParseConstants.swift; path = Model/Parse/ParseConstants.swift; sourceTree = "<group>"; };
 		FEB60EEE1C7E22B3005CE82B /* ParseConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParseConvenience.swift; path = Model/Parse/ParseConvenience.swift; sourceTree = "<group>"; };
 		FEEA33E01C86FF9D004A27E1 /* SegueHandlerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SegueHandlerType.swift; path = Protocols/SegueHandlerType.swift; sourceTree = "<group>"; };
+		FEFD1AAF1C876E3300B9F631 /* ChatTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatTableCell.swift; path = View/ChatTableCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +177,7 @@
 				FE28F35F1C79AF4700E75BF8 /* LoginViewUI.swift */,
 				FE72883B1C831B2B00813803 /* ChatTextView.swift */,
 				FEA9F9DC1C8473540000213A /* ChannelTableCell.swift */,
+				FEFD1AAF1C876E3300B9F631 /* ChatTableCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -443,6 +446,7 @@
 				FEAD23481C85D22000E82F3A /* TableViewDataSource.swift in Sources */,
 				FEAD234A1C85D2D000E82F3A /* DataSource.swift in Sources */,
 				FE28F3BA1C79D19000E75BF8 /* Channel.swift in Sources */,
+				FEFD1AB01C876E3300B9F631 /* ChatTableCell.swift in Sources */,
 				FE28F3671C79AF6900E75BF8 /* UdacityLoginButton.swift in Sources */,
 				FE28F3661C79AF6900E75BF8 /* BorderedButtonProtocol.swift in Sources */,
 				FE28F35C1C79A6DF00E75BF8 /* UConstants.swift in Sources */,

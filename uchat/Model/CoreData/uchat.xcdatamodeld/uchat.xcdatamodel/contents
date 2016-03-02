@@ -12,7 +12,7 @@
         <attribute name="authorName" attributeType="String" syncable="YES"/>
         <attribute name="body" attributeType="String" syncable="YES"/>
         <attribute name="createdAt" attributeType="Date" syncable="YES"/>
-        <attribute name="receivedAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="receivedAt" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
         <relationship name="channel" maxCount="1" deletionRule="Nullify" destinationEntity="Channel" inverseName="messages" inverseEntity="Channel" syncable="YES"/>
     </entity>
     <elements>

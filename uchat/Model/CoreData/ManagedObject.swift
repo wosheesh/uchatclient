@@ -24,8 +24,21 @@ extension ManagedObjectType {
     public static var sortedFetchRequest: NSFetchRequest {
         let request = NSFetchRequest(entityName: entityName)
         request.sortDescriptors = defaultSortDescriptors
+//        request.predicate = defaultPredicate
         return request
     }
+    
+    
+    /// Creates a *sortedFetchRequest* for a *ManagedObjectType* and adds a new predicate to it (keeping the default).
+    /// - Returns: NSFetchRequest
+//    public static func sortedFetchRequestWithPredicate(predicate: NSPredicate) -> NSFetchRequest {
+//        let request = sortedFetchRequest
+//        print("running sortedrequestWithPredicate: \(request)")
+//        guard let existingPredicate = request.predicate else { fatalError("request must have default predicate") }
+//        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [existingPredicate, predicate])
+//        return request
+//    }
+    
 }
 
 extension ManagedObjectType where Self: ManagedObject {
@@ -43,7 +56,7 @@ extension ManagedObjectType where Self: ManagedObject {
         return obj
     }
 
-    /// Helper function that checks if the object is already in context (through *materializedObjectInContext*) and returns the object or fetches it through *fetchInContext* closure. This is mostly for performance.
+    /// Helper function that checks if the object is already in context (through *materializedObjectInContext*) and returns the object or fetches it through *fetchInContext* closure.
     /// - Returns: ManagedObject
     public static func findOrFetchInContext(moc: NSManagedObjectContext, matchingPredicate predicate: NSPredicate) -> Self? {
         guard let obj = materializedObjectInContext(moc, matchingPredicate: predicate) else {

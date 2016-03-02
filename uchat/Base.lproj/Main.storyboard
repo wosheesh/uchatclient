@@ -213,7 +213,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="486"/>
                                         <color key="backgroundColor" red="0.98039215690000003" green="0.98431372549999996" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationWidth="10" reuseIdentifier="chatCell" textLabel="P6q-ir-cys" detailTextLabel="YMl-I8-1Kv" style="IBUITableViewCellStyleSubtitle" id="Xo0-vc-IMJ">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationWidth="10" reuseIdentifier="ChatCell" textLabel="P6q-ir-cys" detailTextLabel="YMl-I8-1Kv" style="IBUITableViewCellStyleSubtitle" id="Xo0-vc-IMJ" customClass="ChatTableCell" customModule="uchat" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="1" width="600" height="43"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Xo0-vc-IMJ" id="T6S-js-fXm">
@@ -237,6 +237,10 @@
                                                     </subviews>
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" red="0.98039215690000003" green="0.98431372549999996" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <outlet property="messageAuthorName" destination="YMl-I8-1Kv" id="Ihp-K5-gk6"/>
+                                                    <outlet property="messageBody" destination="P6q-ir-cys" id="iMn-Jo-Prn"/>
+                                                </connections>
                                             </tableViewCell>
                                         </prototypes>
                                         <connections>

@@ -99,8 +99,9 @@ class ChannelsViewController: UITableViewController, ManagedObjectContextSettabl
         switch segueIdentifierForSegue(segue) {
         case .EnterChannel:
             guard let vc = segue.destinationViewController as? ChatViewController else { fatalError("Wrong view controller type") }
-            guard let channel = dataSource.selectedObject else { fatalError("Showing next vc, but no selected row?") }
-            print("Attempting to open channel : \(channel)")
+            guard let channel = dataSource.selectedObject else { fatalError("Showing ChatViewController, but no selected row?") }
+            print("Opening channel : \(channel)")
+            vc.managedObjectContext = managedObjectContext
             vc.channel = channel
         }
     }
