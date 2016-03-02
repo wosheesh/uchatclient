@@ -46,18 +46,20 @@ class FetchedResultsDataProvider<Delegate: DataProviderDelegate>: NSObject, NSFe
     func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
         switch type {
         case .Insert:
-            guard let indexPath = newIndexPath else { fatalError("Index path shoul be not nil") }
+            print("performing Insert on \(anObject)")
+            guard let indexPath = newIndexPath else { fatalError("Index path should be not nil") }
             updates.append(.Insert(indexPath))
         case .Update:
-            guard let indexPath = indexPath else { fatalError("Index path shoul be not nil") }
+            print("performing Update on \(anObject)")
+            guard let indexPath = indexPath else { fatalError("Index path should be not nil") }
             let object = objectAtIndexPath(indexPath)
             updates.append(.Update(indexPath, object))
         case .Move:
-            guard let indexPath = indexPath else { fatalError("Index path shoul be not nil") }
+            guard let indexPath = indexPath else { fatalError("Index path should be not nil") }
             guard let newIndexPath = newIndexPath else { fatalError(" new index path shoul be not nil") }
             updates.append(.Move(indexPath, newIndexPath))
         case .Delete:
-            guard let indexPath = indexPath else { fatalError("Index path shoul be not nil") }
+            guard let indexPath = indexPath else { fatalError("Index path should be not nil") }
             updates.append(.Delete(indexPath))
         }
         

@@ -29,11 +29,6 @@ public final class Channel: ManagedObject {
         return channel
     }
     
-//    init(code: String, name: String, tagline: String) {
-//        self.code = code
-//        self.name = name
-//        self.tagline = tagline
-//    }
     
     // TODO: hold image as UIImage in memory after loading
 //    func pictureFilename() -> String {
@@ -49,7 +44,19 @@ extension Channel: ManagedObjectType {
     }
     
     public static var defaultSortDescriptors: [NSSortDescriptor] {
-        return [] // not needed?
+        return [] // not needed...
+    }
+    
+    public static func findOrCreateChannel(code: String, name: String, tagline:String, picturePath: String?, inContext moc: NSManagedObjectContext) -> Channel {
+        let predicate = NSPredicate(format: "code == %@", code)
+        let channel = findOrCreateInContext(moc, matchingPredicate: predicate) {
+            print("creating a new channel: \(code)")
+            $0.code = code
+            $0.name = name
+            $0.tagline = tagline
+            $0.picturePath = picturePath
+        }
+        return channel
     }
 }
 

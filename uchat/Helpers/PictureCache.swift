@@ -24,7 +24,7 @@ class PictureCache {
         
         let task = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             if let error = error {
-                print("🆘 ☎️ Couldn't download picture for \(pictureUrl)")
+                print("🆘 ☎️ Couldn't download picture for \(pictureUrl) with error: \(error)")
                 completionHandler(success: false, errorString: "Couldn't download picture")
             }
             
@@ -45,8 +45,6 @@ class PictureCache {
         task.resume()
         
     }
-
-    
     
     /// Returns an UIImage given a String identifier.
     func pictureWithIdentifier(identifier: String?) -> UIImage? {
@@ -63,6 +61,12 @@ class PictureCache {
         return nil
     }
     
+    /// Returns a full file path as String given an identifier.
+    func pathForIdentifier(identifier: String) -> String {
+        let fullURL = NSURL.documentsURL.URLByAppendingPathComponent(identifier)
+        return fullURL.path!
+    }
+    
     // MARK: - 🖼 Saving Pictures
     
     /// Saves a picture on disk with a an identifier as file name.
@@ -72,13 +76,6 @@ class PictureCache {
         let data = UIImageJPEGRepresentation(picture!, 1.0)!
         data.writeToFile(path, atomically: true)
     }
-    
-    // MARK: - 🐵 Helpers
-    
-    /// Returns a file path as String given an identifier.
-    func pathForIdentifier(identifier: String) -> String {
-        let fullURL = NSURL.documentsURL.URLByAppendingPathComponent(identifier)
-        return fullURL.path!
-    }
+
 }
 

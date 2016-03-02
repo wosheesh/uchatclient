@@ -130,7 +130,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.98039215690000003" green="0.98431372549999996" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="channelCell" rowHeight="200" id="dzl-l3-bvF" customClass="ChannelTableCell" customModule="uchat" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChannelCell" rowHeight="200" id="dzl-l3-bvF" customClass="ChannelTableCell" customModule="uchat" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="200"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dzl-l3-bvF" id="rxm-g0-egG">
@@ -176,13 +176,13 @@
                                     <outlet property="courseBackgroundPicture" destination="gKu-jK-r8n" id="jWQ-Pr-dzk"/>
                                     <outlet property="courseSubtitleLabel" destination="mXT-z6-mu4" id="WIh-Zx-qCH"/>
                                     <outlet property="courseTitleLabel" destination="yTG-pw-n8Q" id="hIq-L1-z80"/>
-                                    <segue destination="AGW-L5-aNE" kind="show" identifier="enterChannel" id="OmA-Nd-qNG"/>
+                                    <segue destination="AGW-L5-aNE" kind="show" identifier="EnterChannel" id="OmA-Nd-qNG"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="k9N-UK-h7P" id="MXP-h3-Fht"/>
-                            <outlet property="delegate" destination="k9N-UK-h7P" id="Cr6-UK-lz5"/>
+                            <outlet property="dataSource" destination="k9N-UK-h7P" id="Ac2-Wx-GN9"/>
+                            <outlet property="delegate" destination="k9N-UK-h7P" id="RXY-W7-LJZ"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Chat rooms" id="ZIG-tS-m1R"/>

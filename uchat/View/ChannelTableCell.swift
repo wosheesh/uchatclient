@@ -20,9 +20,10 @@ class ChannelTableCell: UITableViewCell {
 extension ChannelTableCell: ConfigurableCell {
     
     func configureForObject(channel: Channel) {
+        print("configuring cell for channel : \(channel)")
         courseTitleLabel.text = channel.name
         courseSubtitleLabel.text = channel.tagline
-        
+        print(self.courseTitleLabel.text)
         //TODO: Picture background
         
     }

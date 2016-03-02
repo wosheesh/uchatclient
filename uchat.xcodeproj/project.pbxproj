@@ -61,6 +61,7 @@
 		FEB60EEF1C7E22B3005CE82B /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB60EEC1C7E22B3005CE82B /* ParseClient.swift */; };
 		FEB60EF01C7E22B3005CE82B /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB60EED1C7E22B3005CE82B /* ParseConstants.swift */; };
 		FEB60EF11C7E22B3005CE82B /* ParseConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB60EEE1C7E22B3005CE82B /* ParseConvenience.swift */; };
+		FEEA33E11C86FF9D004A27E1 /* SegueHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEA33E01C86FF9D004A27E1 /* SegueHandlerType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -120,6 +121,7 @@
 		FEB60EEC1C7E22B3005CE82B /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParseClient.swift; path = Model/Parse/ParseClient.swift; sourceTree = "<group>"; };
 		FEB60EED1C7E22B3005CE82B /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParseConstants.swift; path = Model/Parse/ParseConstants.swift; sourceTree = "<group>"; };
 		FEB60EEE1C7E22B3005CE82B /* ParseConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParseConvenience.swift; path = Model/Parse/ParseConvenience.swift; sourceTree = "<group>"; };
+		FEEA33E01C86FF9D004A27E1 /* SegueHandlerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SegueHandlerType.swift; path = Protocols/SegueHandlerType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,6 +242,7 @@
 			children = (
 				FE7AA9AE1C85AD8B003F1F16 /* ManagedObjectContextSettable.swift */,
 				FEAD234B1C85D33700E82F3A /* ConfigurableCell.swift */,
+				FEEA33E01C86FF9D004A27E1 /* SegueHandlerType.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -434,6 +437,7 @@
 				FEA9F9DD1C8473540000213A /* ChannelTableCell.swift in Sources */,
 				FE28F3601C79AF4700E75BF8 /* LoginViewUI.swift in Sources */,
 				FEAD234F1C85E55900E82F3A /* NSManagedObjectContext+Extensions.swift in Sources */,
+				FEEA33E11C86FF9D004A27E1 /* SegueHandlerType.swift in Sources */,
 				FE28F37C1C79B6AA00E75BF8 /* UdacityUser.swift in Sources */,
 				FEAD234C1C85D33700E82F3A /* ConfigurableCell.swift in Sources */,
 				FEAD23481C85D22000E82F3A /* TableViewDataSource.swift in Sources */,

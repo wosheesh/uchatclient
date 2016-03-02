@@ -20,7 +20,7 @@ class TableViewDataSource<Delegate: DataSourceDelegate, Data: DataProvider, Cell
         self.delegate = delegate
         super.init()
         tableView.dataSource = self
-        tableView.reloadData()
+        updateUI { self.tableView.reloadData() }
     }
     
     var selectedObject: Data.Object? {
@@ -30,13 +30,12 @@ class TableViewDataSource<Delegate: DataSourceDelegate, Data: DataProvider, Cell
     
     /// Processes updates passed from the TableViewController as the DataProviderDelegate of FetchedResultsDataProvider
     func processUpdates(updates: [DataProviderUpdate<Data.Object>]?) {
-        guard let updates = updates else {
-            return tableView.reloadData()
-        }
+        guard let updates = updates else { return tableView.reloadData() }
         tableView.beginUpdates()
         for update in updates {
             switch update {
             case .Insert(let indexPath):
+                print("inserting new object to table at \(indexPath)")
                 tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             case .Update(let indexPath, let object):
                 guard let cell = tableView.cellForRowAtIndexPath(indexPath) as? Cell else { break }
@@ -61,6 +60,7 @@ class TableViewDataSource<Delegate: DataSourceDelegate, Data: DataProvider, Cell
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataProvider.numberOfItemsInSection(section)
+        
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
