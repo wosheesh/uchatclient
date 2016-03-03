@@ -8,12 +8,11 @@
 
 // TODO: Improve the chat bubbles UI
 // TODO: Enter channel bubble
-// FIXME: resignfirsresponder sends the message
 
 import UIKit
 import CoreData
 
-class ChatViewController: UIViewController, ManagedObjectContextSettable {
+class ChatViewController: UIViewController, KeyboardWizard, ManagedObjectContextSettable {
     
     // MARK: - 🎛 Properties
     
@@ -34,21 +33,9 @@ class ChatViewController: UIViewController, ManagedObjectContextSettable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        becomeKeyboardWizard()
         
         setupDataSource()
-           
-        // Keyboard notifications
-        NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: Selector("keyboardWillShow:"),
-            name: UIKeyboardWillShowNotification, object: nil)
-        
-        NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: Selector("keyboardDidShow:"),
-            name: UIKeyboardDidShowNotification, object: nil)
-        
-        NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: Selector("keyboardWillHide:"),
-            name: UIKeyboardWillHideNotification, object: nil)
         
         // Set up UI controls
         self.chatWall.rowHeight = UITableViewAutomaticDimension
@@ -60,10 +47,8 @@ class ChatViewController: UIViewController, ManagedObjectContextSettable {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        // some aesthetics
         navigationController?.navigationBar.tintColor = OTMColors.UBlue
         
-        // subscribe user to notifications from the current channel
         channel.subscribeUser()
         
     }
@@ -81,9 +66,6 @@ class ChatViewController: UIViewController, ManagedObjectContextSettable {
         
         // and the view from all other local notifications
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "newMessage", object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(UIKeyboardDidShowNotification)
-        NSNotificationCenter.defaultCenter().removeObserver(UIKeyboardWillShowNotification)
-        NSNotificationCenter.defaultCenter().removeObserver(UIKeyboardWillHideNotification)
     }
     
     // MARK: - 📬 Receive and display messages
@@ -134,35 +116,15 @@ class ChatViewController: UIViewController, ManagedObjectContextSettable {
         chatTextView.resignFirstResponder()
     }
     
-    func scrollToBottomMessage() {
-        if channel.messages.count == 0 {
-            return
-        }
-        
-        let bottomMessageIndex = NSIndexPath(forRow: chatWall.numberOfRowsInSection(0) - 1, inSection: 0)
-        chatWall.scrollToRowAtIndexPath(bottomMessageIndex, atScrollPosition: .Bottom, animated: true)
-    }
+//    func scrollToBottomMessage() {
+//        if channel.messages.count == 0 {
+//            return
+//        }
+//        
+//        let bottomMessageIndex = NSIndexPath(forRow: chatWall.numberOfRowsInSection(0) - 1, inSection: 0)
+//        chatWall.scrollToRowAtIndexPath(bottomMessageIndex, atScrollPosition: .Bottom, animated: true)
+//    }
     
-    // MARK: - ⌨️ Keyboard scrolling
-    
-    func keyboardWillShow(notification: NSNotification) {
-        let keyboardHeight = notification.userInfo![UIKeyboardFrameEndUserInfoKey]?.CGRectValue.height
-        UIView.animateWithDuration(0.1) { () -> Void in
-            self.bottomConstraint.constant = keyboardHeight! + 10
-            self.view.layoutIfNeeded()
-        }
-    }
-    
-    func keyboardDidShow(notification: NSNotification) {
-        self.scrollToBottomMessage() // arguable if users prefer this...
-    }
-    
-    func keyboardWillHide(notification: NSNotification) {
-        UIView.animateWithDuration(0.1) { () -> Void in
-            self.bottomConstraint.constant = 0
-            self.view.layoutIfNeeded()
-        }
-    }
     
     // MARK: Private
     

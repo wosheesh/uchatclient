@@ -24,7 +24,7 @@ extension ManagedObjectType {
     public static var sortedFetchRequest: NSFetchRequest {
         let request = NSFetchRequest(entityName: entityName)
         request.sortDescriptors = defaultSortDescriptors
-//        request.predicate = defaultPredicate
+//        request.predicate = defaultPredicate  // extend the protocol for this 
         return request
     }
     
