@@ -8,9 +8,6 @@
 
 import Foundation
 
-// Helper for calculating time from _now_ to an NSDate()
-// from:  http://stackoverflow.com/questions/27182023/getting-the-difference-between-two-nsdates-in-months-days-hours-minutes-seconds
-
 extension NSDate {
     
     func yearsFrom(date:NSDate) -> Int {
@@ -35,15 +32,29 @@ extension NSDate {
         return NSCalendar.currentCalendar().components(.Second, fromDate: date, toDate: self, options: []).second
     }
     
-    func offsetFrom(date:NSDate) -> String {
-        if yearsFrom(date)   > 0 { return "\(yearsFrom(date))y"   }
-        if monthsFrom(date)  > 0 { return "\(monthsFrom(date))M"  }
-        if weeksFrom(date)   > 0 { return "\(weeksFrom(date))w"   }
-        if daysFrom(date)    > 0 { return "\(daysFrom(date))d"    }
-        if hoursFrom(date)   > 0 { return "\(hoursFrom(date))h"   }
-        if minutesFrom(date) > 0 { return "\(minutesFrom(date))m" }
-        if secondsFrom(date) > 0 { return "\(secondsFrom(date))s" }
-        return ""
+}
+
+// MARK: - 🔤↔️📅
+
+private var myDateFormatter : NSDateFormatter {
+    let myDateFormatter = NSDateFormatter()
+    myDateFormatter.calendar = NSCalendar(calendarIdentifier: "NSCalendarIdentifierISO8601")
+    myDateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss xx"
+    myDateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+    return myDateFormatter
+}
+
+extension NSDate {
+    func dateToString() -> String {
+        guard let stringFromDate = myDateFormatter.stringFromDate(self) as String? else { fatalError("date must be in the right format") }
+        return stringFromDate
     }
-    
+}
+
+extension String {
+    func stringToDate() -> NSDate {
+        guard let dateFromString = myDateFormatter.dateFromString(self) as NSDate? else { fatalError("date string must be in the right format") }
+        return dateFromString
+        
+    }
 }

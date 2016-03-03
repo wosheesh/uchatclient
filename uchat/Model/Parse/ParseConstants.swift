@@ -51,12 +51,13 @@ extension ParseClient {
     
     // MARK: PushNotifications Keys
     
-    struct PushKeys {
-        static let Type = "Type"
+    struct PushMessage {
+        static let Id = "id"
         static let Channels = "channels"
-        static let MessageAuthor = "Author"
-        static let MessageBody = "alert"
-        static let AuthorKey = "AuthorKey"
+        static let Authorname = "authorname"
+        static let Body = "alert"
+        static let AuthorKey = "authorKey"
+        static let CreatedAt = "createdAt"
     }
     
     

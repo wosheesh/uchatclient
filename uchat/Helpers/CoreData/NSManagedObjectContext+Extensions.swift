@@ -10,7 +10,7 @@ import CoreData
 
 extension NSManagedObjectContext {
     
-    /// Insert new ManagedObject into context automatically using ManagedObjectType.entityName
+    /// Insert new ManagedObject into context using ManagedObjectType.entityName
     public func insertObject<A: ManagedObject where A: ManagedObjectType>() -> A {
         
         //This saves us downcasting and identifying entity name every time

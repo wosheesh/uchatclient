@@ -84,16 +84,29 @@ class ChatViewController: UIViewController, KeyboardWizard, ManagedObjectContext
     // MARK: - 📮 Send a message to current channel
     
     @IBAction func sendButtonTouchUp(sender: AnyObject) {
-//        if let msgBody = chatTextView.text where msgBody != "" {
-//            let message = Message(body: msgBody, authorName: UdacityUser.username!, authorKey: UdacityUser.udacityKey!)
-//            
-//            chatTextView.text = ""
-//            chatTextView.resignFirstResponder()
-//            chatTextViewHeightConst.constant = chatTextView.minChatTextViewHeight()
-//            
-//            message.Send(toChannel: self.channel, sender: self)
-//            
-//        }
+        
+        // Save the message in current context and send it
+        if let body = chatTextView.text where body != "" {
+            let authorName = UdacityUser.username!
+            let authorKey = UdacityUser.udacityKey!
+
+            managedObjectContext.performChanges {
+                Message.insertIntoContextAndSend(self.managedObjectContext,
+                    body: body,
+                    authorName: authorName,
+                    authorKey: authorKey,
+                    createdAt: NSDate(),
+                    receivedAt: nil,
+                    channel: self.channel,
+                    sender: self)
+
+            }
+            
+            // clean up the textView
+            chatTextView.text = ""
+            chatTextView.resignFirstResponder()
+            chatTextViewHeightConst.constant = chatTextView.minChatTextViewHeight()
+        }
     }
     
     // MARK: - 🐵 Helpers
@@ -120,6 +133,7 @@ class ChatViewController: UIViewController, KeyboardWizard, ManagedObjectContext
     private func setupDataSource() {
         let request = Message.sortedFetchRequest
         request.predicate = NSPredicate(format: "channel == %@", channel)
+        request.returnsObjectsAsFaults = false
         print("running fetch request on Message")
         let frc = NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
         print("configuring dataProvider for ChatTable")

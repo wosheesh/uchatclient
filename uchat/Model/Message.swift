@@ -7,9 +7,9 @@
 //
 
 import CoreData
-import Parse
 
 public final class Message: ManagedObject {
+    @NSManaged public private(set) var id: String
     @NSManaged public private(set) var body: String
     @NSManaged public private(set) var authorName: String
     @NSManaged public private(set) var authorKey: String
@@ -17,12 +17,30 @@ public final class Message: ManagedObject {
     @NSManaged public private(set) var receivedAt: NSDate?
     @NSManaged public private(set) var channel: Channel
     
-//    init(body: String, authorName: String, authorKey: String) {
-//        self.body = body
-//        self.authorName = authorName
-//        self.authorKey = authorKey
-//        self.createdAt = NSDate()
-//    }
+    public static func insertIntoContext(moc: NSManagedObjectContext, body: String, authorName: String, authorKey: String, createdAt: NSDate, receivedAt: NSDate?, channel: Channel) -> Message {
+        print("💌 packaging the message 1")
+        let message: Message = moc.insertObject()
+        print("💌 packaging the message 2")
+        message.id = NSUUID().UUIDString
+        print("💌 packaging the message 3")
+        message.body = body
+        message.authorName = authorName
+        message.authorKey = authorKey
+        message.channel = channel
+        message.createdAt = createdAt
+        message.receivedAt = receivedAt
+        return message
+    }
+    
+    public static func insertIntoContextAndSend(moc: NSManagedObjectContext, body: String, authorName: String, authorKey: String, createdAt: NSDate, receivedAt: NSDate?, channel: Channel, sender: UIViewController) -> Message {
+        
+        let message = insertIntoContext(moc, body: body, authorName: authorName, authorKey: authorKey, createdAt: createdAt, receivedAt: nil, channel: channel)
+        
+        message.Send(toChannel: channel, sender: sender)
+        
+        return message
+    }
+    
 }
 
 extension Message: ManagedObjectType {
@@ -33,27 +51,38 @@ extension Message: ManagedObjectType {
     public static var defaultSortDescriptors: [NSSortDescriptor] {
         return [NSSortDescriptor(key: "receivedAt", ascending: true)]
     }
+    
+    public static func findOrFetchMessage(withId id: String, inContext moc: NSManagedObjectContext) -> Message? {
+        let predicate = NSPredicate(format: "id == %@", id)
+        let message = findOrFetchInContext(moc, matchingPredicate: predicate)
+        return message
+    }
+    
 }
 
+// MARK: - Interface with Parse
+
+import Parse
 
 extension Message {
 
     func Send(toChannel channel: Channel, sender: UIViewController) {
-        
         // create message body
         let jsonBody: [String: AnyObject] = [
             "channels" : [channel.code],
             "data": [
-                ParseClient.PushKeys.MessageBody: self.body,
-                ParseClient.PushKeys.MessageAuthor: self.authorName,
-                ParseClient.PushKeys.AuthorKey: self.authorKey
+                ParseClient.PushMessage.Id: self.id,
+                ParseClient.PushMessage.Body: self.body,
+                ParseClient.PushMessage.Authorname: self.authorName,
+                ParseClient.PushMessage.AuthorKey: self.authorKey,
+                ParseClient.PushMessage.CreatedAt: self.createdAt.dateToString()
             ]
-            
         ]
 
         // send the message with completion block
         ParseClient.sharedInstance.push(jsonBody) { success, errorString in
             if !success { simpleAlert(sender, message: errorString!) }
+            //TODO: recover from send failures
         }
     }
     

@@ -17,7 +17,6 @@ class ChatTableCell: UITableViewCell {
 extension ChatTableCell: ConfigurableCell {
     
     func configureForObject(message: Message) {
-        print("configuring cell for message : \(message)")
         messageBody.text = message.body
         messageAuthorName.text = message.authorName
         

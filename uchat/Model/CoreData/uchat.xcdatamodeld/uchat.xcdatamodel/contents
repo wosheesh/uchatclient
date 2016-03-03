@@ -12,11 +12,12 @@
         <attribute name="authorName" attributeType="String" syncable="YES"/>
         <attribute name="body" attributeType="String" syncable="YES"/>
         <attribute name="createdAt" attributeType="Date" syncable="YES"/>
-        <attribute name="receivedAt" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
+        <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="receivedAt" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="channel" maxCount="1" deletionRule="Nullify" destinationEntity="Channel" inverseName="messages" inverseEntity="Channel" syncable="YES"/>
     </entity>
     <elements>
         <element name="Channel" positionX="-63" positionY="-18" width="128" height="120"/>
-        <element name="Message" positionX="-54" positionY="-9" width="128" height="135"/>
+        <element name="Message" positionX="-54" positionY="-9" width="128" height="150"/>
     </elements>
 </model>
