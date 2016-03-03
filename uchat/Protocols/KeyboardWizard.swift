@@ -20,9 +20,14 @@ extension KeyboardWizard where Self: UIViewController {
             self.keyboardWillShow(notification)
         }
         
-        NSNotificationCenter.defaultCenter().addObserverForName(UIKeyboardDidHideNotification, object: nil, queue: nil) { [unowned self] notification in
+        NSNotificationCenter.defaultCenter().addObserverForName(UIKeyboardWillHideNotification, object: nil, queue: nil) { [unowned self] notification in
             self.keyboardWillHide(notification)
         }
+    }
+    
+    func deregisteKeyboardWizard() {
+        NSNotificationCenter.defaultCenter().removeObserver(UIKeyboardWillShowNotification)
+        NSNotificationCenter.defaultCenter().removeObserver(UIKeyboardWillHideNotification)
     }
     
     func keyboardWillShow(notification: NSNotification) {

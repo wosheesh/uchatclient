@@ -17,7 +17,6 @@ class ChatViewController: UIViewController, KeyboardWizard, ManagedObjectContext
     // MARK: - 🎛 Properties
     
     var managedObjectContext: NSManagedObjectContext!
-    
     var channel: Channel!
     
     @IBOutlet weak var chatWall: UITableView!
@@ -26,7 +25,6 @@ class ChatViewController: UIViewController, KeyboardWizard, ManagedObjectContext
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var chatTextViewHeightConst: NSLayoutConstraint!
-    
     static let chatTextViewMinHeight = 30.0
     
     // MARK: - 🔄 Lifecycle
@@ -34,10 +32,10 @@ class ChatViewController: UIViewController, KeyboardWizard, ManagedObjectContext
     override func viewDidLoad() {
         super.viewDidLoad()
         becomeKeyboardWizard()
-        
         setupDataSource()
         
-        // Set up UI controls
+        // Set up UI
+        navigationController?.navigationBar.tintColor = OTMColors.UBlue
         self.chatWall.rowHeight = UITableViewAutomaticDimension
         self.chatWall.estimatedRowHeight = 40.0
         self.chatWall.separatorStyle = .None
@@ -46,26 +44,14 @@ class ChatViewController: UIViewController, KeyboardWizard, ManagedObjectContext
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        navigationController?.navigationBar.tintColor = OTMColors.UBlue
-        
-        channel.subscribeUser()
-        
+        channel.subscribeUser(inView: self)
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "displayNewMessage:", name: "newMessage", object: nil)
-    }
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        
-        // unsubscribe user to notifications from the current channel
-        channel.unsubscribeUser()
-        
-        // and the view from all other local notifications
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "newMessage", object: nil)
+        deregisteKeyboardWizard()
+        channel.unsubscribeUser(fromView: self)
     }
     
     // MARK: - 📬 Receive and display messages
