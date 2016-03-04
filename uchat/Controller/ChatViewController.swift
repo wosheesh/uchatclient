@@ -58,28 +58,33 @@ class ChatViewController: UIViewController, KeyboardWizard, ManagedObjectContext
     
     func displayNewMessage(notification: NSNotification) {
         let userInfo = notification.object as! [NSObject : AnyObject]
-//        do {
-//            
-////            // create a newMessage object when push is received
-////            let newMessage = try Message.createFromPushNotification(userInfo)
-////            
-////            // add it to the Channel's messages array
-////            channel.messages.append(newMessage)
-////            
-////        } catch Message.MessageError.InvalidSyntax {
-////            print("🆘 📫 Invalid message syntax")
-////        } catch Message.MessageError.BodyNotFound {
-////            print("🆘 📫 Message body couldn't be found")
-////        } catch Message.MessageError.AuthorUsernameNotFound {
-////            print("🆘 📫 Message AuthorUsername couldn't be found")
-////        } catch Message.MessageError.KeyNotFound {
-////            print("🆘 📫 Message AuthorKey couldn't be found")
-////        } catch {
-////            print("🆘 📫 Message error not handled")
-////        }
-        
-        updateUI { self.chatWall.reloadData() }
+        do {
+            // create a newMessage object when push is received
+            let newMessage = try Message.createFromPushNotification(userInfo, inContext: managedObjectContext, currentChannel: channel)
+            
+            print("received a new message: \(newMessage)")
+            
+        } catch Message.MessageError.InvalidSyntax {
+            print("🆘 📫 Invalid message syntax")
+        } catch Message.MessageError.IdNotFound {
+            print("🆘 📫 Message ID couldn't be found")
+        } catch Message.MessageError.BodyNotFound {
+            print("🆘 📫 Message Body couldn't be found")
+        } catch Message.MessageError.AuthorNameNotFound {
+            print("🆘 📫 Message AuthorUsername couldn't be found")
+        } catch Message.MessageError.KeyNotFound {
+            print("🆘 📫 Message AuthorKey couldn't be found")
+        } catch Message.MessageError.ChannelIdNotFound {
+            print("🆘 📫 Message ChannelId couldn't be found")
+        } catch Message.MessageError.CreationDateNotFound{
+            print("🆘 📫 Message CreatedAt couldn't be found")
+        } catch {
+            print("🆘 📫 Message error not handled")
+        }
+
     }
+    
+
     
     // MARK: - 📮 Send a message to current channel
     
@@ -87,19 +92,8 @@ class ChatViewController: UIViewController, KeyboardWizard, ManagedObjectContext
         
         // Save the message in current context and send it
         if let body = chatTextView.text where body != "" {
-            let authorName = UdacityUser.username!
-            let authorKey = UdacityUser.udacityKey!
-
             managedObjectContext.performChanges {
-                Message.insertIntoContextAndSend(self.managedObjectContext,
-                    body: body,
-                    authorName: authorName,
-                    authorKey: authorKey,
-                    createdAt: NSDate(),
-                    receivedAt: nil,
-                    channel: self.channel,
-                    sender: self)
-
+                Message.insertIntoContextAndSend(self.managedObjectContext, body: body, channel: self.channel, sender: self)
             }
             
             // clean up the textView
@@ -132,8 +126,13 @@ class ChatViewController: UIViewController, KeyboardWizard, ManagedObjectContext
     
     private func setupDataSource() {
         let request = Message.sortedFetchRequest
-        request.predicate = NSPredicate(format: "channel == %@", channel)
+        
+        let channelPredicate = NSPredicate(format: "channel == %@", channel)
+        let receivedPredicate = NSPredicate(format: "receivedAt != nil")
+        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [channelPredicate, receivedPredicate])
+        request.predicate = compoundPredicate
         request.returnsObjectsAsFaults = false
+        
         print("running fetch request on Message")
         let frc = NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
         print("configuring dataProvider for ChatTable")

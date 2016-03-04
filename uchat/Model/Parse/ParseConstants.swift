@@ -10,24 +10,19 @@ import Foundation
 
 extension ParseClient {
     
-    // MARK: Constants
+    // MARK: - Constants
     
     struct Environment {
-
         static let PARSE_APP_ID: String = "uchatapp"
         static let PARSE_MASTER_KEY: String = "8022802"
         static let PARSE_SERVER: String = "https://intense-river-39239.herokuapp.com/parse"
         static let PARSE_CLIENT_KEY: String = "8022802"
-
     }
-
     
     struct Constants {
-        
         // MARK: API and App ID and HTTPHeaders
         static let ParseAppID : String = Environment.PARSE_APP_ID
         static let ParseAppIDHTTPHeader: String = "X-Parse-Application-Id"
-        
         static let ParseMasterKey : String = Environment.PARSE_MASTER_KEY
         static let ParseMasterKeyHTTPHeader: String = "X-Parse-Master-Key"
         
@@ -39,7 +34,7 @@ extension ParseClient {
         static let ResourceTimeout : Double = 15
     }
     
-    // MARK: Methods
+    // MARK: - Methods
     
     struct Methods {
         static let PushNotification = "/push"
@@ -49,7 +44,7 @@ extension ParseClient {
         static let PushNotification = "POST"
     }
     
-    // MARK: PushNotifications Keys
+    // MARK: - PushNotifications Keys
     
     struct PushMessage {
         static let Id = "id"

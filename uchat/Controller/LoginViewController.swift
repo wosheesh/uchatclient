@@ -40,10 +40,10 @@ class LoginViewController: UIViewController, ManagedObjectContextSettable {
         
         // Debugging
         
-        #if DEBUG
-            emailTextField.text = envDict["UDACITY_EMAIL"]
-            passwordTextField.text = envDict["UDACITY_PASS"]
-        #endif
+//        #if DEBUG
+//            emailTextField.text = envDict["UDACITY_EMAIL"]
+//            passwordTextField.text = envDict["UDACITY_PASS"]
+//        #endif
         
     }
     

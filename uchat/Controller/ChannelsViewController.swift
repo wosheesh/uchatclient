@@ -35,22 +35,27 @@ class ChannelsViewController: UITableViewController, ManagedObjectContextSettabl
         super.viewDidLoad()
         UIApplication.sharedApplication().statusBarStyle = .LightContent
         
-        // update the course catalogue
-        UClient.sharedInstance().updateUdacityCourseCatalogue() { success, errorString in
-            if success {
+        // TODO: move this to root (update the course catalogue)
+        UClient.sharedInstance().updateUdacityCourseCatalogue() { result in
+            switch result {
+            case .Success(_):
                 print("Setting up Table Data Source for Channels")
                 self.setupTableView()
-                
                 print("Updating the channels list with catalogue...")
                 self.updateChannels()
-                
-                
-                
-            } else {
-                print(errorString)
+            case .Failure(let error):
+                switch error {
+                case .ConnectionError:
+                    simpleAlert(self, message: "There was an issue with your connection. Please try again")
+                case .JSONParseError:
+                    simpleAlert(self, message: "I couldn't parse the data from Udacity server...")
+                case .NoDataReceived:
+                    simpleAlert(self, message: "I didn't receive any data from Udacity server... try again... maybe try again?")
+                case .Uncategorised:
+                    simpleAlert(self, message: "Something went wrong while trying to access Udacity server... maybe try again?")
+                }
             }
         }
-
     }
     
     // MARK: - 🐵 Helpers

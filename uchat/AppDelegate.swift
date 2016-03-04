@@ -97,7 +97,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - 📩 Handle received notifications
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-        NSLog("📬  \(__FUNCTION__): application received a message: \(userInfo)")
+//        NSLog("📬  \(__FUNCTION__): application received a message: \(userInfo)")
 //        PFPush.handlePush(userInfo)
         
         if application.applicationState == UIApplicationState.Inactive {
@@ -114,12 +114,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             
             if let currentViewController = getCurrentViewController(rootViewController) {
-                print("cvc: \(currentViewController)")
                 if currentViewController.isKindOfClass(ChatViewController) {
-                    print("cvc through")
                     NSNotificationCenter.defaultCenter().postNotificationName("newMessage", object: userInfo)
-                    
-                    print(" message userinfo: \(userInfo.description)")
+                    print(" 📬 new message received with userinfo: \(userInfo)")
 
                 }
             }

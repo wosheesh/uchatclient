@@ -18,22 +18,20 @@ extension ParseClient {
         
         print("🚀 Parse push: \(jsonBody)")
         
-        taskForHTTPMethod(method, httpMethod: httpMethod, parameters: nil, jsonBody: jsonBody) { result, error in
-            if let error = error {
-                if error.code == NSURLErrorTimedOut ||
-                    error.code == NSURLErrorNotConnectedToInternet {
+        taskForHTTPMethod(method, httpMethod: httpMethod, parameters: nil, jsonBody: jsonBody) { result in
+            
+            switch result {
+            case .Success(_):
+                print("📮 message sent successfully")
+            case .Failure(let error):
+                switch error {
+                case .ConnectionError:
                     completionHandler(success: false, errorString: ParseClient.Errors.TimeOut.rawValue)
-                } else {
+                default:
                     completionHandler(success: false, errorString: ParseClient.Errors.PushCrash.rawValue)
                 }
-            } else {
-                print("📮 message sent successfully")
             }
         }
-        
     }
-    
-    
-
     
 }

@@ -29,6 +29,10 @@
 		FE28F3981C79D0F800E75BF8 /* ChannelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28F3971C79D0F800E75BF8 /* ChannelsViewController.swift */; };
 		FE28F3BA1C79D19000E75BF8 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28F3B91C79D19000E75BF8 /* Channel.swift */; };
 		FE28F3C11C7A427D00E75BF8 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28F3C01C7A427D00E75BF8 /* Message.swift */; };
+		FE29777F1C8983BB0036DF5E /* UCourseCatalogue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE29777E1C8983BB0036DF5E /* UCourseCatalogue.swift */; };
+		FE2977821C8985AD0036DF5E /* RESTCompletions+Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2977811C8985AD0036DF5E /* RESTCompletions+Errors.swift */; };
+		FE2977841C8996000036DF5E /* RESTHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2977831C8996000036DF5E /* RESTHelpers.swift */; };
+		FE2977861C8999060036DF5E /* RESTClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2977851C8999060036DF5E /* RESTClient.swift */; };
 		FE7288351C81F5E400813803 /* Cabin-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FE7288311C81F5E400813803 /* Cabin-Bold.otf */; };
 		FE7288361C81F5E400813803 /* Cabin-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = FE7288321C81F5E400813803 /* Cabin-Medium.otf */; };
 		FE7288371C81F5E400813803 /* Cabin-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = FE7288331C81F5E400813803 /* Cabin-Regular.otf */; };
@@ -89,6 +93,10 @@
 		FE28F3971C79D0F800E75BF8 /* ChannelsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChannelsViewController.swift; path = Controller/ChannelsViewController.swift; sourceTree = "<group>"; };
 		FE28F3B91C79D19000E75BF8 /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Channel.swift; path = Model/Channel.swift; sourceTree = "<group>"; };
 		FE28F3C01C7A427D00E75BF8 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Message.swift; path = Model/Message.swift; sourceTree = "<group>"; };
+		FE29777E1C8983BB0036DF5E /* UCourseCatalogue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UCourseCatalogue.swift; path = Model/Udacity/UCourseCatalogue.swift; sourceTree = "<group>"; };
+		FE2977811C8985AD0036DF5E /* RESTCompletions+Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "RESTCompletions+Errors.swift"; path = "Helpers/APIs/RESTCompletions+Errors.swift"; sourceTree = "<group>"; };
+		FE2977831C8996000036DF5E /* RESTHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RESTHelpers.swift; path = Helpers/APIs/RESTHelpers.swift; sourceTree = "<group>"; };
+		FE2977851C8999060036DF5E /* RESTClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RESTClient.swift; path = Protocols/RESTClient.swift; sourceTree = "<group>"; };
 		FE7288311C81F5E400813803 /* Cabin-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Cabin-Bold.otf"; path = "Supporting Files/Fonts/Cabin-Bold.otf"; sourceTree = "<group>"; };
 		FE7288321C81F5E400813803 /* Cabin-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Cabin-Medium.otf"; path = "Supporting Files/Fonts/Cabin-Medium.otf"; sourceTree = "<group>"; };
 		FE7288331C81F5E400813803 /* Cabin-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Cabin-Regular.otf"; path = "Supporting Files/Fonts/Cabin-Regular.otf"; sourceTree = "<group>"; };
@@ -189,6 +197,7 @@
 			children = (
 				FE28F3551C79A6DF00E75BF8 /* UFacebook.swift */,
 				FE28F3561C79A6DF00E75BF8 /* UClient.swift */,
+				FE29777E1C8983BB0036DF5E /* UCourseCatalogue.swift */,
 				FE28F3571C79A6DF00E75BF8 /* UConvenience.swift */,
 				FE28F3581C79A6DF00E75BF8 /* UConstants.swift */,
 			);
@@ -209,6 +218,7 @@
 		FE28F3781C79B16700E75BF8 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				FE2977801C8985970036DF5E /* APIs */,
 				FEAD234D1C85E53300E82F3A /* CoreData */,
 				FE28F3791C79B1AE00E75BF8 /* Alerts.swift */,
 				FE11673D1C80E33D00C3D8AC /* Dispatch.swift */,
@@ -231,6 +241,15 @@
 			name = Parse;
 			sourceTree = "<group>";
 		};
+		FE2977801C8985970036DF5E /* APIs */ = {
+			isa = PBXGroup;
+			children = (
+				FE2977811C8985AD0036DF5E /* RESTCompletions+Errors.swift */,
+				FE2977831C8996000036DF5E /* RESTHelpers.swift */,
+			);
+			name = APIs;
+			sourceTree = "<group>";
+		};
 		FE7288301C81F5BA00813803 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,6 +268,7 @@
 				FEAD234B1C85D33700E82F3A /* ConfigurableCell.swift */,
 				FEEA33E01C86FF9D004A27E1 /* SegueHandlerType.swift */,
 				FEFD1AB11C87795B00B9F631 /* KeyboardWizard.swift */,
+				FE2977851C8999060036DF5E /* RESTClient.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -429,6 +449,7 @@
 				FEA9F9E11C84D53A0000213A /* ImageFilters.swift in Sources */,
 				FE28F35E1C79A70D00E75BF8 /* LoginViewController.swift in Sources */,
 				FEA9F9E71C85980C0000213A /* uchat.xcdatamodeld in Sources */,
+				FE29777F1C8983BB0036DF5E /* UCourseCatalogue.swift in Sources */,
 				FEA9F9E41C8597A50000213A /* CoreStack.swift in Sources */,
 				FEB60EE91C7DE2E8005CE82B /* ChatViewController.swift in Sources */,
 				FE7AA9AC1C85AAED003F1F16 /* Utilities.swift in Sources */,
@@ -449,10 +470,12 @@
 				FEAD234C1C85D33700E82F3A /* ConfigurableCell.swift in Sources */,
 				FEAD23481C85D22000E82F3A /* TableViewDataSource.swift in Sources */,
 				FEAD234A1C85D2D000E82F3A /* DataSource.swift in Sources */,
+				FE2977821C8985AD0036DF5E /* RESTCompletions+Errors.swift in Sources */,
 				FE28F3BA1C79D19000E75BF8 /* Channel.swift in Sources */,
 				FEFD1AB01C876E3300B9F631 /* ChatTableCell.swift in Sources */,
 				FE28F3671C79AF6900E75BF8 /* UdacityLoginButton.swift in Sources */,
 				FE28F3661C79AF6900E75BF8 /* BorderedButtonProtocol.swift in Sources */,
+				FE2977861C8999060036DF5E /* RESTClient.swift in Sources */,
 				FE28F35C1C79A6DF00E75BF8 /* UConstants.swift in Sources */,
 				FE28F3591C79A6DF00E75BF8 /* UFacebook.swift in Sources */,
 				FE28F36D1C79AF7D00E75BF8 /* OTMColors.swift in Sources */,
@@ -463,6 +486,7 @@
 				FEB60EF11C7E22B3005CE82B /* ParseConvenience.swift in Sources */,
 				FE11673A1C80D84B00C3D8AC /* ParseErrors.swift in Sources */,
 				FE11673E1C80E33D00C3D8AC /* Dispatch.swift in Sources */,
+				FE2977841C8996000036DF5E /* RESTHelpers.swift in Sources */,
 				FE7AA9B11C85BA49003F1F16 /* DataProvider.swift in Sources */,
 				FE72883C1C831B2B00813803 /* ChatTextView.swift in Sources */,
 				FE28F36F1C79AF8E00E75BF8 /* LoginTextField.swift in Sources */,
