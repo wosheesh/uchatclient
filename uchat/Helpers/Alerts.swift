@@ -25,3 +25,42 @@ public func simpleAlert(target: UIViewController, message: String, title: String
     
 }
 
+protocol ProgressViewPresenter: class {
+    var messageFrame: UIView {get set}
+}
+
+extension ProgressViewPresenter where Self: UIViewController {
+    
+/* shows an activity indicator with a simple message */
+    func showProgressView(message: String) {
+        
+        // for progress view
+        
+        var activityIndicator = UIActivityIndicatorView()
+        var strLabel = UILabel()
+        
+        // TODO: turn this into a class or UIView extension for re-use
+        
+        strLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 200, height: 50))
+        strLabel.text = message
+        strLabel.textColor = UIColor.whiteColor()
+        messageFrame = UIView(frame: CGRect(x: self.view.frame.midX - 90, y: self.view.frame.midY - 25 , width: 180, height: 50))
+        messageFrame.layer.cornerRadius = 15
+        messageFrame.backgroundColor = UIColor(white: 0, alpha: 0.7)
+        
+        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.White)
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        activityIndicator.startAnimating()
+        messageFrame.addSubview(activityIndicator)
+        
+        messageFrame.addSubview(strLabel)
+        self.view.addSubview(messageFrame)
+        
+    }
+    
+    func hideProgressView() {
+        self.messageFrame.removeFromSuperview()
+    }
+
+}
+

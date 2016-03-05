@@ -27,40 +27,36 @@ func updateUdacityCourseCatalogue(handler: CompletionHandlerType) {
         print("Found a course catalogue at: \(courseCatalogueFilePath)")
         
         // ... and check if its modification date is < 7 days
-        do {
-            let fileAttributes = try NSFileManager.defaultManager().attributesOfItemAtPath(courseCatalogueFilePath)
-            let modificationDate = fileAttributes[NSFileModificationDate] as! NSDate
-            let timeDifference = modificationDate.daysFrom(NSDate())
+        let fileAttributes = try! NSFileManager.defaultManager().attributesOfItemAtPath(courseCatalogueFilePath)
+        let modificationDate = fileAttributes[NSFileModificationDate] as! NSDate
+        let timeDifference = modificationDate.daysFrom(NSDate())
             
-            print("Course Catalogue modified \(timeDifference) days ago")
+        print("Course Catalogue modified \(timeDifference) days ago")
             
-            if timeDifference < 7 {
-                handler(Result.Success(nil))
-                return
-            } else {
-                taskForHTTPMethod(Methods.CourseCatalogue, httpMethod: "GET", parameters: nil, jsonBody: nil, concatenate: false) { result in
-                    switch result {
-                    case .Success(let parsedResult):
-                        if let catalogue = parsedResult?.valueForKey(JSONResponseKeys.Courses) as? NSArray {
-                            catalogue.writeToFile(self.courseCatalogueFilePath, atomically: true)
-                            print("Course catalogue saved to: \(self.courseCatalogueFilePath)")
-                            handler(Result.Success(nil))
-                            return
-                        }
-                    case .Failure(let error):
-                        print("🆘 ☎️ \(error)")
-                        handler(Result.Failure(error))
-                        return
-                        
-                    }
-                }
-            }
-            
-        } catch {
-            print("Error trying to access file attributes of the course catalogue file with path: \(courseCatalogueFilePath)")
-            fatalError() // crash the app deliberately if we cannot read the file attributes
+        if timeDifference < 7 {
+            handler(Result.Success(nil))
+            return
         }
     }
+    
+    // otherwise download new catalogue and save file
+    taskForHTTPMethod(Methods.CourseCatalogue, httpMethod: "GET", parameters: nil, jsonBody: nil, concatenate: false) { result in
+        switch result {
+        case .Success(let parsedResult):
+            if let catalogue = parsedResult?.valueForKey(JSONResponseKeys.Courses) as? NSArray {
+                catalogue.writeToFile(self.courseCatalogueFilePath, atomically: true)
+                print("Course catalogue saved to: \(self.courseCatalogueFilePath)")
+                handler(Result.Success(nil))
+                return
+            }
+        case .Failure(let error):
+            print("🆘 ☎️ \(error)")
+            handler(Result.Failure(error))
+            return
+            
+        }
+    }
+
 }
 
 

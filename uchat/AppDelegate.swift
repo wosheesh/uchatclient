@@ -17,7 +17,7 @@ let envDict = NSProcessInfo.processInfo().environment
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let managedObjectContext = createUchatMainContext()
+//    let managedObjectContext = createUchatMainContext()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
@@ -64,10 +64,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         // Core Data
-        guard let controller = window?.rootViewController as? ManagedObjectContextSettable else {
-            fatalError("Wrong view controller type")
-        }
-        controller.managedObjectContext = managedObjectContext
+//        guard let controller = window?.rootViewController as? ManagedObjectContextSettable else {
+//            fatalError("Wrong view controller type")
+//        }
+//        controller.managedObjectContext = managedObjectContext
         
         return true
     }

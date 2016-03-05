@@ -126,7 +126,7 @@ extension UClient {
         
         /* 2. Make the request */
         
-        taskForHTTPMethod(UClient.Methods.UdacitySession, httpMethod: "GET", parameters: nil, jsonBody: jsonBody) { result in
+        taskForHTTPMethod(UClient.Methods.UdacitySession, httpMethod: "POST", parameters: nil, jsonBody: jsonBody) { result in
             
             switch result {
             case .Success(let JSONResult):
@@ -217,8 +217,6 @@ extension UClient {
             switch result {
             case .Success(let response):
                 if let _ = response?.valueForKeyPath(UClient.JSONResponseKeys.SessionID) as? String {
-                    // clear user information
-                    UdacityUser.clearData()
                     handler(Result.Success(nil))
                 }
             case .Failure(let error):

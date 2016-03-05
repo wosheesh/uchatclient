@@ -40,12 +40,18 @@ struct UdacityUser {
         
     }
     
-    
-    static func clearData() {
-        UdacityUser.username = nil
-        UdacityUser.udacityKey = nil
-        UdacityUser.enrolledCourses = nil
-
+    static func logout(handler: CompletionHandlerType) {
+        UClient.sharedInstance().logoutUdacityUser { result in
+            switch result {
+            case .Success(_):
+                UdacityUser.username = nil
+                UdacityUser.udacityKey = nil
+                UdacityUser.enrolledCourses = nil
+                handler(Result.Success(nil))
+            case .Failure(let error):
+                handler(Result.Failure(error))
+            }
+        }
     }
 
 }

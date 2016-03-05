@@ -14,7 +14,7 @@ import UIKit
 import CoreImage
 import CoreData
 
-class ChannelsViewController: UITableViewController, ManagedObjectContextSettable, SegueHandlerType {
+class ChannelsViewController: UITableViewController, ManagedObjectContextSettable, SegueHandlerType, ProgressViewPresenter {
     
     // MARK: - 🎛 Properties
 
@@ -22,8 +22,11 @@ class ChannelsViewController: UITableViewController, ManagedObjectContextSettabl
     
     @IBOutlet var channelsTable: UITableView!
     
+    var messageFrame = UIView()
+    
     enum SegueIdentifier: String {
         case EnterChannel = "EnterChannel"
+        case Logout = "Logout"
     }
     
     //start with a general channel as default
@@ -36,14 +39,17 @@ class ChannelsViewController: UITableViewController, ManagedObjectContextSettabl
         UIApplication.sharedApplication().statusBarStyle = .LightContent
         
         // TODO: move this to root (update the course catalogue)
+        showProgressView("Checking the catalogue")
         UClient.sharedInstance().updateUdacityCourseCatalogue() { result in
             switch result {
             case .Success(_):
+                self.hideProgressView()
                 print("Setting up Table Data Source for Channels")
                 self.setupTableView()
                 print("Updating the channels list with catalogue...")
                 self.updateChannels()
             case .Failure(let error):
+                self.hideProgressView()
                 switch error {
                 case .ConnectionError:
                     simpleAlert(self, message: "There was an issue with your connection. Please try again")
@@ -56,8 +62,27 @@ class ChannelsViewController: UITableViewController, ManagedObjectContextSettabl
                 }
             }
         }
+        
     }
     
+    @IBAction func logoutButtonTouchUp(sender: AnyObject) {
+        UdacityUser.logout() { result in
+            switch result {
+            case .Success(_):
+                // if current user has logged out, set the current NSManagedContext to nil
+                self.managedObjectContext = nil
+                print("🤔 You shouldnt see a userkey: \(UdacityUser.udacityKey)")
+                self.performSegue(SegueIdentifier.Logout)
+            case .Failure(let error):
+                switch error {
+                case .ConnectionError:
+                    simpleAlert(self, message: "Couldn't log-out. There was an issue with your connection. Please try again")
+                default:
+                    simpleAlert(self, message: "Something went wrong while trying to logout... maybe try again?")
+                }
+            }
+        }
+    }
     // MARK: - 🐵 Helpers
     
     func updateChannels() {
@@ -108,6 +133,9 @@ class ChannelsViewController: UITableViewController, ManagedObjectContextSettabl
             print("Opening channel : \(channel)")
             vc.managedObjectContext = managedObjectContext
             vc.channel = channel
+        case .Logout:
+            guard let rvc = segue.destinationViewController as? LoginViewController else { fatalError("Wrong view controller type") }
+            rvc.managedObjectContext = managedObjectContext
         }
     }
   

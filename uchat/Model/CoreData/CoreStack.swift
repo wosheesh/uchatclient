@@ -9,10 +9,11 @@
 import CoreData
 import Foundation
 
+//TODO: create different store to different user
 
-private let StoreURL = NSURL.documentsURL.URLByAppendingPathComponent("uchat.sqlite")
 
 public func createUchatMainContext() -> NSManagedObjectContext {
+    let StoreURL = NSURL.documentsURL.URLByAppendingPathComponent("uchat_" + UdacityUser.udacityKey! + ".sqlite")
     let bundles = [NSBundle(forClass: Channel.self), NSBundle(forClass: Message.self)]
     
     guard let model = NSManagedObjectModel.mergedModelFromBundles(bundles) else {
