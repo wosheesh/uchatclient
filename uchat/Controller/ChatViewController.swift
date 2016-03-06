@@ -6,8 +6,7 @@
 //  Copyright © 2016 Wojtek Materka. All rights reserved.
 //
 
-// TODO: Improve the chat bubbles UI
-// TODO: Enter channel bubble
+// TODO: Improve the chat bubbles UI sizes
 
 import UIKit
 import CoreData

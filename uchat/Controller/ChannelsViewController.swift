@@ -6,9 +6,7 @@
 //  Copyright © 2016 Wojtek Materka. All rights reserved.
 //
 
-//TODO: add all channels - https://www.udacity.com/catalog-api
-//TODO: persist subscribed channels
-//TODO: Add logout
+//TODO: Change the segue for logout
 
 import UIKit
 import CoreImage
@@ -38,25 +36,25 @@ class ChannelsViewController: UITableViewController, ManagedObjectContextSettabl
         super.viewDidLoad()
         UIApplication.sharedApplication().statusBarStyle = .LightContent
         
-        // TODO: move this to root (update the course catalogue)
-        showProgressView("Checking the catalogue")
+//        showProgressView("Checking the catalogue")
         UClient.sharedInstance().updateUdacityCourseCatalogue() { result in
             switch result {
             case .Success(_):
-                self.hideProgressView()
                 print("Setting up Table Data Source for Channels")
                 self.setupTableView()
                 print("Updating the channels list with catalogue...")
                 self.updateChannels()
+                
+//                self.hideProgressView()
             case .Failure(let error):
-                self.hideProgressView()
+//                self.hideProgressView()
                 switch error {
                 case .ConnectionError:
                     simpleAlert(self, message: "There was an issue with your connection. Please try again")
                 case .JSONParseError:
                     simpleAlert(self, message: "I couldn't parse the data from Udacity server...")
                 case .NoDataReceived:
-                    simpleAlert(self, message: "I didn't receive any data from Udacity server... try again... maybe try again?")
+                    simpleAlert(self, message: "I didn't receive any data from Udacity server... maybe try again?")
                 case .Uncategorised:
                     simpleAlert(self, message: "Something went wrong while trying to access Udacity server... maybe try again?")
                 }

@@ -9,8 +9,6 @@
 import CoreData
 import Foundation
 
-//TODO: create different store to different user
-
 
 public func createUchatMainContext() -> NSManagedObjectContext {
     let StoreURL = NSURL.documentsURL.URLByAppendingPathComponent("uchat_" + UdacityUser.udacityKey! + ".sqlite")

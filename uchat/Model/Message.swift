@@ -84,7 +84,7 @@ extension Message {
         // send the message with completion block
         ParseClient.sharedInstance.push(jsonBody) { success, errorString in
             if !success { simpleAlert(sender, message: errorString!) }
-            //TODO: recover from send failures
+            //TODO: recover from send failures (never seen them... but still)
         }
     }
     

@@ -60,18 +60,6 @@ extension Channel: ManagedObjectType {
     }
 }
 
-
-// MARK: - Receive new message in channel
-extension Channel {
-    
-//    mutating func Receive(var message: Message) -> Message {
-//        message.receivedAt = NSDate()
-//        self.messages.append(message)
-//        return message
-//    }
-    
-}
-
 // MARK: - (un)Subscribe user to channel
 // This is currently done as notification channel subscription.
 
@@ -81,9 +69,7 @@ extension Channel {
     
     // Subscribe user
     func subscribeUser(inView sender: ChatViewController) {
-        
         NSNotificationCenter.defaultCenter().addObserver(sender, selector: "displayNewMessage:", name: "newMessage", object: nil)
-        
         PFPush.subscribeToChannelInBackground(self.code) { succeeded, error in
             if succeeded {
                 print("🚀 Successfully subscribed to channel: \(self.code).")
@@ -95,9 +81,7 @@ extension Channel {
     
     // Unsubscribe user
     func unsubscribeUser(fromView sender: ChatViewController) {
-        
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "newMessage", object: nil)
-
         PFPush.unsubscribeFromChannelInBackground(self.code) { succeeded, error in
             if succeeded {
                 print("🚀 Unsubscribed from \(self.code)")

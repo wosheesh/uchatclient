@@ -39,8 +39,6 @@ extension ProgressViewPresenter where Self: UIViewController {
         var activityIndicator = UIActivityIndicatorView()
         var strLabel = UILabel()
         
-        // TODO: turn this into a class or UIView extension for re-use
-        
         strLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 200, height: 50))
         strLabel.text = message
         strLabel.textColor = UIColor.whiteColor()
@@ -54,12 +52,12 @@ extension ProgressViewPresenter where Self: UIViewController {
         messageFrame.addSubview(activityIndicator)
         
         messageFrame.addSubview(strLabel)
-        self.view.addSubview(messageFrame)
+        updateUI { self.view.addSubview(self.messageFrame) }
         
     }
     
     func hideProgressView() {
-        self.messageFrame.removeFromSuperview()
+        updateUI { self.messageFrame.removeFromSuperview() }
     }
 
 }
