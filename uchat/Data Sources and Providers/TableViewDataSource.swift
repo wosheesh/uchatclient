@@ -35,7 +35,6 @@ class TableViewDataSource<Delegate: DataSourceDelegate, Data: DataProvider, Cell
         for update in updates {
             switch update {
             case .Insert(let indexPath):
-                print("inserting new object to table at \(indexPath)")
                 tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             case .Update(let indexPath, let object):
                 guard let cell = tableView.cellForRowAtIndexPath(indexPath) as? Cell else { break }

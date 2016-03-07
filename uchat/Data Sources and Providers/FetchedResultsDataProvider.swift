@@ -46,7 +46,6 @@ class FetchedResultsDataProvider<Delegate: DataProviderDelegate>: NSObject, NSFe
     func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
         switch type {
         case .Insert:
-            print("performing Insert on \(anObject)")
             guard let indexPath = newIndexPath else { fatalError("Index path should be not nil") }
             updates.append(.Insert(indexPath))
         case .Update:

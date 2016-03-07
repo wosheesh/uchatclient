@@ -83,8 +83,6 @@ class ChannelsViewController: UITableViewController, ManagedObjectContextSettabl
     // MARK: - 🐵 Helpers
     
     func updateChannels() {
-        
-        var channels: [Channel] = []
 
         // Check if the user has any course enrollments
         guard let coursesEnrolled = UdacityUser.enrolledCourses else {
@@ -94,8 +92,13 @@ class ChannelsViewController: UITableViewController, ManagedObjectContextSettabl
         
         //TODO: Add General channel to db
 
-        // Match user's courses with the catalogue
-        let courseCatalogue = NSArray(contentsOfFile: UClient.sharedInstance().courseCatalogueFilePath) as! [[String : AnyObject]]
+        // Check if the catalogue is available
+        guard let courseCatalogue = NSArray(contentsOfFile: UClient.sharedInstance().courseCatalogueFilePath) as? [[String : AnyObject]] else {
+            print("No catalogue found - allowing conversation on general channel only")
+            return
+        }
+        
+        // Match user's courses with the catalogue.
         let coursesMatching = courseCatalogue.filter { course in
             coursesEnrolled.contains(course[UClient.JSONResponseKeys.CourseKeyCatalogue] as! String)
         }
@@ -107,16 +110,31 @@ class ChannelsViewController: UITableViewController, ManagedObjectContextSettabl
             let channelCode = course[UClient.JSONResponseKeys.CourseKeyCatalogue] as! String
             let channelName = course[UClient.JSONResponseKeys.CourseTitle] as! String
             let channelTagline = course[UClient.JSONResponseKeys.CourseSubtitle] as! String
-            let imagePathOnline = course[UClient.JSONResponseKeys.CourseImage] as? String
+            var imagePathOnline = course[UClient.JSONResponseKeys.CourseImage] as! String?
+            if imagePathOnline == "" { imagePathOnline = nil }
+            
+            
             
             managedObjectContext.performChanges {
                 // create or fetch channel object
-                let channel = Channel.findOrCreateChannel(channelCode, name: channelName, tagline: channelTagline, picturePath: imagePathOnline, inContext: self.managedObjectContext)
-                print("channel.localpicturename = \(channel.localPictureName)")
+                let channel = Channel.findOrCreateChannel(channelCode, name: channelName, tagline: channelTagline, picturePath: imagePathOnline, inContext: self.managedObjectContext) 
                 
-                if channel.localPictureName == nil {
-                    
-                    channel.localPictureName = channel.code + ".jpg"
+                if channel.localPictureName == nil,
+                    let pictureUrl = channel.picturePath {
+                        
+                        PictureCache().downloadPicture(pictureUrl) { result in
+    
+                            switch result {
+                            case .Success(let picture):
+                                channel.updatePicture(picture as? UIImage, inContext: self.managedObjectContext)
+    
+                            case .Failure(_): break
+//                                channel.updatePicture(nil, inContext: self.managedObjectContext)
+                            }
+                            
+                        }
+
+
                 }
                 
             }

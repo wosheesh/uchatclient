@@ -46,7 +46,6 @@ public final class Channel: ManagedObject {
         moc.performChanges {
             if let image = image {
                 self.localPictureName = self.code + ".jpg"
-                print("changed channel picture name to \(self.localPictureName)")
                 self.pictureFile = image
             } else {
                 self.localPictureName = nil
