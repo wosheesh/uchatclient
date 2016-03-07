@@ -83,14 +83,17 @@ class ChannelsViewController: UITableViewController, ManagedObjectContextSettabl
     // MARK: - 🐵 Helpers
     
     func updateChannels() {
+        
+        // Add or fetch the General Channel
+        managedObjectContext.performChanges {
+            Channel.findOrCreateChannel("000", name: "General Channel", tagline: "Conversations about everything", picturePath: nil, inContext: self.managedObjectContext)
+        }
 
         // Check if the user has any course enrollments
         guard let coursesEnrolled = UdacityUser.enrolledCourses else {
             print("User has no courses enrolled. Only General channel available")
             return
         }
-        
-        //TODO: Add General channel to db
 
         // Check if the catalogue is available
         guard let courseCatalogue = NSArray(contentsOfFile: UClient.sharedInstance().courseCatalogueFilePath) as? [[String : AnyObject]] else {
@@ -111,69 +114,25 @@ class ChannelsViewController: UITableViewController, ManagedObjectContextSettabl
             let channelName = course[UClient.JSONResponseKeys.CourseTitle] as! String
             let channelTagline = course[UClient.JSONResponseKeys.CourseSubtitle] as! String
             var imagePathOnline = course[UClient.JSONResponseKeys.CourseImage] as! String?
-            if imagePathOnline == "" { imagePathOnline = nil }
-            
-            
+            if imagePathOnline == "" { imagePathOnline = nil } // force unwrapping AnyObject as String cannot yield nil
             
             managedObjectContext.performChanges {
                 // create or fetch channel object
-                let channel = Channel.findOrCreateChannel(channelCode, name: channelName, tagline: channelTagline, picturePath: imagePathOnline, inContext: self.managedObjectContext) 
+                let channel = Channel.findOrCreateChannel(channelCode, name: channelName, tagline: channelTagline, picturePath: imagePathOnline, inContext: self.managedObjectContext)
                 
+                // Download a picture for the channel if we haven't one and there's a url available from the catalogue
                 if channel.localPictureName == nil,
                     let pictureUrl = channel.picturePath {
-                        
                         PictureCache().downloadPicture(pictureUrl) { result in
-    
                             switch result {
                             case .Success(let picture):
                                 channel.updatePicture(picture as? UIImage, inContext: self.managedObjectContext)
-    
                             case .Failure(_): break
-//                                channel.updatePicture(nil, inContext: self.managedObjectContext)
                             }
-                            
                         }
-
-
                 }
-                
             }
-            
-            
-        
-//            let predicate = NSPredicate(format: "code == %@", channelCode)
-//            guard let channel = Channel.findOrFetchInContext(managedObjectContext, matchingPredicate: predicate) else {
-//                fatalError("Couldn't find channel we just created")
-//            }
-//            
-//            print("channel.localpicturename = \(channel.localPictureName)")
-//            
-//            channel.localPictureName = "ud509.jpg"
-            
-//            if channel.localPictureName == nil {
-//                // if a channel doesn't have a local picture download new one or set a default
-//                if let imageUrl = imagePathOnline where imageUrl != "" {
-//                    PictureCache().downloadPicture(imageUrl) { result in
-//                        
-//                        switch result {
-//                        case .Success(let picture):
-//                            channel.updatePicture(picture as? UIImage, inContext: self.managedObjectContext)
-//                            
-//                        case .Failure(_):
-//                            channel.updatePicture(nil, inContext: self.managedObjectContext)
-//                        }
-//                        
-//                    }
-//                } else {
-//                    channel.updatePicture(nil, inContext: self.managedObjectContext)
-//                }
-//            } else {
-//                // load picture if it is available locally
-//                channel.updatePicture(PictureCache().pictureWithIdentifier(channel.localPictureName!), inContext: self.managedObjectContext)
-//            }
-        
         }
-        
 
     }
 

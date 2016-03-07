@@ -46,7 +46,11 @@ public final class Channel: ManagedObject {
         moc.performChanges {
             if let image = image {
                 self.localPictureName = self.code + ".jpg"
-                self.pictureFile = image
+                if let filteredImage = PictureCache().applyFilters(toImage: image) {
+                    self.pictureFile = filteredImage
+                } else {
+                    self.pictureFile = image
+                }
             } else {
                 self.localPictureName = nil
                 self.pictureFile = nil
@@ -54,15 +58,6 @@ public final class Channel: ManagedObject {
         }
     }
     
-//    public static func updatePicturePath(path: String) {
-//        self.picturePath = path
-//    }
-    
-    
-    // TODO: hold image as UIImage in memory after loading
-//    func pictureFilename() -> String {
-//        return code + ".jpg"
-//    }
 }
 
 
@@ -73,7 +68,7 @@ extension Channel: ManagedObjectType {
     }
     
     public static var defaultSortDescriptors: [NSSortDescriptor] {
-        return [] // not needed...
+        return [NSSortDescriptor(key: "code", ascending: true)]
     }
     
     public static func findOrCreateChannel(code: String, name: String, tagline:String, picturePath: String?, inContext moc: NSManagedObjectContext) -> Channel {
