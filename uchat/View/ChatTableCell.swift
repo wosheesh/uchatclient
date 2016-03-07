@@ -20,6 +20,10 @@ extension ChatTableCell: ConfigurableCell {
         messageBody.text = message.body
         messageAuthorName.text = message.authorName
         
+        if message.authorKey == UdacityUser.udacityKey {
+            messageAuthorName.textColor = OTMColors.UGreen
+        }
+        
     }
     
 }

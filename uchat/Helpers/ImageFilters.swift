@@ -27,7 +27,7 @@ extension PictureCache {
             return nil
         }
     
-        let myFilter = bw(UIColor.blackColor(), intensity: 1)
+        let myFilter = bw(UIColor.whiteColor(), intensity: 0)
         let filteredImage = myFilter(beginImage)
     
         // https://developer.apple.com/library/mac/documentation/GraphicsImaging/Conceptual/CoreImaging/ci_tasks/ci_tasks.html#//apple_ref/doc/uid/TP30001185-CH3-SW19

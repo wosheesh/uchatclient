@@ -36,7 +36,6 @@ class ChatViewController: UIViewController, KeyboardWizard, ManagedObjectContext
         // Set up UI
         navigationController?.navigationBar.tintColor = OTMColors.UBlue
         self.chatWall.rowHeight = UITableViewAutomaticDimension
-        self.chatWall.estimatedRowHeight = 40.0
         self.chatWall.separatorStyle = .None
         
     }
@@ -56,34 +55,21 @@ class ChatViewController: UIViewController, KeyboardWizard, ManagedObjectContext
     // MARK: - 📬 Receive and display messages
     
     func displayNewMessage(notification: NSNotification) {
+        
         let userInfo = notification.object as! [NSObject : AnyObject]
         do {
             // create a newMessage object when push is received
-            let newMessage = try Message.createFromPushNotification(userInfo, inContext: managedObjectContext, currentChannel: channel)
+            try Message.createFromPushNotification(userInfo, inContext: managedObjectContext, currentChannel: channel)
             
-            print("received a new message: \(newMessage)")
-            
-        } catch Message.MessageError.InvalidSyntax {
-            print("🆘 📫 Invalid message syntax")
-        } catch Message.MessageError.IdNotFound {
-            print("🆘 📫 Message ID couldn't be found")
-        } catch Message.MessageError.BodyNotFound {
-            print("🆘 📫 Message Body couldn't be found")
-        } catch Message.MessageError.AuthorNameNotFound {
-            print("🆘 📫 Message AuthorUsername couldn't be found")
-        } catch Message.MessageError.KeyNotFound {
-            print("🆘 📫 Message AuthorKey couldn't be found")
-        } catch Message.MessageError.ChannelIdNotFound {
-            print("🆘 📫 Message ChannelId couldn't be found")
-        } catch Message.MessageError.CreationDateNotFound{
-            print("🆘 📫 Message CreatedAt couldn't be found")
+        } catch let error as APIError {
+            print(error.rawValue)
         } catch {
-            print("🆘 📫 Message error not handled")
+            print("🆘 📫 error receiving new message")
         }
+        
 
     }
     
-
     
     // MARK: - 📮 Send a message to current channel
     
@@ -108,17 +94,8 @@ class ChatViewController: UIViewController, KeyboardWizard, ManagedObjectContext
         chatTextView.resignFirstResponder()
     }
     
-//    func scrollToBottomMessage() {
-//        if channel.messages.count == 0 {
-//            return
-//        }
-//        
-//        let bottomMessageIndex = NSIndexPath(forRow: chatWall.numberOfRowsInSection(0) - 1, inSection: 0)
-//        chatWall.scrollToRowAtIndexPath(bottomMessageIndex, atScrollPosition: .Bottom, animated: true)
-//    }
     
-    
-    // MARK: Private
+    // MARK: - Private
     
     private typealias Data = FetchedResultsDataProvider<ChatViewController>
     private var dataSource: TableViewDataSource<ChatViewController, Data, ChatTableCell>!
@@ -169,30 +146,14 @@ extension ChatViewController: UITextViewDelegate {
 
 // MARK: - 📄 TableViewDelegate
 
-//extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
-//    
-//    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-//        return 1
-//    }
-//    
-//    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return channel.messages.count
-//    }
-//    
-//    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-////        let cell = tableView.dequeueReusableCellWithIdentifier("chatCell", forIndexPath: indexPath)
-////        let message = channel.messages[indexPath.row]
-////        
-////        cell.detailTextLabel?.text = message.authorName
-////        if message.authorKey == UdacityUser.udacityKey {
-////            cell.detailTextLabel?.textColor = UIColor(red: 0.145, green: 0.784, blue: 0.506, alpha: 1.00)
-////        }
-////        
-////        cell.textLabel?.text = message.body
-////        cell.selectionStyle = .None
-////        return cell
-//    }
-//    
-//    
-//}
-
+extension ChatViewController: UITableViewDelegate {
+    
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 88.0
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+}
