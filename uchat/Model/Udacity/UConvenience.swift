@@ -72,7 +72,7 @@ extension UClient {
                         completionHandler(success: false, userData: nil, errorString: APIError.NoDataReceived.rawValue)
                     case .JSONParseError:
                         completionHandler(success: false, userData: nil, errorString: APIError.JSONParseError.rawValue)
-                    case .Uncategorised:
+                    default:
                         completionHandler(success: false, userData: nil, errorString: APIError.Uncategorised.rawValue)
                     }
 
@@ -154,7 +154,7 @@ extension UClient {
                     completionHandler(success: false, sessionID: nil, userID: nil, errorString: APIError.NoDataReceived.rawValue)
                 case .JSONParseError:
                     completionHandler(success: false, sessionID: nil, userID: nil, errorString: APIError.JSONParseError.rawValue)
-                case .Uncategorised:
+                default:
                     completionHandler(success: false, sessionID: nil, userID: nil, errorString: APIError.Uncategorised.rawValue)
                 }
 

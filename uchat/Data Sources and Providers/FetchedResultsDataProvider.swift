@@ -50,7 +50,6 @@ class FetchedResultsDataProvider<Delegate: DataProviderDelegate>: NSObject, NSFe
             guard let indexPath = newIndexPath else { fatalError("Index path should be not nil") }
             updates.append(.Insert(indexPath))
         case .Update:
-            print("performing Update on \(anObject)")
             guard let indexPath = indexPath else { fatalError("Index path should be not nil") }
             let object = objectAtIndexPath(indexPath)
             updates.append(.Update(indexPath, object))

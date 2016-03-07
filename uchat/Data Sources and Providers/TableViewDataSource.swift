@@ -20,7 +20,7 @@ class TableViewDataSource<Delegate: DataSourceDelegate, Data: DataProvider, Cell
         self.delegate = delegate
         super.init()
         tableView.dataSource = self
-        updateUI { self.tableView.reloadData() }
+        self.tableView.reloadData()
     }
     
     var selectedObject: Data.Object? {

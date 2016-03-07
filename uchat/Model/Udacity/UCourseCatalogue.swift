@@ -60,25 +60,4 @@ func updateUdacityCourseCatalogue(handler: CompletionHandlerType) {
 }
 
 
-//    private func downloadCourseCatalogue(handler: CompletionHandlerType) {
-//        
-//
-//        
-////        taskForHTTPMethod(Methods.CourseCatalogue, concatenate: false) { (JSONResult, error) -> Void in
-////            print("Downloading the course catalogue")
-////            if let error = error {
-////                processRESTErrorWithHandler(error, handler)
-////            } else if let catalogue = JSONResult.valueForKey(JSONResponseKeys.Courses) as? NSArray {
-////                // Save the catalogue dictionary as a .plist
-////                catalogue.writeToFile(self.courseCatalogueFilePath, atomically: true)
-////                print("Course catalogue saved to: \(self.courseCatalogueFilePath)")
-////                handler(Result.Success(nil))
-////            } else {
-////                handler(Result.Failure(Error.Uncategorised))
-////                
-////            }
-////        }
-//    
-//    }
-
 }

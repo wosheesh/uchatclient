@@ -55,7 +55,7 @@ class ChannelsViewController: UITableViewController, ManagedObjectContextSettabl
                     simpleAlert(self, message: "I couldn't parse the data from Udacity server...")
                 case .NoDataReceived:
                     simpleAlert(self, message: "I didn't receive any data from Udacity server... maybe try again?")
-                case .Uncategorised:
+                default:
                     simpleAlert(self, message: "Something went wrong while trying to access Udacity server... maybe try again?")
                 }
             }
@@ -69,7 +69,6 @@ class ChannelsViewController: UITableViewController, ManagedObjectContextSettabl
             case .Success(_):
                 // if current user has logged out, set the current NSManagedContext to nil
                 self.managedObjectContext = nil
-                print("🤔 You shouldnt see a userkey: \(UdacityUser.udacityKey)")
                 self.performSegue(SegueIdentifier.Logout)
             case .Failure(let error):
                 switch error {
@@ -84,6 +83,8 @@ class ChannelsViewController: UITableViewController, ManagedObjectContextSettabl
     // MARK: - 🐵 Helpers
     
     func updateChannels() {
+        
+        var channels: [Channel] = []
 
         // Check if the user has any course enrollments
         guard let coursesEnrolled = UdacityUser.enrolledCourses else {
@@ -101,28 +102,69 @@ class ChannelsViewController: UITableViewController, ManagedObjectContextSettabl
 
         print("Found \(coursesMatching.count) matching courses in the catalogue.")
 
-
-        //TODO: Move this to channel init from catalogue data
-
         //Update the channels in coredata
         for course in coursesMatching {
             let channelCode = course[UClient.JSONResponseKeys.CourseKeyCatalogue] as! String
             let channelName = course[UClient.JSONResponseKeys.CourseTitle] as! String
             let channelTagline = course[UClient.JSONResponseKeys.CourseSubtitle] as! String
-            let imagePathOnline = course[UClient.JSONResponseKeys.CourseImage] as! String
-        
+            let imagePathOnline = course[UClient.JSONResponseKeys.CourseImage] as? String
+            
             managedObjectContext.performChanges {
-            Channel.findOrCreateChannel(channelCode, name: channelName, tagline: channelTagline, picturePath: imagePathOnline, inContext: self.managedObjectContext)
+                // create or fetch channel object
+                let channel = Channel.findOrCreateChannel(channelCode, name: channelName, tagline: channelTagline, picturePath: imagePathOnline, inContext: self.managedObjectContext)
+                print("channel.localpicturename = \(channel.localPictureName)")
+                
+                if channel.localPictureName == nil {
+                    
+                    channel.localPictureName = channel.code + ".jpg"
+                }
+                
             }
             
+            
+        
+//            let predicate = NSPredicate(format: "code == %@", channelCode)
+//            guard let channel = Channel.findOrFetchInContext(managedObjectContext, matchingPredicate: predicate) else {
+//                fatalError("Couldn't find channel we just created")
+//            }
+//            
+//            print("channel.localpicturename = \(channel.localPictureName)")
+//            
+//            channel.localPictureName = "ud509.jpg"
+            
+//            if channel.localPictureName == nil {
+//                // if a channel doesn't have a local picture download new one or set a default
+//                if let imageUrl = imagePathOnline where imageUrl != "" {
+//                    PictureCache().downloadPicture(imageUrl) { result in
+//                        
+//                        switch result {
+//                        case .Success(let picture):
+//                            channel.updatePicture(picture as? UIImage, inContext: self.managedObjectContext)
+//                            
+//                        case .Failure(_):
+//                            channel.updatePicture(nil, inContext: self.managedObjectContext)
+//                        }
+//                        
+//                    }
+//                } else {
+//                    channel.updatePicture(nil, inContext: self.managedObjectContext)
+//                }
+//            } else {
+//                // load picture if it is available locally
+//                channel.updatePicture(PictureCache().pictureWithIdentifier(channel.localPictureName!), inContext: self.managedObjectContext)
+//            }
+        
         }
         
-       
-        
+
     }
-    
+
+
+
+
+
     // MARK: - ➡️ Segues
-    
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segueIdentifierForSegue(segue) {
         case .EnterChannel:
@@ -136,46 +178,6 @@ class ChannelsViewController: UITableViewController, ManagedObjectContextSettabl
             rvc.managedObjectContext = managedObjectContext
         }
     }
-  
-//            let localPictureName = PictureCache().pathForIdentifier(newChannel.code + ".jpg")
-//            
-//            // If there's an image already downloaded add its path and append new channel
-//            guard !NSFileManager.defaultManager().fileExistsAtPath(localPictureName) else {
-//                newChannel.picturePath = localPictureName
-//                channels.append(newChannel)
-//                continue
-//            }
-//                
-//            // Check if the catalogue has an image url available
-//            if let pictureUrl = NSURL(string: imagePathOnline)  {
-//                print("downloading: \(pictureUrl)")
-//                
-//                do {
-//                    try PictureCache().downloadPictureToDocuments(pictureUrl, filename: newChannel.code + ".jpg") { success, errorString in
-//                        if success {
-//                            newChannel.picturePath = localPictureName
-//                            self.applyFilters(localPictureName)
-//                            self.channelsTable.reloadData()
-//                        } else {
-//                            print(errorString)
-//                        }
-//                    }
-//                } catch PictureCache.Errors.NoFileFoundAtURL {
-//                    print("No image path specified in the catalogue, will use the default image")
-//                } catch {
-//                    print("Error while downloading picture for channel")
-//                }
-//            }
-//            
-//            
-//            
-//            // append new channel even if no file for image found
-//            channels.append(newChannel)
-//            
-//
-//        }
-//        
-//    }
 
     // MARK: Private
     

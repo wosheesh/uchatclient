@@ -24,7 +24,7 @@ extension NSManagedObjectContext {
             try save()
             return true
         } catch {
-            
+            print("🙄 Rolling back Context")
             // abandon unsaved data (ok in single contexts...)
             rollback()
             return false

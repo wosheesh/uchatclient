@@ -17,7 +17,20 @@ public final class Channel: ManagedObject {
     @NSManaged public private(set) var name: String
     @NSManaged public private(set) var tagline: String
     @NSManaged public private(set) var picturePath: String?
+    @NSManaged var localPictureName: String?
     @NSManaged public private(set) var messages: Set<Message>
+    
+    var pictureFile: UIImage? {
+        get {
+            return PictureCache().pictureWithIdentifier(localPictureName)
+        }
+        
+        set {
+            if let localUrl = localPictureName {
+                return PictureCache().storePicture(newValue, withIdentifier: localUrl)
+            }
+        }
+    }
     
     // This in effect is the init
     public static func insertIntoContext(moc: NSManagedObjectContext, code: String, name: String, tagline: String, picturePath: String?) -> Channel {
@@ -28,6 +41,23 @@ public final class Channel: ManagedObject {
         channel.picturePath = picturePath
         return channel
     }
+    
+    public func updatePicture(image: UIImage?, inContext moc: NSManagedObjectContext) {
+        moc.performChanges {
+            if let image = image {
+                self.localPictureName = self.code + ".jpg"
+                print("changed channel picture name to \(self.localPictureName)")
+                self.pictureFile = image
+            } else {
+                self.localPictureName = nil
+                self.pictureFile = nil
+            }
+        }
+    }
+    
+//    public static func updatePicturePath(path: String) {
+//        self.picturePath = path
+//    }
     
     
     // TODO: hold image as UIImage in memory after loading
@@ -60,6 +90,7 @@ extension Channel: ManagedObjectType {
     }
 }
 
+
 // MARK: - (un)Subscribe user to channel
 // This is currently done as notification channel subscription.
 
@@ -67,7 +98,6 @@ import Parse
 
 extension Channel {
     
-    // Subscribe user
     func subscribeUser(inView sender: ChatViewController) {
         NSNotificationCenter.defaultCenter().addObserver(sender, selector: "displayNewMessage:", name: "newMessage", object: nil)
         PFPush.subscribeToChannelInBackground(self.code) { succeeded, error in
@@ -78,8 +108,7 @@ extension Channel {
             }
         }
     }
-    
-    // Unsubscribe user
+
     func unsubscribeUser(fromView sender: ChatViewController) {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "newMessage", object: nil)
         PFPush.unsubscribeFromChannelInBackground(self.code) { succeeded, error in

@@ -18,9 +18,11 @@ enum Result {
 extension String: ErrorType { }
 
 enum APIError: String {
+    case URLError = "Invalid URL"
     case ConnectionError = "Cannot connect to the server. Please check your connection"
     case NoDataReceived = "Didn't receive any data from the server"
-    case JSONParseError = "Couldn't process the data received from the server"
+    case JSONParseError = "Couldn't process the JSON data received from the server"
+    case DataProcessingError = "Couldn't process the raw data received from the server"
     case Uncategorised = "There was a strange error while trying to fetch data"
     
 }

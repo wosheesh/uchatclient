@@ -22,8 +22,12 @@ extension ChannelTableCell: ConfigurableCell {
     func configureForObject(channel: Channel) {
         courseTitleLabel.text = channel.name
         courseSubtitleLabel.text = channel.tagline
-        print(self.courseTitleLabel.text)
-        //TODO: Picture background
+        
+        if let image = channel.pictureFile {
+            courseBackgroundPicture.image = image
+        } else {
+            courseBackgroundPicture.image = UIImage(named: "defaultChannelPicture")
+        }
         
     }
     
