@@ -8,19 +8,71 @@
 
 import UIKit
 
-class Alerts {
+public func simpleAlert(target: UIViewController, message: String, title: String = "uChat") {
+    print("Simple Alert called by \(target)")
     
-    func simpleAlert(target: UIViewController, message: String, title: String = "uChat") {
-        print("Simple Alert called by \(target)")
-        
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        
-        let OKAction = UIAlertAction(title: "OK", style: .Default) { action in
-            print("OK pressed on Alert Controller")
-        }
-        
-        alertController.addAction(OKAction)
-        
+    let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+    
+    let OKAction = UIAlertAction(title: "OK", style: .Default) { action in
+        print("OK pressed on Alert Controller")
+    }
+    
+    alertController.addAction(OKAction)
+    
+    updateUI { _ in
         target.presentViewController(alertController, animated: true, completion: nil)
     }
+    
 }
+
+protocol ProgressViewPresenter: class {
+    var progressView: UIView {get set}
+}
+
+extension ProgressViewPresenter where Self: UIViewController {
+    
+/* shows an activity indicator with a simple message */
+    func showProgressView(message: String) {
+        
+        //Take a screenshot
+        UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, true, 1)
+        self.view.drawViewHierarchyInRect(self.view.bounds, afterScreenUpdates: true)
+        let screenshot = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        //Add an UIImageView and blur it
+        let blurView = UIImageView(image: screenshot)
+        blurView.makeBlurImage(withStyle: .Light)
+        
+        //Create an activity indicator inside messageFrame
+        var activityIndicator = UIActivityIndicatorView()
+        var strLabel = UILabel()
+        
+        strLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 200, height: 50))
+        strLabel.text = message
+        strLabel.textColor = UIColor.whiteColor()
+        let messageFrame = UIView(frame: CGRect(x: self.view.frame.midX - 90, y: self.view.frame.midY - 25 , width: 180, height: 50))
+        messageFrame.layer.cornerRadius = 15
+        messageFrame.backgroundColor = UIColor(white: 0, alpha: 0.7)
+        
+        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.White)
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        activityIndicator.startAnimating()
+        messageFrame.addSubview(activityIndicator)
+        messageFrame.addSubview(strLabel)
+        
+        // Wrap it all in one view
+        progressView = UIView(frame: self.view.bounds)
+        progressView.addSubview(blurView)
+        progressView.addSubview(messageFrame)
+        
+        updateUI { self.view.addSubview(self.progressView) }
+        
+    }
+    
+    func hideProgressView() {
+        updateUI { self.progressView.removeFromSuperview() }
+    }
+
+}
+

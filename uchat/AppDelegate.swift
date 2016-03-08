@@ -7,11 +7,9 @@
 //
 
 import UIKit
+import Foundation
 import Parse
-import XCGLogger
 
-//XCLogger
-let log = XCGLogger.defaultInstance()
 
 //Load env variables
 let envDict = NSProcessInfo.processInfo().environment
@@ -20,25 +18,19 @@ let envDict = NSProcessInfo.processInfo().environment
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+//    let managedObjectContext = createUchatMainContext()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
-        //XCLogger
-        log.setup(.Debug, showThreadName: true, showLogLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: "/Users/wmaterka/Documents/Code/iOS/uchat/uchatclient/logs/uchat.log", fileLogLevel: .Verbose)
-        
-        
-        
-        // Enable storing and querying data from Local Datastore.
-        // Remove this line if you don't want to use Local Datastore features or want to use cachePolicy.
-        Parse.enableLocalDatastore()
-        
+
         // Initialize Parse
         Parse.initializeWithConfiguration(ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) -> Void in
-            configuration.applicationId = envDict["PARSE_APP_ID"]! as String
-            configuration.clientKey = envDict["PARSE_CLIENT_KEY"]! as String
-            configuration.server = envDict["PARSE_SERVER"]! as String
+            configuration.applicationId = "uchatapp"
+            configuration.clientKey = "8022802"
+            configuration.server = "https://intense-river-39239.herokuapp.com/parse"
         }))
         
+        
+
         
         PFUser.enableAutomaticUser()
         
@@ -65,18 +57,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
-        log.info("Parse initialized ✅")
+        print("Parse initialized ✅")
         
         // Register for notifications
         let notificationTypes: UIUserNotificationType = [.Alert, .Badge, .Sound]
         let notificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: nil)
-        
         UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
-        
         UIApplication.sharedApplication().registerForRemoteNotifications()
-        
-        
-
         
         return true
     }
@@ -88,52 +75,79 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         PFPush.subscribeToChannelInBackground("") { (succeeded: Bool, error: NSError?) in
             if succeeded {
-                log.info("Successfully subscribed to push notifications on the broadcast channel. 📨 ✅ \n");
+                print("Successfully subscribed to push notifications on the broadcast channel. 📨 ✅ \n");
             } else {
-                log.error("🆘 📨 Failed to subscribe to push notifications on the broadcast channel with error = \(error)")
+                print("🆘 📨 Failed to subscribe to push notifications on the broadcast channel with error = \(error)")
             }
         }
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
         if error.code == 3010 {
-            log.warning("📵 📨 Push notifications are not supported in the iOS Simulator.\n")
+            print("📵 📨 Push notifications are not supported in the iOS Simulator.\n")
         } else {
-            log.error("🆘 📨 application:didFailToRegisterForRemoteNotificationsWithError: \(error)")
+            print("🆘 📨 application:didFailToRegisterForRemoteNotificationsWithError: \(error)")
         }
     }
     
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        PFPush.handlePush(userInfo)
+    // MARK: - 📩 Handle received notifications
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+//        NSLog("📬  \(__FUNCTION__): application received a message: \(userInfo)")
+//        PFPush.handlePush(userInfo)
+        
         if application.applicationState == UIApplicationState.Inactive {
+            NSLog("Notification received while app was inactive")
             PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
         }
+        
+        // Handle push while app is active
+        if application.applicationState == UIApplicationState.Active {
+            NSLog("Notification received while app was Active")
+            guard let rootViewController = self.window?.rootViewController else {
+                print("root")
+                return
+            }
+            
+            if let currentViewController = getCurrentViewController(rootViewController) {
+                if currentViewController.isKindOfClass(ChatViewController) {
+                    NSNotificationCenter.defaultCenter().postNotificationName("newMessage", object: userInfo)
+                    print(" 📬 new message received with userinfo: \(userInfo)")
+
+                }
+            }
+            
+        }
+        
+        // for now we are not sending any data with notifs
+        completionHandler(UIBackgroundFetchResult.NoData)
+    }
+
+    
+    func getCurrentViewController(vc: UIViewController) -> UIViewController? {
+        // Presented
+        if let pvc = vc.presentedViewController {
+            return getCurrentViewController(pvc)
+        }
+            // Split?
+        else if let svc = vc as? UISplitViewController where svc.viewControllers.count > 0 {
+            return getCurrentViewController(svc.viewControllers.last!)
+        }
+            // Nav?
+        else if let nc = vc as? UINavigationController where nc.viewControllers.count > 0 {
+            return getCurrentViewController(nc.topViewController!)
+        }
+            // Tab?
+        else if let tbc = vc as? UITabBarController {
+            if let svc = tbc.selectedViewController {
+                return getCurrentViewController(svc)
+            }
+        }
+        // return the last found.
+        return vc
     }
     
     
-
-    func applicationWillResignActive(application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-    }
-
-    func applicationDidEnterBackground(application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    }
-
-    func applicationWillEnterForeground(application: UIApplication) {
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    }
-
-    func applicationDidBecomeActive(application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    }
-
-    func applicationWillTerminate(application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-
 
 }
 

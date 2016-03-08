@@ -8,14 +8,100 @@
 
 import Foundation
 
-class UClient: NSObject {
+
+class UClient: RESTClient {
     
     // MARK: Properties
-    
-    /* Shared session */
+
     var session: NSURLSession = NSURLSession.sharedSession()
     
+    // MARK: Shared Instance
+    
+    class func sharedInstance() -> UClient {
+        struct Singleton {
+            static var sharedInstance = UClient()
+        }
+        
+        return Singleton.sharedInstance
+    }
+    
     // MARK: Udacity API functions
+    
+    func taskForHTTPMethod(method: String, httpMethod: String, parameters: [String : AnyObject]?, jsonBody: [String : AnyObject]?, concatenate: Bool = true, handler: CompletionHandlerType) -> NSURLSessionDataTask {
+        
+        // 1. Build the URL
+        let urlString = Constants.BaseURL + method
+        let url = NSURL(string: urlString)!
+        var request = NSMutableURLRequest(URL: url)
+        
+        // 2. Configure the headers
+        switch httpMethod {
+        case "GET":
+            break
+        case "POST":
+            request = configRequestForPOST(request, jsonBody: jsonBody!)
+        case "DELETE":
+            request = configRequestForDELETE(request)
+        default:
+            fatalError("Wrong HTTP Method called in Udacity REST")
+        }
+        
+        // 3. Set the session timeout interval
+        let urlconfig = NSURLSessionConfiguration.defaultSessionConfiguration()
+        urlconfig.timeoutIntervalForRequest = Constants.RequestTimeout
+        urlconfig.timeoutIntervalForResource = Constants.ResourceTimeout
+        self.session = NSURLSession(configuration: urlconfig, delegate: nil, delegateQueue: nil)
+        
+        // 5. Run the request
+        let task = session.dataTaskWithRequest(request) { (data, response, error) in
+            
+            /* GUARD: was there an error? */
+            guard (error == nil) else {
+                self.processRESTErrorWithHandler(error!, handler: handler)
+                return
+            }
+            
+            /* GUARD: Was there any data returned? */
+            guard var data = data else {
+                handler(Result.Failure(APIError.NoDataReceived))
+                return
+            }
+            
+            // adjust for Udacity's 5 character shift
+            if concatenate { data = data.subdataWithRange(NSMakeRange(5, data.length - 5)) }
+
+            
+            // 6. Parse the data and use the data in completion handler
+            self.parseJSONWithCompletionHandler(data, handler: handler)
+        }
+        
+        // 7. Start the request
+        task.resume()
+        return task
+    }
+    
+    func configRequestForPOST(request: NSMutableURLRequest, jsonBody: [String : AnyObject]) -> NSMutableURLRequest {
+        request.HTTPMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        do {
+            request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(jsonBody, options: .PrettyPrinted)
+        }
+        return request
+    }
+    
+    func configRequestForDELETE(request: NSMutableURLRequest) -> NSMutableURLRequest {
+        request.HTTPMethod = "DELETE"
+        var xsrfCookie: NSHTTPCookie? = nil
+        let sharedCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+        for cookie in sharedCookieStorage.cookies! {
+            if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
+        }
+        if let xsrfCookie = xsrfCookie {
+            request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
+        }
+        return request
+    }
     
     func taskForPOSTMethod(method: String, jsonBody: [String: AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
@@ -60,118 +146,16 @@ class UClient: NSObject {
             let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
             
             /* 4. Parse the data and use the data in completion handler */
-            UClient.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
-        }
-        
-        /* 5. Start the request */
-        task.resume()
-
-        return task
-    }
-    
-    func taskForGETMethod(method: String, completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
-        
-        /* 1. Build the URL */
-        let urlString = Constants.BaseURL + method
-        let url = NSURL(string: urlString)!
-        let request = NSMutableURLRequest(URL: url)
-        
-        /* 2. Make the request */
-        let task = session.dataTaskWithRequest(request) { (data, response, error) in
-            
-            /* GUARD: was there an error? */
-            guard (error == nil) else {
-                print("There was an error: \(error) while calling method: \(method)")
-                if error?.code == NSURLErrorTimedOut {
-                    completionHandler(result: nil, error: error)
-                }
-                return
-            }
-            
-            /* GUARD: Was there any data returned? */
-            guard let data = data else {
-                print("\(__FUNCTION__) in \(__FILE__) returned no data")
-                return
-            }
-            
-            let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
-            
-            /* 3. Parse the data and use the data in completion handler */
-            UClient.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
-        }
-        
-        /* 4. Start the request */
-        task.resume()
-        
-        return task
-        
-    }
-    
-    func taskForDELETEMethod(method: String, completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
-        
-        /* 1. Build the URL */
-        let urlString = Constants.BaseURL + method
-        let url = NSURL(string: urlString)!
-        let request = NSMutableURLRequest(URL: url)
-        
-        /* 2. Configure the request with cookie info */
-        request.HTTPMethod = "DELETE"
-        
-        var xsrfCookie: NSHTTPCookie? = nil
-        let sharedCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
-        for cookie in sharedCookieStorage.cookies! {
-            if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
-        }
-        if let xsrfCookie = xsrfCookie {
-            request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
-        }
-        
-        /* 3. Make the request */
-        let task = session.dataTaskWithRequest(request) { (data, response, error) in
-            
-            /* GUARD: was there an error? */
-            guard (error == nil) else {
-                print("There was an error: \(error) while calling method: \(method)")
-                if error?.code == NSURLErrorTimedOut {
-                    completionHandler(result: nil, error: error)
-                }
-                return
-            }
-            
-            /* GUARD: Was there any data returned? */
-            guard let data = data else {
-                print("\(__FUNCTION__) in \(__FILE__) returned no data")
-                return
-            }
-            
-            let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
-            
-            /* 4. Parse the data and use the data in completion handler */
-            UClient.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
+            UClient.parseJSONWithCompletionHandler1(newData, completionHandler: completionHandler)
         }
         
         /* 5. Start the request */
         task.resume()
         
         return task
-        
     }
 
-
-    // MARK: Shared Instance
-    
-    class func sharedInstance() -> UClient {
-        struct Singleton {
-            static var sharedInstance = UClient()
-        }
-        
-        return Singleton.sharedInstance
-    }
-    
-    // MARK: Helpers
-    
-    /// Given raw JSON, return a usable Foundation object
-    class func parseJSONWithCompletionHandler(data: NSData, completionHandler: (result: AnyObject!, error: NSError?) -> Void) {
+    class func parseJSONWithCompletionHandler1(data: NSData, completionHandler: (result: AnyObject!, error: NSError?) -> Void) {
         
         var parsedResult: AnyObject!
         do {
@@ -183,15 +167,9 @@ class UClient: NSObject {
         
         completionHandler(result: parsedResult, error: nil)
     }
+
     
-    /// Substitute the key for the value that is contained within the method name
-    class func subtituteKeyInMethod(method: String, key: String, value: String) -> String? {
-        if method.rangeOfString("{\(key)}") != nil {
-            return method.stringByReplacingOccurrencesOfString("{\(key)}", withString: value)
-        } else {
-            return nil
-        }
-    }
+   
 }
 
     

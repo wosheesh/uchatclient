@@ -18,8 +18,8 @@ class UdacityLoginButton: UIButton, BorderedButtonProtocol {
     var darkerFace = OTMColors.loginButtonDark
     var lighterFace = OTMColors.loginButtonLight
     var titleColor = OTMColors.loginButtonTitle
-    let titleLabelFontSize : CGFloat = 20.0
-    let borderedButtonHeight : CGFloat = 44.0
+    let titleLabelFontSize : CGFloat = 18.0
+    let borderedButtonHeight : CGFloat = 54.0
     let borderedButtonCornerRadius : CGFloat = 4.0
     let phoneBorderedButtonExtraPadding : CGFloat = 34.0
     

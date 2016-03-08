@@ -8,45 +8,47 @@
 
 extension UClient {
     
-    // MARK: Constants
+    // MARK: - Constants
     struct Constants {
         
         // MARK: URLs
-        static let BaseURL: String = "https://www.udacity.com/api/"
+        static let BaseURL: String = "https://www.udacity.com/"
         
         // MARK: Timouts
         static let RequestTimeout : Double = 15
         static let ResourceTimeout : Double = 15
     }
     
-    // MARK: Methods
+    // MARK: - Methods
     struct Methods {
         
         // MARK: Authentication
-        static let UdacitySession = "session"
+        static let UdacitySession = "api/session"
         
         // MARK: User Data
-        static let UdacityUserData = "users/{user_id}"
+        static let UdacityUserData = "api/users/{user_id}"
+        
+        // MARK: Course Catalogue
+        static let CourseCatalogue = "public-api/v0/courses"
     }
     
 
-    // MARK: URL Keys
+    // MARK: - URL Keys
     struct URLKeys {
         
         static let UserId = "user_id"
         
     }
     
-    // MARK: Parameter Keys
+    // MARK: - Parameter Keys
     struct JSONBodyKeys {
         
         static let Username = "username"
         static let Password = "password"
-        static let FBAccessToken = "access_token"
         
     }
     
-    // MARK: JSON Response Keys
+    // MARK: - JSON Response Keys
     struct JSONResponseKeys {
         
         // MARK: General
@@ -62,6 +64,18 @@ extension UClient {
         static let FirstName = "first_name"
         static let LastName = "last_name"
         static let UserKey = "key"
+        
+        // MARK: Enrolled courses
+        static let Enrollments = "_enrollments"
+        static let CourseKey = "node_key"
+        
+        // MARK: Course Catalogue
+        static let Courses = "courses"
+        static let CourseKeyCatalogue = "key"
+        static let CourseTitle = "title"
+        static let CourseSubtitle = "subtitle"
+        static let CourseImage = "image"
+        static let CourseBannerImage = "banner_image"
         
     }
 }
