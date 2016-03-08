@@ -32,16 +32,20 @@ extension KeyboardWizard where Self: UIViewController {
     
     func keyboardWillShow(notification: NSNotification) {
         let keyboardHeight = notification.userInfo![UIKeyboardFrameEndUserInfoKey]?.CGRectValue.height
-        UIView.animateWithDuration(0.1) { () -> Void in
-            self.bottomConstraint.constant = keyboardHeight! + 10
-            self.view.layoutIfNeeded()
+        updateUI {
+            UIView.animateWithDuration(0.1) {
+                self.bottomConstraint.constant = keyboardHeight! + 10
+    //            self.view.layoutIfNeeded()
+            }
         }
     }
     
     func keyboardWillHide(notification: NSNotification) {
-        UIView.animateWithDuration(0.1) { () -> Void in
-            self.bottomConstraint.constant = 0
-            self.view.layoutIfNeeded()
+        updateUI {
+            UIView.animateWithDuration(0.1) { () -> Void in
+                self.bottomConstraint.constant = 0
+    //            self.view.layoutIfNeeded()
+            }
         }
     }
 }

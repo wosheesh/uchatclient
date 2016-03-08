@@ -45,11 +45,14 @@ class ChatViewController: UIViewController, KeyboardWizard, ManagedObjectContext
         channel.subscribeUser(inView: self)
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        deregisteKeyboardWizard()
+        channel.unsubscribeUser(fromView: self)
+    }
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        deregisteKeyboardWizard()
-        channel.unsubscribeUser(fromView: self)
+        
     }
     
     // MARK: - 📬 Receive and display messages

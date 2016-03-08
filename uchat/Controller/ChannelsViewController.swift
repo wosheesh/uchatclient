@@ -6,7 +6,7 @@
 //  Copyright © 2016 Wojtek Materka. All rights reserved.
 //
 
-//TODO: Change the segue for logout
+//TODO: crash if logout is pressed too soon
 
 import UIKit
 import CoreData

@@ -62,11 +62,13 @@ extension ProgressViewPresenter where Self: UIViewController {
         messageFrame.addSubview(strLabel)
         
         // Wrap it all in one view
-        progressView = UIView(frame: self.view.bounds)
-        progressView.addSubview(blurView)
-        progressView.addSubview(messageFrame)
+        updateUI {
+            self.progressView = UIView(frame: self.view.bounds)
+            self.progressView.addSubview(blurView)
+            self.progressView.addSubview(messageFrame)
         
-        updateUI { self.view.addSubview(self.progressView) }
+            self.view.addSubview(self.progressView)
+        }
         
     }
     
