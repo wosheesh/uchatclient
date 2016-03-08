@@ -21,6 +21,10 @@ class LoginViewController: UIViewController, ProgressViewPresenter {
     @IBOutlet weak var loginButton: UdacityLoginButton!
     @IBOutlet weak var signupButton: UIButton!
     
+    // Keychain
+    let retrievedEmail: String? = KeychainWrapper.stringForKey("email")
+    let retrievedPasswd: String? = KeychainWrapper.stringForKey("password")
+    
     // ManagedObjectContextSettable
     var managedObjectContext: NSManagedObjectContext?
     
@@ -32,6 +36,10 @@ class LoginViewController: UIViewController, ProgressViewPresenter {
     override func viewDidLoad() {
         super.viewDidLoad()
         UIApplication.sharedApplication().statusBarStyle = .Default
+        
+        if let email = retrievedEmail, let passwd = retrievedPasswd {
+            startLogin(email, passwd: passwd)
+        }
         
         // convenience for dev
         #if DEBUG
@@ -51,17 +59,7 @@ class LoginViewController: UIViewController, ProgressViewPresenter {
     // MARK: - 💥 Actions
     
     @IBAction func loginButtonTouch(sender: AnyObject) {
-        self.setUIEnabled(enabled: false)
-        showProgressView("Logging in")
-        
-        UClient.sharedInstance().authenticateWithUserCredentials(emailTextField.text!, password: passwordTextField.text!) { (success, errorString) in
-            if success {
-                self.managedObjectContext = createUchatMainContext()
-                self.completeLogin()
-            } else {
-                self.displayError(errorString)
-            }
-        }
+        startLogin(emailTextField.text!, passwd: passwordTextField.text!)
     }
     
     // open safari for udacity signup
@@ -81,6 +79,26 @@ class LoginViewController: UIViewController, ProgressViewPresenter {
                 simpleAlert(self, message: errorString)
             }
         })
+    }
+    
+    func addUserKeychain(email: String!, passwd: String!) {
+        KeychainWrapper.setString(email, forKey: "email")
+        KeychainWrapper.setString(passwd, forKey: "password")
+    }
+    
+    func startLogin(email: String!, passwd: String!) {
+        self.setUIEnabled(enabled: false)
+        showProgressView("Logging in")
+        
+        UClient.sharedInstance().authenticateWithUserCredentials(email, password: passwd) { (success, errorString) in
+            if success {
+                self.managedObjectContext = createUchatMainContext()
+                self.addUserKeychain(email, passwd: passwd)
+                self.completeLogin()
+            } else {
+                self.displayError(errorString)
+            }
+        }
     }
     
     func completeLogin() {

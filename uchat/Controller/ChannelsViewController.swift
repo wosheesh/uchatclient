@@ -41,6 +41,7 @@ class ChannelsViewController: UITableViewController, ManagedObjectContextSettabl
             case .Success(_):
                 // if current user has logged out, set the current NSManagedContext to nil
                 self.managedObjectContext = nil
+                self.removeUserKeychain()
                 self.performSegue(SegueIdentifier.Logout)
             case .Failure(let error):
                 switch error {
@@ -134,11 +135,16 @@ class ChannelsViewController: UITableViewController, ManagedObjectContextSettabl
         }
 
     }
-
-
-
-
-
+    
+    /// remove keys for logout
+    func removeUserKeychain() {
+        let removeEmailOK: Bool = KeychainWrapper.removeObjectForKey("email")
+        let removePasswdOK: Bool = KeychainWrapper.removeObjectForKey("password")
+        guard (removeEmailOK && removePasswdOK) else {
+            fatalError("Couldn't remove user's keychain information")
+        }
+    }
+    
     // MARK: - ➡️ Segues
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

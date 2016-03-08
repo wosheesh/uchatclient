@@ -38,6 +38,8 @@
 		FE7AA9AF1C85AD8B003F1F16 /* ManagedObjectContextSettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7AA9AE1C85AD8B003F1F16 /* ManagedObjectContextSettable.swift */; };
 		FE7AA9B11C85BA49003F1F16 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7AA9B01C85BA49003F1F16 /* DataProvider.swift */; };
 		FE7AA9B31C85BC31003F1F16 /* FetchedResultsDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7AA9B21C85BC31003F1F16 /* FetchedResultsDataProvider.swift */; };
+		FE977F311C8F0D0000AA68C7 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE977F301C8F0D0000AA68C7 /* UserData.swift */; };
+		FE977F331C8F107C00AA68C7 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE977F321C8F107C00AA68C7 /* KeychainWrapper.swift */; };
 		FEA7BDA91C78750F002A6535 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA7BDA81C78750F002A6535 /* AppDelegate.swift */; };
 		FEA7BDAE1C78750F002A6535 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEA7BDAC1C78750F002A6535 /* Main.storyboard */; };
 		FEA7BDB01C78750F002A6535 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEA7BDAF1C78750F002A6535 /* Assets.xcassets */; };
@@ -98,6 +100,8 @@
 		FE7AA9AE1C85AD8B003F1F16 /* ManagedObjectContextSettable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ManagedObjectContextSettable.swift; path = Protocols/ManagedObjectContextSettable.swift; sourceTree = "<group>"; };
 		FE7AA9B01C85BA49003F1F16 /* DataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataProvider.swift; path = "Data Sources and Providers/DataProvider.swift"; sourceTree = "<group>"; };
 		FE7AA9B21C85BC31003F1F16 /* FetchedResultsDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchedResultsDataProvider.swift; path = "Data Sources and Providers/FetchedResultsDataProvider.swift"; sourceTree = "<group>"; };
+		FE977F301C8F0D0000AA68C7 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserData.swift; path = Model/UserData.swift; sourceTree = "<group>"; };
+		FE977F321C8F107C00AA68C7 /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeychainWrapper.swift; path = Helpers/KeychainWrapper.swift; sourceTree = "<group>"; };
 		FEA7BDA51C78750F002A6535 /* uchat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uchat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEA7BDA81C78750F002A6535 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FEA7BDAD1C78750F002A6535 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -154,6 +158,7 @@
 				FE28F37B1C79B6AA00E75BF8 /* UdacityUser.swift */,
 				FE28F3B91C79D19000E75BF8 /* Channel.swift */,
 				FE28F3C01C7A427D00E75BF8 /* Message.swift */,
+				FE977F301C8F0D0000AA68C7 /* UserData.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -214,6 +219,7 @@
 				FEA9F9DE1C848E730000213A /* PictureCache.swift */,
 				FEA9F9E01C84D53A0000213A /* ImageFilters.swift */,
 				FE7AA9AB1C85AAED003F1F16 /* Utilities.swift */,
+				FE977F321C8F107C00AA68C7 /* KeychainWrapper.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -434,6 +440,7 @@
 				FE28F3981C79D0F800E75BF8 /* ChannelsViewController.swift in Sources */,
 				FEA9F9E11C84D53A0000213A /* ImageFilters.swift in Sources */,
 				FE28F35E1C79A70D00E75BF8 /* LoginViewController.swift in Sources */,
+				FE977F311C8F0D0000AA68C7 /* UserData.swift in Sources */,
 				FEA9F9E71C85980C0000213A /* uchat.xcdatamodeld in Sources */,
 				FE29777F1C8983BB0036DF5E /* UCourseCatalogue.swift in Sources */,
 				FEA9F9E41C8597A50000213A /* CoreStack.swift in Sources */,
@@ -475,6 +482,7 @@
 				FE72883C1C831B2B00813803 /* ChatTextView.swift in Sources */,
 				FE28F36F1C79AF8E00E75BF8 /* LoginTextField.swift in Sources */,
 				FEB60EF01C7E22B3005CE82B /* ParseConstants.swift in Sources */,
+				FE977F331C8F107C00AA68C7 /* KeychainWrapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
