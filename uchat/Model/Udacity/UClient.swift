@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 class UClient: RESTClient {
     
     // MARK: Properties
@@ -45,14 +46,20 @@ class UClient: RESTClient {
             fatalError("Wrong HTTP Method called in Udacity REST")
         }
 
+        if let requestBody = request.HTTPBody {
+            print("HTTPBODY: ", NSString(data: requestBody, encoding: NSUTF8StringEncoding))
+        }
+        
         // 3. Set the session timeout interval
         let urlconfig = NSURLSessionConfiguration.defaultSessionConfiguration()
         urlconfig.timeoutIntervalForRequest = Constants.RequestTimeout
         urlconfig.timeoutIntervalForResource = Constants.ResourceTimeout
         self.session = NSURLSession(configuration: urlconfig, delegate: nil, delegateQueue: nil)
-
+        
         // 5. Run the request
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
+            
+            print(response)
             
             /* GUARD: was there an error? */
             guard (error == nil) else {
@@ -102,142 +109,77 @@ class UClient: RESTClient {
         return request
     }
     
-    
-//    
-//    func taskForPOSTMethod(method: String, jsonBody: [String: AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
-////
-////        /* 1. Build the URL */
-////        let urlString = Constants.BaseURL + method
-////        let url = NSURL(string: urlString)!
-////        let request = NSMutableURLRequest(URL: url)
-////        
-////        /* 2. Configure the request */
-////        request.HTTPMethod = "POST"
-////        request.addValue("application/json", forHTTPHeaderField: "Accept")
-////        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-////        do {
-////            request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(jsonBody, options: .PrettyPrinted)
-////        }
-////        
-////        /* 3. Make the request */
-////        
-////        // Set the session interval timeout
-////        let urlconfig = NSURLSessionConfiguration.defaultSessionConfiguration()
-////        urlconfig.timeoutIntervalForRequest = Constants.RequestTimeout
-////        urlconfig.timeoutIntervalForResource = Constants.ResourceTimeout
-////        self.session = NSURLSession(configuration: urlconfig, delegate: nil, delegateQueue: nil)
-////        
-////        // request
-////        let task = session.dataTaskWithRequest(request) { (data, response, error) in
-////            
-////            /* GUARD: was there an error? */
-////            guard (error == nil) else {
-////                print("There was an error: \(error) while calling method: \(method)")
-////                completionHandler(result: nil, error: error)
-////                return
-////            }
-////            
-////            /* GUARD: Was there any data returned? */
-////            guard let data = data else {
-////                print("\(__FUNCTION__) in \(__FILE__) returned no data")
-////                completionHandler(result: nil, error: error)
-////                return
-////            }
-////            
-////            let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
-////            
-////            /* 4. Parse the data and use the data in completion handler */
-////            parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
-////        }
-////        
-////        /* 5. Start the request */
-////        task.resume()
-////
-////        return task
-//    }
-//    
-//    func taskForGETMethod(method: String, concatenate: Bool, handler: CompletionHandlerType) -> NSURLSessionDataTask {
-//        
-////        /* 1. Build the URL */
-////        let urlString = Constants.BaseURL + method
-////        let url = NSURL(string: urlString)!
-////        let request = NSMutableURLRequest(URL: url)
-////        
-////        /* 2. Make the request */
-////        let task = session.dataTaskWithRequest(request) { (data, response, error) in
-////            
-////            /* GUARD: was there an error? */
-////            guard (error == nil) else {
-////                self.processRESTErrorWithHandler(error!, handler: handler)
-////                return
-////            }
-////            
-////            /* GUARD: Was there any data returned? */
-////            guard var data = data else {
-////                print("\(__FUNCTION__) in \(__FILE__) returned no data")
-////                return
-////            }
-////            
-////            if concatenate {
-////                data = data.subdataWithRange(NSMakeRange(5, data.length - 5))
-////            }
-////            
-////            /* 3. Parse the data and use the data in completion handler */
-////            self.parseJSONWithCompletionHandler(data, handler: handler)
-////        }
-////        
-////        /* 4. Start the request */
-////        task.resume()
-////        
-////        return task
-//        
-//    }
-//    
-//    func taskForDELETEMethod(method: String, completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
-////        
-////        /* 1. Build the URL */
-////        let urlString = Constants.BaseURL + method
-////        let url = NSURL(string: urlString)!
-////        let request = NSMutableURLRequest(URL: url)
-////        
-////        /* 2. Configure the request with cookie info */
-////
-////        
-////        /* 3. Make the request */
-////        let task = session.dataTaskWithRequest(request) { (data, response, error) in
-////            
-////            /* GUARD: was there an error? */
-////            guard (error == nil) else {
-////                print("There was an error: \(error) while calling method: \(method)")
-////                if error?.code == NSURLErrorTimedOut {
-////                    completionHandler(result: nil, error: error)
-////                }
-////                return
-////            }
-////            
-////            /* GUARD: Was there any data returned? */
-////            guard let data = data else {
-////                print("\(__FUNCTION__) in \(__FILE__) returned no data")
-////                return
-////            }
-////            
-////            let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
-////            
-////            /* 4. Parse the data and use the data in completion handler */
-////            parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
-////        }
-////        
-////        /* 5. Start the request */
-////        task.resume()
-////        
-////        return task
-//        
-//    }
-//
-//
+    func taskForPOSTMethod(method: String, jsonBody: [String: AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+        
+        /* 1. Build the URL */
+        let urlString = Constants.BaseURL + method
+        let url = NSURL(string: urlString)!
+        let request = NSMutableURLRequest(URL: url)
+        
+        /* 2. Configure the request */
+        request.HTTPMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        do {
+            request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(jsonBody, options: .PrettyPrinted)
+        }
+        
+        print("HTTPBODY: ", NSString(data: request.HTTPBody!, encoding: NSUTF8StringEncoding))
+        
+        /* 3. Make the request */
+        
+        // Set the session interval timeout
+        let urlconfig = NSURLSessionConfiguration.defaultSessionConfiguration()
+        urlconfig.timeoutIntervalForRequest = Constants.RequestTimeout
+        urlconfig.timeoutIntervalForResource = Constants.ResourceTimeout
+        self.session = NSURLSession(configuration: urlconfig, delegate: nil, delegateQueue: nil)
+        
+        // request
+        let task = session.dataTaskWithRequest(request) { (data, response, error) in
+            
+            print(response)
+            
+            /* GUARD: was there an error? */
+            guard (error == nil) else {
+                print("There was an error: \(error) while calling method: \(method)")
+                completionHandler(result: nil, error: error)
+                return
+            }
+            
+            /* GUARD: Was there any data returned? */
+            guard let data = data else {
+                print("\(__FUNCTION__) in \(__FILE__) returned no data")
+                completionHandler(result: nil, error: error)
+                return
+            }
+            
+            let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
+            
+            /* 4. Parse the data and use the data in completion handler */
+            UClient.parseJSONWithCompletionHandler1(newData, completionHandler: completionHandler)
+        }
+        
+        /* 5. Start the request */
+        task.resume()
+        
+        return task
+    }
+
+    class func parseJSONWithCompletionHandler1(data: NSData, completionHandler: (result: AnyObject!, error: NSError?) -> Void) {
+        
+        var parsedResult: AnyObject!
+        do {
+            parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+        } catch {
+            let userInfo = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(data)'"]
+            completionHandler(result: nil, error: NSError(domain: "parseJSONWithCompletionHandler", code: 1, userInfo: userInfo))
+        }
+        
+        completionHandler(result: parsedResult, error: nil)
+    }
 
     
-
+   
 }
 
     

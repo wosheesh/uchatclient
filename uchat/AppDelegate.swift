@@ -9,6 +9,7 @@
 import UIKit
 import Foundation
 import Parse
+import FBSDKCoreKit
 
 //Load env variables
 let envDict = NSProcessInfo.processInfo().environment
@@ -23,10 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Initialize Parse
         Parse.initializeWithConfiguration(ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) -> Void in
-            configuration.applicationId = "uchatapp" as String
-            configuration.clientKey = "8022802" as String
-            configuration.server = "https://intense-river-39239.herokuapp.com/parse" as String
+            configuration.applicationId = "uchatapp"
+            configuration.clientKey = "8022802"
+            configuration.server = "https://intense-river-39239.herokuapp.com/parse"
         }))
+        
+        
 
         
         PFUser.enableAutomaticUser()
@@ -62,14 +65,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
         UIApplication.sharedApplication().registerForRemoteNotifications()
         
-        
-        // Core Data
-//        guard let controller = window?.rootViewController as? ManagedObjectContextSettable else {
-//            fatalError("Wrong view controller type")
-//        }
-//        controller.managedObjectContext = managedObjectContext
-        
-        return true
+        // Facebook CoreKit
+        return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
@@ -123,52 +120,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         
-        //TODO: change for sending pictures
-//        completionHandler(UIBackgroundFetchResult.NoData)
+        // for now we are not sending any data with notifs
+        completionHandler(UIBackgroundFetchResult.NoData)
     }
     
-    
-    // MARK: - 🔂 Application State management
-
-    func applicationWillResignActive(application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-    }
-
-    func applicationDidEnterBackground(application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    }
-
-    func applicationWillEnterForeground(application: UIApplication) {
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    }
-
-    func applicationDidBecomeActive(application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    }
-
-    func applicationWillTerminate(application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
     }
     
-    // MARK: - 🐵 Helpers
-    
-    /// Loops through the view hierarchy and returns the last view found, which is the active view.
     func getCurrentViewController(vc: UIViewController) -> UIViewController? {
         // Presented
         if let pvc = vc.presentedViewController {
             return getCurrentViewController(pvc)
         }
-        // Split?
+            // Split?
         else if let svc = vc as? UISplitViewController where svc.viewControllers.count > 0 {
             return getCurrentViewController(svc.viewControllers.last!)
         }
-        // Nav?
+            // Nav?
         else if let nc = vc as? UINavigationController where nc.viewControllers.count > 0 {
             return getCurrentViewController(nc.topViewController!)
         }
-        // Tab?
+            // Tab?
         else if let tbc = vc as? UITabBarController {
             if let svc = tbc.selectedViewController {
                 return getCurrentViewController(svc)
@@ -179,40 +152,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-    
-    // Returns the most recently presented UIViewController (visible)
-//    class func getCurrentViewController() -> UIViewController? {
-//        
-//        // If the root view is a navigation controller, we can just return the visible ViewController
-//        if let navigationController = getNavigationController() {
-//            return navigationController.visibleViewController
-//        }
-//        
-//        // Otherwise, we must get the root UIViewController and iterate through presented views
-//        if let rootController = UIApplication.sharedApplication().keyWindow?.rootViewController {
-//            var currentController: UIViewController! = rootController
-//            
-//            // Each ViewController keeps track of the view it has presented, so we
-//            // can move from the head to the tail, which will always be the current view
-//            while( currentController.presentedViewController != nil ) {
-//                currentController = currentController.presentedViewController
-//            }
-//            
-//            return currentController
-//        }
-//        return nil
-//    }
-    
-    // Returns the navigation controller if it exists
-//    class func getNavigationController() -> UINavigationController? {
-//        
-//        if let navigationController = UIApplication.sharedApplication().keyWindow?.rootViewController  {
-//            
-//            return navigationController as? UINavigationController
-//        }
-//        return nil
-//    }
-
 
 }
 

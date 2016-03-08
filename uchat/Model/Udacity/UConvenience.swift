@@ -54,6 +54,7 @@ extension UClient {
             /* 1. Specify methods (if has {key}) */
             var mutableMethod : String = Methods.UdacityUserData
             mutableMethod = self.subtituteKeyInMethod(mutableMethod, key: UClient.URLKeys.UserId, value: userID)!
+            print(mutableMethod)
             
             taskForHTTPMethod(mutableMethod, httpMethod: "GET", parameters: nil, jsonBody: nil) { result in
                 switch result {
@@ -81,33 +82,7 @@ extension UClient {
             }
         }
     }
-            
-            
-            
-            
-//            /* 2. Make the request */
-//            taskForGETMethod(mutableMethod, concatenate: true) { JSONResult, error in
-//                
-//                /* 3. send the results to completionHandler */
-//                
-//                if let error = error {
-//                    print(error)
-//                    /* catching the timeout error */
-//                    if error.code == NSURLErrorTimedOut {
-//                        completionHandler(success: false, userData: nil, errorString: "Cannot connect to Udacity server. Please check your connection.")
-//                    } else {
-//                        completionHandler(success: false, userData: nil, errorString: "There was an error establishing a session with Udacity server. Please try again later.")
-//                    }
-//                } else if let userData = JSONResult[UClient.JSONResponseKeys.UserResults] as? [String : AnyObject] {
-//                    
-//                    
-//                    completionHandler(success: true, userData: userData, errorString: nil)
-//                } else {
-//                    completionHandler(success: false, userData: nil, errorString: "Could not parse getUserDataWithUserID")
-//                }
-//            }
-//        }
-//    }
+
     
     /// Uses email and password to create a session with Udacity.
     func getSessionID(email: String?, password: String?, access_token: String?, completionHandler: (success: Bool, sessionID: String?, userID: String?, errorString: String?) -> Void) {
@@ -121,7 +96,11 @@ extension UClient {
                     UClient.JSONBodyKeys.Password: password as String!]]
             }
         } else if let access_token = access_token {
-            jsonBody = ["facebook_mobile" : ["access_token": access_token as String!]]
+            jsonBody = [
+                "facebook_mobile" : [
+                    "access_token": access_token as String!
+                ]
+            ]
         }
         
         /* 2. Make the request */
@@ -130,6 +109,8 @@ extension UClient {
             
             switch result {
             case .Success(let JSONResult):
+                
+                print(JSONResult)
                 
                 // successful server response and we have sessionID + userID
                 if let sessionID = JSONResult?.valueForKeyPath(UClient.JSONResponseKeys.SessionID) as? String,
@@ -149,12 +130,16 @@ extension UClient {
                 
                 switch error {
                 case .ConnectionError:
+                    print("Connection Error")
                     completionHandler(success: false, sessionID: nil, userID: nil, errorString: APIError.ConnectionError.rawValue)
                 case .NoDataReceived:
+                    print("No Data Received Error")
                     completionHandler(success: false, sessionID: nil, userID: nil, errorString: APIError.NoDataReceived.rawValue)
                 case .JSONParseError:
+                    print("JSONParse Error")
                     completionHandler(success: false, sessionID: nil, userID: nil, errorString: APIError.JSONParseError.rawValue)
                 default:
+                    print("default error")
                     completionHandler(success: false, sessionID: nil, userID: nil, errorString: APIError.Uncategorised.rawValue)
                 }
 

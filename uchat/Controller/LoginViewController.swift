@@ -11,7 +11,6 @@
 import UIKit
 import CoreData
 
-@IBDesignable
 class LoginViewController: UIViewController, ProgressViewPresenter {
     
     // MARK: - 🎛 Properties
