@@ -11,12 +11,14 @@
 import UIKit
 import CoreData
 
-class ChannelsViewController: UITableViewController, ManagedObjectContextSettable, SegueHandlerType {
+class ChannelsViewController: UITableViewController, ManagedObjectContextSettable, SegueHandlerType, ProgressViewPresenter {
     
     // MARK: - 🎛 Properties
 
     var managedObjectContext: NSManagedObjectContext!
     
+    @IBOutlet weak var refreshButton: UIBarButtonItem!
+    @IBOutlet weak var logoutButton: UIBarButtonItem!
     @IBOutlet var channelsTable: UITableView!
     
     // SegueHandlerType
@@ -25,25 +27,33 @@ class ChannelsViewController: UITableViewController, ManagedObjectContextSettabl
         case Logout = "Logout"
     }
     
+    // ProgressViewPresenter
+    var progressView = UIView()
+    
     //MARK: - 🔄 Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         UIApplication.sharedApplication().statusBarStyle = .LightContent
+        setUIEnabled(true)
         
         refreshCatalogue(self)
-        
     }
     
     @IBAction func logoutButtonTouchUp(sender: AnyObject) {
+        setUIEnabled(false)
+        showProgressView("Leaving...")
         UdacityUser.logout() { result in
+            
             switch result {
             case .Success(_):
                 // if current user has logged out, set the current NSManagedContext to nil
                 self.managedObjectContext = nil
                 self.removeUserKeychain()
+                self.hideProgressView()
                 self.performSegue(SegueIdentifier.Logout)
             case .Failure(let error):
+                self.hideProgressView()
                 switch error {
                 case .ConnectionError:
                     simpleAlert(self, message: "Couldn't log-out. There was an issue with your connection. Please try again")
@@ -143,6 +153,12 @@ class ChannelsViewController: UITableViewController, ManagedObjectContextSettabl
         guard (removeEmailOK && removePasswdOK) else {
             fatalError("Couldn't remove user's keychain information")
         }
+    }
+    
+    func setUIEnabled(enabled: Bool) {
+        refreshButton.enabled = enabled
+        logoutButton.enabled = enabled
+        channelsTable.userInteractionEnabled = enabled
     }
     
     // MARK: - ➡️ Segues

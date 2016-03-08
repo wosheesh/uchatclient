@@ -29,7 +29,7 @@ class LoginViewController: UIViewController, ProgressViewPresenter {
     var managedObjectContext: NSManagedObjectContext?
     
     // ProgressViewPresenter
-    var messageFrame = UIView()
+    var progressView = UIView()
 
     // MARK: - 🔄 Life Cycle
     

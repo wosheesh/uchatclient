@@ -212,6 +212,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="channelsTable" destination="VQu-6L-6Un" id="Hbb-jm-IFL"/>
+                        <outlet property="logoutButton" destination="7dq-4e-TC4" id="X7X-6G-RbJ"/>
+                        <outlet property="refreshButton" destination="DGT-L6-qVC" id="gv6-JH-QEb"/>
                         <segue destination="HhH-Fe-e37" kind="presentation" identifier="Logout" id="hdV-Rs-IlW"/>
                     </connections>
                 </tableViewController>
