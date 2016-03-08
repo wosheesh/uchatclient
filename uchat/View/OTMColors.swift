@@ -24,10 +24,6 @@ struct OTMColors {
     static let loginButtonLight = UIColor(red: 0.145, green: 0.784, blue: 0.506, alpha: 1.00)
     static let loginButtonTitle = UIColor.whiteColor()
     
-    static let FBloginButtonDark = UIColor(red: 0.0, green: 0.298, blue: 0.686, alpha:1.0)
-    static let FBloginButtonLight = UIColor(red: 0.0, green:0.502, blue:0.839, alpha: 1.0)
-    static let FBButtonTitle = UIColor(white: 1.0, alpha: 1.0)
-    
     // MARK: TextFields
     static let loginTextFieldBg = UIColor(red: 0.980, green: 0.984, blue: 0.988, alpha: 1.00)
     static let loginTextFieldTextColor = UIColor(red: 0.235, green: 0.306, blue: 0.353, alpha: 1.00)

@@ -45,10 +45,6 @@ class UClient: RESTClient {
         default:
             fatalError("Wrong HTTP Method called in Udacity REST")
         }
-
-        if let requestBody = request.HTTPBody {
-            print("HTTPBODY: ", NSString(data: requestBody, encoding: NSUTF8StringEncoding))
-        }
         
         // 3. Set the session timeout interval
         let urlconfig = NSURLSessionConfiguration.defaultSessionConfiguration()
@@ -58,8 +54,6 @@ class UClient: RESTClient {
         
         // 5. Run the request
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
-            
-            print(response)
             
             /* GUARD: was there an error? */
             guard (error == nil) else {
@@ -124,8 +118,6 @@ class UClient: RESTClient {
             request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(jsonBody, options: .PrettyPrinted)
         }
         
-        print("HTTPBODY: ", NSString(data: request.HTTPBody!, encoding: NSUTF8StringEncoding))
-        
         /* 3. Make the request */
         
         // Set the session interval timeout
@@ -136,8 +128,6 @@ class UClient: RESTClient {
         
         // request
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
-            
-            print(response)
             
             /* GUARD: was there an error? */
             guard (error == nil) else {

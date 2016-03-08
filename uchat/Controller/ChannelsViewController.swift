@@ -9,10 +9,9 @@
 //TODO: Change the segue for logout
 
 import UIKit
-import CoreImage
 import CoreData
 
-class ChannelsViewController: UITableViewController, ManagedObjectContextSettable, SegueHandlerType, ProgressViewPresenter {
+class ChannelsViewController: UITableViewController, ManagedObjectContextSettable, SegueHandlerType {
     
     // MARK: - 🎛 Properties
 
@@ -20,15 +19,11 @@ class ChannelsViewController: UITableViewController, ManagedObjectContextSettabl
     
     @IBOutlet var channelsTable: UITableView!
     
-    var messageFrame = UIView()
-    
+    // SegueHandlerType
     enum SegueIdentifier: String {
         case EnterChannel = "EnterChannel"
         case Logout = "Logout"
     }
-    
-    //start with a general channel as default
-    var channels: [Channel] = [] // Channel(code: "0", name: "General", tagline: "Channel open to all students")
     
     //MARK: - 🔄 Lifecycle
     
@@ -36,30 +31,7 @@ class ChannelsViewController: UITableViewController, ManagedObjectContextSettabl
         super.viewDidLoad()
         UIApplication.sharedApplication().statusBarStyle = .LightContent
         
-//        showProgressView("Checking the catalogue")
-        UClient.sharedInstance().updateUdacityCourseCatalogue() { result in
-            switch result {
-            case .Success(_):
-                print("Setting up Table Data Source for Channels")
-                self.setupTableView()
-                print("Updating the channels list with catalogue...")
-                self.updateChannels()
-                
-//                self.hideProgressView()
-            case .Failure(let error):
-//                self.hideProgressView()
-                switch error {
-                case .ConnectionError:
-                    simpleAlert(self, message: "There was an issue with your connection. Please try again")
-                case .JSONParseError:
-                    simpleAlert(self, message: "I couldn't parse the data from Udacity server...")
-                case .NoDataReceived:
-                    simpleAlert(self, message: "I didn't receive any data from Udacity server... maybe try again?")
-                default:
-                    simpleAlert(self, message: "Something went wrong while trying to access Udacity server... maybe try again?")
-                }
-            }
-        }
+        refreshCatalogue(self)
         
     }
     
@@ -80,7 +52,34 @@ class ChannelsViewController: UITableViewController, ManagedObjectContextSettabl
             }
         }
     }
+    
     // MARK: - 🐵 Helpers
+    
+    @IBAction func refreshCatalogue(sender: AnyObject) {
+        UClient.sharedInstance().updateUdacityCourseCatalogue() { result in
+            switch result {
+            case .Success(_):
+                
+                print("Setting up Table Data Source for Channels")
+                self.setupTableView()
+                print("Updating the channels list with catalogue...")
+                self.updateChannels()
+                
+            case .Failure(let error):
+                switch error {
+                case .ConnectionError:
+                    simpleAlert(self, message: "There was an issue with your connection. Please try again")
+                case .JSONParseError:
+                    simpleAlert(self, message: "I couldn't parse the data from Udacity server...")
+                case .NoDataReceived:
+                    simpleAlert(self, message: "I didn't receive any data from Udacity server... maybe try again?")
+                default:
+                    simpleAlert(self, message: "Something went wrong while trying to access Udacity server... maybe try again?")
+                }
+            }
+        }
+
+    }
     
     func updateChannels() {
         

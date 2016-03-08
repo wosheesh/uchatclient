@@ -20,22 +20,20 @@ class LoginViewController: UIViewController, ProgressViewPresenter {
     @IBOutlet weak var passwordTextField: LoginTextField!
     @IBOutlet weak var loginButton: UdacityLoginButton!
     @IBOutlet weak var signupButton: UIButton!
-    @IBOutlet weak var loginWithFBButton: FBLoginButton!
     
     // ManagedObjectContextSettable
     var managedObjectContext: NSManagedObjectContext?
     
+    // ProgressViewPresenter
     var messageFrame = UIView()
 
-    
     // MARK: - 🔄 Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         UIApplication.sharedApplication().statusBarStyle = .Default
         
-        // Debugging
-        
+        // convenience for dev
         #if DEBUG
             emailTextField.text = envDict["UDACITY_EMAIL"]
             passwordTextField.text = envDict["UDACITY_PASS"]
@@ -45,9 +43,7 @@ class LoginViewController: UIViewController, ProgressViewPresenter {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-
         setupUI()
-        
         emailTextField.delegate = self
         passwordTextField.delegate = self
     }
@@ -68,33 +64,11 @@ class LoginViewController: UIViewController, ProgressViewPresenter {
         }
     }
     
-    @IBAction func loginWithFBButtonTouchUp(sender: AnyObject) {
-        self.setUIEnabled(enabled: false)
-        showProgressView("Logging in")
-        
-        UClient.sharedInstance().authenticateWithFacebook { (success, error) in
-            if success {
-                self.completeLogin()
-            } else {
-                if error?.domain == "authenticateWithFacebook - getSessionID" {
-                    self.displayError("Couldn't link your Facebook account with Udacity profile. Check in https://www.udacity.com/account#!/linked-accounts")
-                } else if error?.domain == "authenticateWithFacebook - cancel" {
-                    self.displayError("Facebook authentication cancelled.")
-                } else {
-                    self.displayError("Something went wrong with Facebook authentication. Try again later.")
-                }
-            }
-        }
-    }
-    
-    /* open safari for udacity signup */
+    // open safari for udacity signup
     @IBAction func signUpButtonTouchUp(sender: AnyObject) {
         openSafariWithURLString("https://www.udacity.com/account/auth#!/signup")
     }
-    
-    // MARK: - 💁 Convenience
 
-    
     //MARK: - 🐵 Helpers
     
     func displayError(errorString: String?) {
@@ -110,23 +84,20 @@ class LoginViewController: UIViewController, ProgressViewPresenter {
     }
     
     func completeLogin() {
-        
-        dispatch_async(dispatch_get_main_queue(), {
+        updateUI {
             self.hideProgressView()
             self.setUIEnabled(enabled: false)
-        })
+        }
         
         guard let nc = storyboard!.instantiateViewControllerWithIdentifier("ChatNav") as? UINavigationController,
             let vc = nc.viewControllers.first as? ManagedObjectContextSettable else {
                     fatalError("Wrong view controller type")
         }
-        // if next controller adheres to protocol, pass the MOC
         vc.managedObjectContext = managedObjectContext
         presentViewController(nc, animated: true, completion: nil)
-        
     }
     
-    /* open with Safari helper */
+    // open with Safari helper
     func openSafariWithURLString(urlString: String) {
         let app = UIApplication.sharedApplication()
         
@@ -136,10 +107,10 @@ class LoginViewController: UIViewController, ProgressViewPresenter {
             app.openURL(NSURL(fileURLWithPath: urlString, relativeToURL: NSURL(string: "http://")))
         }
     }
- 
+    
 }
 
-// MARK: UITextFieldDelegate
+// MARK: - UITextFieldDelegate
 
 extension LoginViewController: UITextFieldDelegate {
     
@@ -151,7 +122,7 @@ extension LoginViewController: UITextFieldDelegate {
         return true
     }
     
-    /* tapping outside of text field will dismiss keyboard */
+    // tapping outside of text field will dismiss keyboard
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }

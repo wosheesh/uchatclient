@@ -45,7 +45,6 @@ extension UClient {
         
         static let Username = "username"
         static let Password = "password"
-        static let FBAccessToken = "access_token"
         
     }
     

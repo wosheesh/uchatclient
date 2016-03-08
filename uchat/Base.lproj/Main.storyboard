@@ -16,7 +16,6 @@
             <string>Cabin-Regular</string>
             <string>Cabin-Regular</string>
             <string>Cabin-Regular</string>
-            <string>Cabin-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -32,18 +31,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vYN-C7-yhp" customClass="LoginTextField" customModule="uchat" customModuleProvider="target">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vYN-C7-yhp" customClass="LoginTextField" customModule="uchat" customModuleProvider="target">
                                 <rect key="frame" x="20" y="190" width="560" height="30"/>
                                 <fontDescription key="fontDescription" name="Cabin-Medium" family="Cabin" pointSize="19"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login to Udacity Chat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8wX-bX-ko0">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Login to Udacity Chat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8wX-bX-ko0">
                                 <rect key="frame" x="223" y="154" width="155" height="21"/>
                                 <fontDescription key="fontDescription" name="Cabin-Regular" family="Cabin" pointSize="17"/>
                                 <color key="textColor" red="0.18039215689999999" green="0.23921568630000001" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aUg-B7-A7W" customClass="UdacityLoginButton" customModule="uchat" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aUg-B7-A7W" customClass="UdacityLoginButton" customModule="uchat" customModuleProvider="target">
                                 <rect key="frame" x="50" y="290" width="500" height="37"/>
                                 <fontDescription key="fontDescription" name="Cabin-Regular" family="Cabin" pointSize="20"/>
                                 <state key="normal" title="Login with Udacity"/>
@@ -51,7 +50,7 @@
                                     <action selector="loginButtonTouch:" destination="HhH-Fe-e37" eventType="touchUpInside" id="7aR-XZ-nQ9"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="VuZ-gw-Q1l" customClass="LoginTextField" customModule="uchat" customModuleProvider="target">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="VuZ-gw-Q1l" customClass="LoginTextField" customModule="uchat" customModuleProvider="target">
                                 <rect key="frame" x="20" y="230" width="560" height="30"/>
                                 <fontDescription key="fontDescription" name="Cabin-Medium" family="Cabin" pointSize="19"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
@@ -65,7 +64,7 @@
                                     <constraint firstAttribute="height" constant="100" id="Mt1-S9-CAH"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SYQ-xJ-rn9">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SYQ-xJ-rn9">
                                 <rect key="frame" x="193" y="528" width="214" height="32"/>
                                 <fontDescription key="fontDescription" name="Cabin-Regular" family="Cabin" pointSize="16"/>
                                 <state key="normal" title="Don't have an account? Sign Up">
@@ -75,17 +74,8 @@
                                     <action selector="signUpButtonTouchUp:" destination="HhH-Fe-e37" eventType="touchUpInside" id="OqE-S3-BEH"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zma-N5-m9V" customClass="FBLoginButton" customModule="uchat" customModuleProvider="target">
-                                <rect key="frame" x="50" y="337" width="500" height="37"/>
-                                <fontDescription key="fontDescription" name="Cabin-Regular" family="Cabin" pointSize="20"/>
-                                <state key="normal" title="Login with Facebook"/>
-                                <connections>
-                                    <action selector="loginWithFBButtonTouchUp:" destination="HhH-Fe-e37" eventType="touchUpInside" id="V3I-Pn-cy5"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="zma-N5-m9V" firstAttribute="width" secondItem="aUg-B7-A7W" secondAttribute="width" id="2vM-8r-Lam"/>
                             <constraint firstAttribute="leadingMargin" secondItem="VuZ-gw-Q1l" secondAttribute="leading" id="6HC-YR-DAI"/>
                             <constraint firstItem="VuZ-gw-Q1l" firstAttribute="top" secondItem="vYN-C7-yhp" secondAttribute="bottom" constant="10" id="6fL-XC-15D"/>
                             <constraint firstItem="OY9-rH-0fJ" firstAttribute="centerX" secondItem="cY0-Qq-mQO" secondAttribute="centerX" id="Asz-P1-4ei"/>
@@ -97,11 +87,9 @@
                             <constraint firstItem="aUg-B7-A7W" firstAttribute="leading" secondItem="cY0-Qq-mQO" secondAttribute="leadingMargin" constant="30" id="TYl-yY-UvB"/>
                             <constraint firstAttribute="trailingMargin" secondItem="VuZ-gw-Q1l" secondAttribute="trailing" id="YP4-ea-Biq"/>
                             <constraint firstItem="aUg-B7-A7W" firstAttribute="centerX" secondItem="cY0-Qq-mQO" secondAttribute="centerX" id="Zhf-Hs-8nN"/>
-                            <constraint firstItem="zma-N5-m9V" firstAttribute="top" secondItem="aUg-B7-A7W" secondAttribute="bottom" constant="10" id="brc-xj-g3h"/>
                             <constraint firstItem="VuZ-gw-Q1l" firstAttribute="centerX" secondItem="cY0-Qq-mQO" secondAttribute="centerX" id="dVF-cV-mOX"/>
                             <constraint firstAttribute="leadingMargin" secondItem="vYN-C7-yhp" secondAttribute="leading" id="dlc-o7-kj9"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vYN-C7-yhp" secondAttribute="trailing" id="jyp-zq-SLD"/>
-                            <constraint firstItem="zma-N5-m9V" firstAttribute="centerX" secondItem="cY0-Qq-mQO" secondAttribute="centerX" id="kqa-uU-Nbn"/>
                             <constraint firstItem="vYN-C7-yhp" firstAttribute="centerX" secondItem="cY0-Qq-mQO" secondAttribute="centerX" id="lhh-zI-Zbf"/>
                             <constraint firstItem="aUg-B7-A7W" firstAttribute="top" secondItem="VuZ-gw-Q1l" secondAttribute="bottom" constant="30" id="t0T-Zp-9aV"/>
                             <constraint firstItem="8wX-bX-ko0" firstAttribute="centerX" secondItem="cY0-Qq-mQO" secondAttribute="centerX" id="tZo-O2-GNE"/>
@@ -112,7 +100,6 @@
                         <outlet property="emailTextField" destination="vYN-C7-yhp" id="gWi-rY-Zb2"/>
                         <outlet property="loginButton" destination="aUg-B7-A7W" id="VgU-CD-bNX"/>
                         <outlet property="loginToUdacityLabel" destination="8wX-bX-ko0" id="ehZ-6c-NQM"/>
-                        <outlet property="loginWithFBButton" destination="zma-N5-m9V" id="r6U-9z-Bkd"/>
                         <outlet property="passwordTextField" destination="VuZ-gw-Q1l" id="DNL-5P-XKH"/>
                         <outlet property="signupButton" destination="SYQ-xJ-rn9" id="wXH-BC-qzV"/>
                     </connections>
@@ -214,6 +201,12 @@
                             <color key="tintColor" red="0.086274509799999996" green="0.69803921570000005" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="logoutButtonTouchUp:" destination="k9N-UK-h7P" id="Eer-sS-Dr0"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="DGT-L6-qVC">
+                            <color key="tintColor" red="0.086274509799999996" green="0.69803921570000005" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="refreshCatalogue:" destination="k9N-UK-h7P" id="cSA-2w-n1S"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

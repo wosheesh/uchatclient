@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 import Parse
-import FBSDKCoreKit
+
 
 //Load env variables
 let envDict = NSProcessInfo.processInfo().environment
@@ -65,8 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
         UIApplication.sharedApplication().registerForRemoteNotifications()
         
-        // Facebook CoreKit
-        return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        return true
     }
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
@@ -123,10 +122,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // for now we are not sending any data with notifs
         completionHandler(UIBackgroundFetchResult.NoData)
     }
-    
-    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-        return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
-    }
+
     
     func getCurrentViewController(vc: UIViewController) -> UIViewController? {
         // Presented

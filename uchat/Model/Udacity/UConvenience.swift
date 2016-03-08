@@ -22,15 +22,11 @@ extension UClient {
             getSessionID(email, password: password, access_token: nil) { (success, sessionID, userID, errorString) in
                 
                 if success {
-                    print("got userid: \(userID)")
-                    
                     /* get user data */
                     self.getUserDataWithUserID(userID!) { (success, userData, errorString) in
                         
                         if success {
-                            
                             _ = UdacityUser(initCurrentUserFromData: userData!)
-
                             completionHandler(success: success, errorString: errorString) // self.getUserDataWithUserID(userID!)
                             
                         } else {
@@ -54,8 +50,7 @@ extension UClient {
             /* 1. Specify methods (if has {key}) */
             var mutableMethod : String = Methods.UdacityUserData
             mutableMethod = self.subtituteKeyInMethod(mutableMethod, key: UClient.URLKeys.UserId, value: userID)!
-            print(mutableMethod)
-            
+           
             taskForHTTPMethod(mutableMethod, httpMethod: "GET", parameters: nil, jsonBody: nil) { result in
                 switch result {
                 case .Success(let JSONResult):
@@ -95,12 +90,6 @@ extension UClient {
                 jsonBody = ["udacity": [UClient.JSONBodyKeys.Username: email as String!,
                     UClient.JSONBodyKeys.Password: password as String!]]
             }
-        } else if let access_token = access_token {
-            jsonBody = [
-                "facebook_mobile" : [
-                    "access_token": access_token as String!
-                ]
-            ]
         }
         
         /* 2. Make the request */
@@ -109,8 +98,6 @@ extension UClient {
             
             switch result {
             case .Success(let JSONResult):
-                
-                print(JSONResult)
                 
                 // successful server response and we have sessionID + userID
                 if let sessionID = JSONResult?.valueForKeyPath(UClient.JSONResponseKeys.SessionID) as? String,
@@ -147,55 +134,11 @@ extension UClient {
             
         }
     }
-        
-        
-//        
-//        
-//        taskForPOSTMethod(UClient.Methods.UdacitySession, jsonBody: jsonBody!) { JSONResult, error in
-//            
-//            /* 3. Send the desired value to completion handler */
-//            /* check for errors and return info to user */
-//            if let error = error {
-//                print(error)
-//                
-//                /* catching the timeout error */
-//                if error.code == NSURLErrorTimedOut ||
-//                error.code == NSURLErrorNotConnectedToInternet {
-//                    completionHandler(success: false, sessionID: nil, userID: nil, errorString: "Cannot connect to Udacity server. Please check your connection.")
-//                } else {
-//                    completionHandler(success: false, sessionID: nil, userID: nil, errorString: "There was an error establishing a session with Udacity server. Please try again later.")
-//                }
-//                
-//                /* what if 403 ie invalid credentials? */
-//            } else if let error = JSONResult[UClient.JSONResponseKeys.ErrorMessage] as? String {
-//                print("\(error)")
-//                if JSONResult[UClient.JSONResponseKeys.Status] as? Int == 403 {
-//                    completionHandler(success: false, sessionID: nil, userID: nil, errorString: "Invalid username or password. Try again.")
-//                } else {
-//                    completionHandler(success: false, sessionID: nil, userID: nil, errorString: error)
-//                }
-//                
-//                /* do we have session? */
-//            } else if let sessionID = JSONResult.valueForKeyPath(UClient.JSONResponseKeys.SessionID) as? String {
-//                
-//                /* do we have user ID? */
-//                if let userID = JSONResult.valueForKeyPath(UClient.JSONResponseKeys.UserID) as? String {
-//                    
-//                    completionHandler(success: true, sessionID: sessionID, userID: userID, errorString: nil)
-//                }
-//            } else {
-//                print("Could not find \(UClient.JSONResponseKeys.SessionID) in \(JSONResult)")
-//                completionHandler(success: false, sessionID: nil, userID: nil, errorString: "There was an error establishing a session with Udacity server. Please try again later.")
-//            }
-//            
-//        }
-//    }
     
-    /// logs out from Facebook and DELETEs Udacity session
+    
+    /// logs out from Udacity session
     func logoutUdacityUser(handler: CompletionHandlerType) {
         let udacityMethod = UClient.Methods.UdacitySession
-        
-        logoutFromFacebook()
         
         taskForHTTPMethod(udacityMethod, httpMethod: "DELETE", parameters: nil, jsonBody: nil) { result in
             
