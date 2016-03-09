@@ -66,7 +66,6 @@
 		FEB60EF11C7E22B3005CE82B /* ParseConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB60EEE1C7E22B3005CE82B /* ParseConvenience.swift */; };
 		FEEA33E11C86FF9D004A27E1 /* SegueHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEA33E01C86FF9D004A27E1 /* SegueHandlerType.swift */; };
 		FEFD1AB01C876E3300B9F631 /* ChatTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFD1AAF1C876E3300B9F631 /* ChatTableCell.swift */; };
-		FEFD1AB21C87795B00B9F631 /* KeyboardWizard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFD1AB11C87795B00B9F631 /* KeyboardWizard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -131,7 +130,6 @@
 		FEB60EEE1C7E22B3005CE82B /* ParseConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParseConvenience.swift; path = Model/Parse/ParseConvenience.swift; sourceTree = "<group>"; };
 		FEEA33E01C86FF9D004A27E1 /* SegueHandlerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SegueHandlerType.swift; path = Protocols/SegueHandlerType.swift; sourceTree = "<group>"; };
 		FEFD1AAF1C876E3300B9F631 /* ChatTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatTableCell.swift; path = View/ChatTableCell.swift; sourceTree = "<group>"; };
-		FEFD1AB11C87795B00B9F631 /* KeyboardWizard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeyboardWizard.swift; path = Protocols/KeyboardWizard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -264,7 +262,6 @@
 				FE7AA9AE1C85AD8B003F1F16 /* ManagedObjectContextSettable.swift */,
 				FEAD234B1C85D33700E82F3A /* ConfigurableCell.swift */,
 				FEEA33E01C86FF9D004A27E1 /* SegueHandlerType.swift */,
-				FEFD1AB11C87795B00B9F631 /* KeyboardWizard.swift */,
 				FE2977851C8999060036DF5E /* RESTClient.swift */,
 			);
 			name = Protocols;
@@ -458,7 +455,6 @@
 				FEA9F9DB1C8451CB0000213A /* Dates.swift in Sources */,
 				FEA9F9DF1C848E730000213A /* PictureCache.swift in Sources */,
 				FEB60EEF1C7E22B3005CE82B /* ParseClient.swift in Sources */,
-				FEFD1AB21C87795B00B9F631 /* KeyboardWizard.swift in Sources */,
 				FEA9F9DD1C8473540000213A /* ChannelTableCell.swift in Sources */,
 				FE28F3601C79AF4700E75BF8 /* LoginViewUI.swift in Sources */,
 				FEAD234F1C85E55900E82F3A /* NSManagedObjectContext+Extensions.swift in Sources */,

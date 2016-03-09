@@ -29,8 +29,8 @@ class LoginViewController: UIViewController, ProgressViewPresenter {
     var managedObjectContext: NSManagedObjectContext?
     
     // ProgressViewPresenter
-    var progressView = UIView()
-
+//    var progressView = UIView()
+    var messageFrame = UIView()
     // MARK: - 🔄 Life Cycle
     
     override func viewDidLoad() {

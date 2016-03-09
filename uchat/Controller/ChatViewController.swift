@@ -11,7 +11,7 @@
 import UIKit
 import CoreData
 
-class ChatViewController: UIViewController, KeyboardWizard, ManagedObjectContextSettable {
+class ChatViewController: UIViewController, ManagedObjectContextSettable {
     
     // MARK: - 🎛 Properties
     
@@ -30,24 +30,21 @@ class ChatViewController: UIViewController, KeyboardWizard, ManagedObjectContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        becomeKeyboardWizard()
         setupDataSource()
+        channel.subscribeUser(inView: self)
+        becomeKeyboardWizard()
         
         // Set up UI
+        navigationItem.title = channel.code
         navigationController?.navigationBar.tintColor = OTMColors.UBlue
-        self.chatWall.rowHeight = UITableViewAutomaticDimension
-        self.chatWall.separatorStyle = .None
-        
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        channel.subscribeUser(inView: self)
+        chatWall.rowHeight = UITableViewAutomaticDimension
+        chatWall.separatorStyle = .None
     }
     
     override func viewWillDisappear(animated: Bool) {
-        deregisteKeyboardWizard()
+        super.viewWillDisappear(animated)
         channel.unsubscribeUser(fromView: self)
+        deregisterKeyboardWizard()
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -119,6 +116,9 @@ class ChatViewController: UIViewController, KeyboardWizard, ManagedObjectContext
         print("configuring dataSource for ChatTable")
         dataSource = TableViewDataSource(tableView: chatWall, dataProvider: dataProvider, delegate: self)
     }
+    
+
+    
 }
 
 
@@ -157,6 +157,55 @@ extension ChatViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
+    }
+    
+}
+
+// MARK: - ⌨️ Keyboard scrolling
+
+extension ChatViewController {
+
+    func becomeKeyboardWizard() {
+        
+        NSNotificationCenter.defaultCenter().addObserverForName(UIKeyboardWillShowNotification, object: nil, queue: nil) { notification in
+            self.keyboardWillShow(notification)
+        }
+        
+        NSNotificationCenter.defaultCenter().addObserverForName(UIKeyboardWillHideNotification, object: nil, queue: nil) { notification in
+            self.keyboardWillHide(notification)
+        }
+    }
+    
+    func deregisterKeyboardWizard() {
+        NSNotificationCenter.defaultCenter().removeObserver(UIKeyboardWillShowNotification)
+        NSNotificationCenter.defaultCenter().removeObserver(UIKeyboardWillHideNotification)
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        let keyboardHeight = notification.userInfo![UIKeyboardFrameEndUserInfoKey]?.CGRectValue.height
+        
+        let duration = notification.userInfo![UIKeyboardAnimationDurationUserInfoKey] as! Double
+        let curve = notification.userInfo![UIKeyboardAnimationCurveUserInfoKey] as! UInt
+       
+        updateUI {
+            UIView.animateWithDuration(duration, delay: 0, options: UIViewAnimationOptions(rawValue: curve), animations: {
+                self.bottomConstraint.constant = keyboardHeight!
+                self.view.layoutIfNeeded()
+                }, completion: nil)
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        
+        let duration = notification.userInfo![UIKeyboardAnimationDurationUserInfoKey] as! Double
+        let curve = notification.userInfo![UIKeyboardAnimationCurveUserInfoKey] as! UInt
+        
+        updateUI {
+            UIView.animateWithDuration(duration, delay: 0, options: UIViewAnimationOptions(rawValue: curve), animations: {
+                self.bottomConstraint.constant = 0
+                self.view.layoutIfNeeded()
+                }, completion: nil)
+        }
     }
     
 }
