@@ -65,7 +65,7 @@ extension ProgressViewPresenter where Self: UIViewController {
             self.progressView.addSubview(blurView)
             self.progressView.addSubview(messageFrame)
         
-            topView.view.addSubview(self.progressView)
+            self.view.addSubview(self.progressView)
         }
         
     }

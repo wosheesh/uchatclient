@@ -62,3 +62,15 @@ extension UIWindow {
     }
     
 }
+
+extension UIApplication {
+    
+    func resetRoot() {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let rvc = LoginViewController()
+        
+        appDelegate.window?.rootViewController = rvc
+        appDelegate.window?.makeKeyAndVisible()
+    }
+    
+}

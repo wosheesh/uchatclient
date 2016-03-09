@@ -28,7 +28,6 @@ class ChannelsViewController: UITableViewController, ManagedObjectContextSettabl
     }
     
     // ProgressViewPresenter
-//    var messageFrame = UIView()
     var progressView = UIView()
     
     //MARK: - 🔄 Lifecycle
@@ -36,8 +35,11 @@ class ChannelsViewController: UITableViewController, ManagedObjectContextSettabl
     override func viewDidLoad() {
         super.viewDidLoad()
         UIApplication.sharedApplication().statusBarStyle = .LightContent
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         setUIEnabled(true)
-        
         refreshCatalogue(self)
     }
     
@@ -72,12 +74,14 @@ class ChannelsViewController: UITableViewController, ManagedObjectContextSettabl
     // MARK: - 🐵 Helpers
     
     @IBAction func refreshCatalogue(sender: AnyObject) {
+        
         UClient.sharedInstance().updateUdacityCourseCatalogue() { result in
             switch result {
             case .Success(_):
                 
                 print("Setting up Table Data Source for Channels")
                 self.setupTableView()
+                
                 print("Updating the channels list with catalogue...")
                 self.updateChannels()
                 
@@ -129,7 +133,7 @@ class ChannelsViewController: UITableViewController, ManagedObjectContextSettabl
             let channelName = course[UClient.JSONResponseKeys.CourseTitle] as! String
             let channelTagline = course[UClient.JSONResponseKeys.CourseSubtitle] as! String
             var imagePathOnline = course[UClient.JSONResponseKeys.CourseImage] as! String?
-            if imagePathOnline == "" { imagePathOnline = nil } // force unwrapping AnyObject as String cannot yield nil
+            if imagePathOnline == "" { imagePathOnline = nil } // force unwrapping AnyObject as String cannot yield nil?
             
             managedObjectContext.performChanges {
                 // create or fetch channel object
@@ -178,7 +182,6 @@ class ChannelsViewController: UITableViewController, ManagedObjectContextSettabl
             vc.channel = channel
         case .Logout:
             guard let rvc = segue.destinationViewController as? LoginViewController else { fatalError("Wrong view controller type") }
-            rvc.managedObjectContext = managedObjectContext
         }
     }
 

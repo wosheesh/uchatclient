@@ -25,9 +25,6 @@ class LoginViewController: UIViewController, ProgressViewPresenter {
     let retrievedEmail: String? = KeychainWrapper.stringForKey("email")
     let retrievedPasswd: String? = KeychainWrapper.stringForKey("password")
     
-    // ManagedObjectContextSettable
-    var managedObjectContext: NSManagedObjectContext?
-    
     // ProgressViewPresenter
     var progressView = UIView()
 
@@ -102,7 +99,6 @@ class LoginViewController: UIViewController, ProgressViewPresenter {
         
         UClient.sharedInstance().authenticateWithUserCredentials(email, password: passwd) { (success, errorString) in
             if success {
-                self.managedObjectContext = createUchatMainContext()
                 self.addUserKeychain(email, passwd: passwd)
                 self.completeLogin()
             } else {
@@ -117,7 +113,7 @@ class LoginViewController: UIViewController, ProgressViewPresenter {
             let vc = nc.viewControllers.first as? ManagedObjectContextSettable else {
                     fatalError("Wrong view controller type")
         }
-        vc.managedObjectContext = managedObjectContext
+        vc.managedObjectContext = createUchatMainContext()
         presentViewController(nc, animated: true, completion: nil)
         self.setUIEnabled(enabled: false)
     }
