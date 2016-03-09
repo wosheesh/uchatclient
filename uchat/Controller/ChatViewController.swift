@@ -31,26 +31,25 @@ class ChatViewController: UIViewController, ManagedObjectContextSettable {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDataSource()
-        channel.subscribeUser(inView: self)
-        becomeKeyboardWizard()
-        
+
         // Set up UI
         navigationItem.title = channel.name
         navigationController?.navigationBar.tintColor = OTMColors.UBlue
-//        UINavigationBar.appearance().b
         chatWall.rowHeight = UITableViewAutomaticDimension
         chatWall.separatorStyle = .None
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        channel.subscribeUser(inView: self)
+        becomeKeyboardWizard()
+        
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         channel.unsubscribeUser(fromView: self)
         deregisterKeyboardWizard()
-    }
-    
-    override func viewDidDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
-        
     }
     
     // MARK: - 📬 Receive and display messages
