@@ -28,7 +28,8 @@ class ChannelsViewController: UITableViewController, ManagedObjectContextSettabl
     }
     
     // ProgressViewPresenter
-    var messageFrame = UIView()
+//    var messageFrame = UIView()
+    var progressView = UIView()
     
     //MARK: - 🔄 Lifecycle
     

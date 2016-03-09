@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 func downloadFile(url: NSURL, handler: (success: Bool, data: NSData?, error: NSError?) -> Void) -> NSURLSessionDataTask{
     let session = NSURLSession.sharedSession()
@@ -44,6 +45,20 @@ extension NSURL {
     
     static var documentsURL: NSURL {
         return try! NSFileManager.defaultManager().URLForDirectory(.DocumentDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: true)
+    }
+    
+}
+
+extension UIWindow {
+    
+    func capture() -> UIImage {
+        
+        UIGraphicsBeginImageContextWithOptions(self.frame.size, self.opaque, UIScreen.mainScreen().scale)
+        self.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return image
     }
     
 }

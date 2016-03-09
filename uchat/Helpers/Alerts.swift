@@ -26,7 +26,7 @@ public func simpleAlert(target: UIViewController, message: String, title: String
 }
 
 protocol ProgressViewPresenter: class {
-    var messageFrame: UIView {get set}
+    var progressView: UIView {get set}
 }
 
 extension ProgressViewPresenter where Self: UIViewController {
@@ -34,15 +34,8 @@ extension ProgressViewPresenter where Self: UIViewController {
 /* shows an activity indicator with a simple message */
     func showProgressView(message: String) {
         
-//        //Take a screenshot
-//        UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, true, 1)
-//        self.view.drawViewHierarchyInRect(self.view.bounds, afterScreenUpdates: true)
-//        let screenshot = UIGraphicsGetImageFromCurrentImageContext()
-//        UIGraphicsEndImageContext()
-//        
-//        //Add an UIImageView and blur it
-//        let blurView = UIImageView(image: screenshot)
-//        blurView.makeBlurImage(withStyle: .Light)
+        // get a blurred screenshot
+        let blurView = blurUIWindow()
         
         //Create an activity indicator inside messageFrame
         var activityIndicator = UIActivityIndicatorView()
@@ -51,7 +44,7 @@ extension ProgressViewPresenter where Self: UIViewController {
         strLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 200, height: 50))
         strLabel.text = message
         strLabel.textColor = UIColor.whiteColor()
-        messageFrame = UIView(frame: CGRect(x: self.view.frame.midX - 90, y: self.view.frame.midY - 25 , width: 180, height: 50))
+        let messageFrame = UIView(frame: CGRect(x: self.view.frame.midX - 90, y: self.view.frame.midY - 25 , width: 180, height: 50))
         messageFrame.layer.cornerRadius = 15
         messageFrame.backgroundColor = UIColor(white: 0, alpha: 0.7)
         
@@ -63,17 +56,35 @@ extension ProgressViewPresenter where Self: UIViewController {
         
         // Wrap it all in one view
         updateUI {
-//            self.progressView = UIView(frame: self.view.bounds)
-//            self.progressView.addSubview(blurView)
-//            self.progressView.addSubview(messageFrame)
+            self.navigationController?.navigationBar.layer.zPosition = -1
+            self.progressView = UIView(frame: self.view.bounds)
+            self.progressView.addSubview(blurView)
+            self.progressView.addSubview(messageFrame)
         
-            self.view.addSubview(self.messageFrame)
+            self.view.addSubview(self.progressView)
         }
         
     }
     
     func hideProgressView() {
-        updateUI { self.messageFrame.removeFromSuperview() }
+        updateUI {
+            self.navigationController?.navigationBar.layer.zPosition = 0
+            self.progressView.removeFromSuperview()
+        }
+    }
+    
+    func blurUIWindow() -> UIView {
+        
+        let window: UIWindow! = UIApplication.sharedApplication().keyWindow
+        
+        //Take a screenshot
+        let screenshot = window.capture()
+        
+        //Add an UIImageView and blur it
+        let blurView = UIImageView(image: screenshot)
+        blurView.makeBlurImage(withStyle: .Light)
+    
+        return blurView
     }
 
 }
