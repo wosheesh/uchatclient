@@ -36,11 +36,7 @@ class LoginViewController: UIViewController, ProgressViewPresenter {
     override func viewDidLoad() {
         super.viewDidLoad()
         UIApplication.sharedApplication().statusBarStyle = .Default
-        
-        if let email = retrievedEmail, let passwd = retrievedPasswd {
-            startLogin(email, passwd: passwd)
-        }
-        
+
         // convenience for dev
         #if DEBUG
             emailTextField.text = envDict["UDACITY_EMAIL"]
@@ -50,6 +46,12 @@ class LoginViewController: UIViewController, ProgressViewPresenter {
     }
     
     override func viewWillAppear(animated: Bool) {
+        
+        // move on if we have login stored in keychain
+        if let email = retrievedEmail, let passwd = retrievedPasswd {
+            startLogin(email, passwd: passwd)
+        }
+        
         super.viewWillAppear(animated)
         setupUI()
         emailTextField.delegate = self
