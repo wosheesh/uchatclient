@@ -41,6 +41,11 @@ class ChannelsViewController: UITableViewController, ManagedObjectContextSettabl
         refreshCatalogue(self)
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        hideProgressView()
+    }
+    
     @IBAction func logoutButtonTouchUp(sender: AnyObject) {
         setUIEnabled(false)
         showProgressView("Leaving...")
@@ -51,7 +56,6 @@ class ChannelsViewController: UITableViewController, ManagedObjectContextSettabl
                 // if current user has logged out, set the current NSManagedContext to nil
                 self.managedObjectContext = nil
                 self.removeUserKeychain()
-                self.hideProgressView()
                 self.performSegue(SegueIdentifier.Logout)
             case .Failure(let error):
                 self.hideProgressView()

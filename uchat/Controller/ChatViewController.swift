@@ -35,8 +35,9 @@ class ChatViewController: UIViewController, ManagedObjectContextSettable {
         becomeKeyboardWizard()
         
         // Set up UI
-        navigationItem.title = channel.code
+        navigationItem.title = channel.name
         navigationController?.navigationBar.tintColor = OTMColors.UBlue
+//        UINavigationBar.appearance().b
         chatWall.rowHeight = UITableViewAutomaticDimension
         chatWall.separatorStyle = .None
     }

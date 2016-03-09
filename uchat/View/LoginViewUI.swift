@@ -14,6 +14,7 @@ extension LoginViewController {
     // MARK: setupUI for LoginViewController
     
     func setupUI() {
+        UIApplication.sharedApplication().statusBarStyle = .Default
         self.view.backgroundColor = UIColor.whiteColor()
     }
     

@@ -30,12 +30,11 @@ class LoginViewController: UIViewController, ProgressViewPresenter {
     
     // ProgressViewPresenter
     var progressView = UIView()
-//    var messageFrame = UIView()
+
     // MARK: - 🔄 Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIApplication.sharedApplication().statusBarStyle = .Default
 
         // convenience for dev
         #if DEBUG
@@ -46,16 +45,25 @@ class LoginViewController: UIViewController, ProgressViewPresenter {
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        setupUI()
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
         // move on if we have login stored in keychain
         if let email = retrievedEmail, let passwd = retrievedPasswd {
             startLogin(email, passwd: passwd)
         }
-        
-        super.viewWillAppear(animated)
-        setupUI()
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        hideProgressView()
+
     }
     
     // MARK: - 💥 Actions
@@ -104,17 +112,14 @@ class LoginViewController: UIViewController, ProgressViewPresenter {
     }
     
     func completeLogin() {
-        updateUI {
-            self.hideProgressView()
-            self.setUIEnabled(enabled: false)
-        }
-        
+
         guard let nc = storyboard!.instantiateViewControllerWithIdentifier("ChatNav") as? UINavigationController,
             let vc = nc.viewControllers.first as? ManagedObjectContextSettable else {
                     fatalError("Wrong view controller type")
         }
         vc.managedObjectContext = managedObjectContext
         presentViewController(nc, animated: true, completion: nil)
+        self.setUIEnabled(enabled: false)
     }
     
     // open with Safari helper
