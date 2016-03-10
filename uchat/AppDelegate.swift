@@ -10,7 +10,6 @@ import UIKit
 import Foundation
 import Parse
 
-
 //Load env variables
 let envDict = NSProcessInfo.processInfo().environment
 
@@ -18,28 +17,15 @@ let envDict = NSProcessInfo.processInfo().environment
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-//    let managedObjectContext = createUchatMainContext()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         // Initialize Parse
         Parse.initializeWithConfiguration(ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) -> Void in
-            configuration.applicationId = "uchatapp"
-            configuration.clientKey = "8022802"
-            configuration.server = "https://intense-river-39239.herokuapp.com/parse"
+            configuration.applicationId = ParseClient.Environment.PARSE_APP_ID
+            configuration.clientKey = ParseClient.Environment.PARSE_CLIENT_KEY
+            configuration.server = ParseClient.Environment.PARSE_SERVER
         }))
-        
-        
-
-        
-        PFUser.enableAutomaticUser()
-        
-        let defaultACL = PFACL();
-        
-        // If you would like all objects to be private by default, remove this line.
-        defaultACL.publicReadAccess = true
-        
-        PFACL.setDefaultACL(defaultACL, withAccessForCurrentUser: true)
         
         if application.applicationState != UIApplicationState.Background {
             // Track an app open here if we launch with a push, unless
@@ -93,8 +79,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - 📩 Handle received notifications
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-//        NSLog("📬  \(__FUNCTION__): application received a message: \(userInfo)")
-//        PFPush.handlePush(userInfo)
         
         if application.applicationState == UIApplicationState.Inactive {
             NSLog("Notification received while app was inactive")
@@ -146,8 +130,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // return the last found.
         return vc
     }
-    
-    
 
 }
 

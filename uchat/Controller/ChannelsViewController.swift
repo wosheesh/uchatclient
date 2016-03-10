@@ -181,7 +181,7 @@ class ChannelsViewController: UITableViewController, ManagedObjectContextSettabl
             vc.managedObjectContext = managedObjectContext
             vc.channel = channel
         case .Logout:
-            guard let rvc = segue.destinationViewController as? LoginViewController else { fatalError("Wrong view controller type") }
+            guard let _ = segue.destinationViewController as? LoginViewController else { fatalError("Wrong view controller type") }
         }
     }
 

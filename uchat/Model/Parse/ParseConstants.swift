@@ -13,10 +13,11 @@ extension ParseClient {
     // MARK: - Constants
     
     struct Environment {
-        static let PARSE_APP_ID: String = "uchatapp"
-        static let PARSE_MASTER_KEY: String = "8022802"
-        static let PARSE_SERVER: String = "https://intense-river-39239.herokuapp.com/parse"
-        static let PARSE_CLIENT_KEY: String = "8022802"
+        static let PARSE_APP_ID: String = envDict["PARSE_APP_ID"]!
+        static let PARSE_MASTER_KEY: String = envDict["PARSE_MASTER_KEY"]!
+        static let PARSE_SERVER: String = envDict["PARSE_SERVER"]!
+        static let PARSE_CLIENT_KEY: String = envDict["PARSE_CLIENT_KEY"]!
+
     }
     
     struct Constants {
