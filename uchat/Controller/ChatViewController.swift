@@ -6,8 +6,6 @@
 //  Copyright © 2016 Wojtek Materka. All rights reserved.
 //
 
-// TODO: Improve the chat bubbles UI sizes
-
 import UIKit
 import CoreData
 
@@ -54,7 +52,7 @@ class ChatViewController: UIViewController, ManagedObjectContextSettable {
     
     // MARK: - 📬 Receive and display messages
     
-    func displayNewMessage(notification: NSNotification) {
+    func processNewMessage(notification: NSNotification) {
         
         let userInfo = notification.object as! [NSObject : AnyObject]
         do {
@@ -69,7 +67,6 @@ class ChatViewController: UIViewController, ManagedObjectContextSettable {
         
 
     }
-    
     
     // MARK: - 📮 Send a message to current channel
     

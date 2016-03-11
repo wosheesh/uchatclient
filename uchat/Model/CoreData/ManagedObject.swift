@@ -24,20 +24,8 @@ extension ManagedObjectType {
     public static var sortedFetchRequest: NSFetchRequest {
         let request = NSFetchRequest(entityName: entityName)
         request.sortDescriptors = defaultSortDescriptors
-//        request.predicate = defaultPredicate  // extend the protocol for this 
         return request
     }
-    
-    
-    /// Creates a *sortedFetchRequest* for a *ManagedObjectType* and adds a new predicate to it (keeping the default).
-    /// - Returns: NSFetchRequest
-//    public static func sortedFetchRequestWithPredicate(predicate: NSPredicate) -> NSFetchRequest {
-//        let request = sortedFetchRequest
-//        print("running sortedrequestWithPredicate: \(request)")
-//        guard let existingPredicate = request.predicate else { fatalError("request must have default predicate") }
-//        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [existingPredicate, predicate])
-//        return request
-//    }
     
 }
 

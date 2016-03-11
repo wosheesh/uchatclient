@@ -46,9 +46,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("Parse initialized ✅")
         
         // Register for notifications
-        let notificationTypes: UIUserNotificationType = [.Alert, .Badge, .Sound]
-        let notificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: nil)
-        UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
         UIApplication.sharedApplication().registerForRemoteNotifications()
         
         return true

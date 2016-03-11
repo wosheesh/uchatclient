@@ -66,7 +66,8 @@ extension Message: ManagedObjectType {
 import Parse
 
 extension Message {
-
+    
+    /// Translates the object's parameters into json for push notification.
     func Send(toChannel channel: Channel, sender: UIViewController) {
         // create message body
         let jsonBody: [String: AnyObject] = [
@@ -98,7 +99,7 @@ extension Message {
         case ChannelIdNotFound
     }
     
-    /// This is the main engine for parsing an incoming message into a Message object. The function checks for the validity of syntax, channel corectness and also interprets if the message was sent by the current user or other users. It will return nil if the incoming message was to a different channel to the currently subscribed or if we failed to create a new Message in context.
+    /// This is the main engine for parsing an incoming message into a Message object. The function checks for the validity of syntax, channel corectness and also interprets if the message was sent by the current user or other users. It will return nil if the incoming message was sent to a different channel to the currently subscribed or if we failed to create a new Message in context.
     ///  - Returns: Message?
     static func createFromPushNotification(userInfo: [NSObject : AnyObject], inContext context: NSManagedObjectContext, currentChannel: Channel) throws -> Message? {
         
@@ -116,7 +117,7 @@ extension Message {
         
         // Check if this is a message we have sent. If not treat it as someone else's message and add it to context. If yes, update the existing message's receivedAt property.
         if let sentMessage = Message.findOrFetchMessage(withId: id, inContext: context) {
-            print("🔂 Received a message sent by us. Updating receivedAt:")
+            print("🔂 Received a message sent by the current user. Updating receivedAt:")
             context.performChanges { sentMessage.receivedAt = NSDate() }
             return sentMessage
         }

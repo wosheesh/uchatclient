@@ -93,7 +93,7 @@ import Parse
 extension Channel {
     
     func subscribeUser(inView sender: ChatViewController) {
-        NSNotificationCenter.defaultCenter().addObserver(sender, selector: "displayNewMessage:", name: "newMessage", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(sender, selector: "processNewMessage:", name: "newMessage", object: nil)
         PFPush.subscribeToChannelInBackground(self.code) { succeeded, error in
             if succeeded {
                 print("🚀 Successfully subscribed to channel: \(self.code).")
