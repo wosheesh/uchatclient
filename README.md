@@ -43,26 +43,13 @@ Comments on code
 There are few aspects of the code that are interesting from a learning perspective. I've outlined them below mostly to crystalise my own understanding. Hopefully you'll find them useful, especially if you're a beginning iOS developer.
 
 ## Push notifications
-Uchat uses Apple Push Notification service (APNs) for sending and receiving chat messages. I've considered other solutions for peer to peer communication, but at this stage I wanted to focus on the client side of things, and majority of alternatives required much more back-end work[^pushproviders]. 
+Uchat uses Apple Push Notification service (APNs) for sending and receiving chat messages. I've considered other solutions for peer to peer communication, but at this stage I wanted to focus on the client side of things, and majority of alternatives required much more back-end work. 
 
 ### Registration for APNs
 Following steps are executed before any app can receive and send remote notifications:
 
-```sequence
-Title: Remote Notification Registration
-participant Parse server
-participant App
-participant iOS
-participant APNs
-Note over App: Launch
-App->iOS: Register for notification
-iOS->APNs: Ask for device token
-Note over APNs: Assign a device token
-APNs-->App: Send token
-Note over App, iOS: App is registered
-App->Parse server: Forward the token
-Note left of Parse server: Server is now \n registered
-```
+![alt text](https://github.com/wosheesh/uchatclient/blob/master/Img/RemoteNotifRegistration.png?raw=true "Remote Notification Registration")
+
 Registration starts with the AppDelegate calling the `registerForRemoteNotifications()`  method.  As far as I understand this happens every time an app launches. That's in order to keep the tokens up to date.
 > Note that uchat doesn't require users to enable notifications. All notifications are delivered in the background with no Badges, Sounds or Alerts. That's why `application:registerUserNotificationSettings` is not being called during registration.
 
@@ -80,34 +67,15 @@ The token is like a phone number. It allows APNs to track the device for which a
 User needs to be subscribed to a channel in order to send and receive messages. When the user selects a channel she is automatically subscribed to it when `ChatViewController` is instantiated. Users can only be subscribed to one channel at a time. 
 Channel subscription encompasses informing the Parse server of a new device id that entered a specified channel, as well as adding a new observer for a local notification "newMessage":
 
-```sequence
-title: Subscribing to a channel
-participant User
-participant ChatVC
-participant Parse server
-User->ChatVC: Enter
-Note over ChatVC: Register ChatVC as \n observer for local notification \n  "newMessage"
-Note right of ChatVC: Inform server of \n new user in channel
-ChatVC->Parse server: Device token
-Note over Parse server: Add device token \n to channel
-Note right of Parse server: User subscribed to channel \n and can receive messages
+![alt text](https://github.com/wosheesh/uchatclient/blob/master/Img/SubscribingToAChannel.png?raw=true "Subscribing to a channel")
 
-```
 The *local notification "newMessage"*  is used to pass the payload of the *remote notification* inside the app. So in effect uchat uses *remote notifications* to push messages to other devices, and *local notifications* to distribute them to the appropriate view controller while app is active. This will be covered in the next section on data persistency.
 
 ### Sending and receiving notifications
 Uchat uses REST API to communicate with the Parse server to send new chat messages as remote push notifications:
-```sequence
-Title: Sending messages as push notifications
-Note left of uchat A: user enters a channel \n and sends a message
-Note over uchat A: cast message object \n into JSON format
-uchat A->Parse server: send JSON through \n REST request
-Note over Parse server: match all device tokens \n with the specified channel
-Parse server->APNs: Establish TLS connection
-Parse server->APNs: Send notification payloads
-APNs-> Channel \n participants: push notifications
-Note right of Channel \n participants: This includes \n uchat A user
-```
+
+![alt text](https://github.com/wosheesh/uchatclient/blob/master/Img/RemoteNotifRegistration.png?raw=true "Remote Notification Registration")
+
 The Parse server then establishes a TLS connection with APNs following the [APNs API](https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/APNsProviderAPI.html#//apple_ref/doc/uid/TP40008194-CH101-SW1) protocol. 
 > Parse allows to group users by a [channel parameter](https://parse.com/docs/ios/guide#push-notifications-using-channels). This is the functionality that uchat uses to send messages only to the participants of the currently subscribed "chat room".
 
@@ -125,6 +93,8 @@ A lot of ideas for integrating CoreData came from the book by Florian Kugler and
 
 ### Model
 Uchat has a relatively simple model with 2 entities: Channel and Message in a one-to-many relationship:
+
+![alt text](https://github.com/wosheesh/uchatclient/blob/master/Img/Uchat_Model.png?raw=true "Remote Notification Registration")
 
 What's more interesting are the CoreData protocols and helpers introduced by Florian and Daniel in their book, and which I have integrated into the app:
 
@@ -164,34 +134,13 @@ The `FetchedResultsDataProvider` gathers all changes reported from the `NSFetche
         }
     }
 By introducing the `DataSource` and `DataProvider` protocols and the `FetchedResultsDataProvider` and `TableViewDataSource` classes, the above code is the only "boilerplate" we need to write for any kind of TableView that needs to be updated with CoreData context changes. 
-This is how they work together to keep a `UITableView` to keep up to date with the changed from the fetched results controller:
+I found this solution a very clean way to keep code and CoreData organised. For a simple app like this it may look like overkill, but debugging CoreData can be a very tedious process, and I found that with this approach it was much easier.
 
-I found this solution a very clean way to keep code and CoreData organised. For a simple app like this it may look like overkill, but debugging CoreData can be a very tedious process, and I found that with this approach it was much easier. By the way if you are working on core 
 ### CoreData's interaction with Push Notifications
 Once the user's currently enrolled courses are matched with udacity's catalogue and channels are created in CoreData, the user can start chatting. Following is an explanation on how the model and the push system work together in `ChatViewController`:
 
-```sequence
-title: Sending a new message and updating CoreData
-participant User
-participant ChatVC
-participant Message
-participant AppDelegate
-participant Parse server
-participant APNs
-Note over User, ChatVC: User already in channel
-User->Message: Compose
-Note over Message: initiate with \n createdAt = NSDate() \n receivedAt = nil
-Message->Parse server: Message:send:
-Parse server->APNs: notification payload
-APNs-->AppDelegate: Push notification
-Note over AppDelegate: application:didReceiveRemoteNotification: \n triggers a local notification with userInfo
-AppDelegate-->ChatVC: "newMessage".userInfo
-ChatVC-->Message: .userInfo \n as! [NSObject: AnyObject]
-Note over Message: Message:createFromPushNotification:
-Note over Message: create a new Message or \n update sent message with \n receivedAt = NSDate()
-Note over ChatVC: A message is displayed automatically \n if NSManagedObjectContext was changed.
+![alt text](https://github.com/wosheesh/uchatclient/blob/master/Img/SendingMessagesAsPushNotifs.png?raw=true "Sending messages as push notifications")
 
-```
 The actual process is simpler than it would seem from the above diagram. Perhaps the most important aspect is how the messages get translated from push notifiations to Message entities and vice-versa:
 #### Sending a message and CoreData:
 1. User creates a new message body and touches the send button in `ChatViewController`
@@ -206,10 +155,6 @@ The actual process is simpler than it would seem from the above diagram. Perhaps
 2. A local notification **"newMessage"** is triggered with the remote notification's `userInfo`  and passed to the `ChatViewController` which calls `Message:createFromPushNotification`.
 3. `Message:createFromPushNotification:` parses the userInfo as JSON and either creates a new Message entity and saves it into context, or updates an existing message by changing its receivedAt date to current time.
 4. The message is displayed by  `ChatViewController`
-
-
-
-
 
 ### APIs
 
