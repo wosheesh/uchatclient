@@ -22,6 +22,8 @@ extension ChatTableCell: ConfigurableCell {
         
         if message.authorKey == UdacityUser.udacityKey {
             messageAuthorName.textColor = OTMColors.UGreen
+        } else {
+            messageAuthorName.textColor = UIColor(red: 0.722, green: 0.722, blue: 0.722, alpha: 1.00)
         }
         
     }

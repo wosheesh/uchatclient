@@ -82,6 +82,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
         }
         
+        print("\(__FUNCTION__) reports that a new message was received")
+        
         // Handle push while app is active
         if application.applicationState == UIApplicationState.Active {
             NSLog("Notification received while app was Active")

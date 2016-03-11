@@ -96,12 +96,13 @@ extension Message {
         case BodyNotFound
         case AuthorNameNotFound
         case CreationDateNotFound
+        case ChannelIdIncorrect
         case ChannelIdNotFound
     }
     
     /// This is the main engine for parsing an incoming message into a Message object. The function checks for the validity of syntax, channel corectness and also interprets if the message was sent by the current user or other users. It will return nil if the incoming message was sent to a different channel to the currently subscribed or if we failed to create a new Message in context.
     ///  - Returns: Message?
-    static func createFromPushNotification(userInfo: [NSObject : AnyObject], inContext context: NSManagedObjectContext, currentChannel: Channel) throws -> Message? {
+    static func createFromPushNotification(userInfo: [NSObject : AnyObject], inContext context: NSManagedObjectContext, currentChannel: Channel) throws {
         
         guard let aps = userInfo["aps"] as? NSDictionary else { throw MessageError.InvalidSyntax }
         guard let channelCodes = userInfo[ParseClient.PushMessage.Channels] as? [String] else { throw MessageError.ChannelIdNotFound }
@@ -111,7 +112,7 @@ extension Message {
         // but that's a different UX. In this version the app allows sending only in currently
         // subscribed channel, and there can only be one channel subscribed at a time.
         // However this implementation makes it relatively easy to extend to create groups, etc.
-        if !channelCodes.contains(currentChannel.code) { return nil }
+        if !channelCodes.contains(currentChannel.code) { throw MessageError.ChannelIdIncorrect }
         
         guard let id = userInfo[ParseClient.PushMessage.Id] as? String else { throw MessageError.IdNotFound }
         
@@ -119,7 +120,7 @@ extension Message {
         if let sentMessage = Message.findOrFetchMessage(withId: id, inContext: context) {
             print("🔂 Received a message sent by the current user. Updating receivedAt:")
             context.performChanges { sentMessage.receivedAt = NSDate() }
-            return sentMessage
+            return
         }
         
         guard let body = aps[ParseClient.PushMessage.Body] as? String else { throw MessageError.BodyNotFound }
@@ -128,12 +129,11 @@ extension Message {
         guard let createdAt = userInfo[ParseClient.PushMessage.CreatedAt] as? String else { throw MessageError.CreationDateNotFound }
 
         
-        // If we got this far, it means this is a new message. Add it to the channel and return.
-        context.performChanges { return Message.insertIntoContext(context, body: body, authorName: authorName, authorKey: authorKey, createdAt: createdAt.stringToDate(), receivedAt: NSDate(), channel: currentChannel) }
-        
-        // If we failed return nil
-        print("😟 Failed to parse a new message")
-        return nil
+        // If we got this far, it means this is a new message. Add it to the channel.
+        context.performChanges {
+            let newMessage = Message.insertIntoContext(context, body: body, authorName: authorName, authorKey: authorKey, createdAt: createdAt.stringToDate(), receivedAt: NSDate(), channel: currentChannel)
+            print(newMessage)
+        }
         
     }
     
