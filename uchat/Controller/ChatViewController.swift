@@ -29,7 +29,7 @@ class ChatViewController: UIViewController, ManagedObjectContextSettable {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDataSource()
-
+        
         // Set up UI
         navigationItem.title = channel.name
         navigationController?.navigationBar.tintColor = OTMColors.UBlue
@@ -39,15 +39,27 @@ class ChatViewController: UIViewController, ManagedObjectContextSettable {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        channel.subscribeUser(inView: self)
+        subscribeChannel()
         becomeKeyboardWizard()
+        
+        // subscribe to notifications about application state (to make sure we unsubscribe from current channel if user hits the home key or quits the app)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"unsubscribeChannel" , name: UIApplicationWillResignActiveNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"unsubscribeChannel" , name: UIApplicationWillTerminateNotification, object: nil)
+        
+        // ... and if application enters foreground again
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "subscribeChannel", name: UIApplicationWillEnterForegroundNotification, object: nil)
         
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        channel.unsubscribeUser(fromView: self)
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationWillTerminateNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationWillResignActiveNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationWillEnterForegroundNotification, object:  nil)
+        
         deregisterKeyboardWizard()
+        unsubscribeChannel()
     }
     
     // MARK: - 📬 Receive and display messages
@@ -86,6 +98,14 @@ class ChatViewController: UIViewController, ManagedObjectContextSettable {
     }
     
     // MARK: - 🐵 Helpers
+    
+    func subscribeChannel() {
+        channel.subscribeUser(inView: self)
+    }
+    
+    func unsubscribeChannel() {
+        channel.unsubscribeUser(fromView: self)
+    }
 
     @IBAction func viewTapped(sender: AnyObject) {
         chatTextView.resignFirstResponder()
