@@ -1,13 +1,13 @@
 
-📜 What is it?
+What is it?
 =========
 Uchat is a simple iOS chat app written in Swift. It was build as my final project for the [Udacity iOS Developer nanodegree](https://www.udacity.com/nanodegree). 
 
-📬 Basic functionality
+Basic functionality
 ===============
 Users need Udacity credentials to login. After authenticating they can select a chat channel to join from a list that corresponds to the courses they are enrolled in at Udacity. After entering the channel user can send messages to other participants of the channel, similarly to a very basic Slack-like interface. The app doesn't receive messages when not active, except on a special broadcast channel that is available to the developer.
 
-🎁 Getting Started
+Getting Started
 =============
 In order to get this app working you will need to first jump over couple of hurdles:
 1. Set up a standalone [Parse server](https://github.com/ParsePlatform/parse-server) (for push notifications only)
@@ -17,7 +17,7 @@ Uchat uses the Parse server for push notifications. I have deployed my own stand
 
 Once you have the certificates and the server up you can proceed with the installation.
 
-📲 Installation
+Installation
 =========
 ## Download repository
 
@@ -36,18 +36,14 @@ You need to specify your PARSE_APP_ID, PARSE_SERVER, PARSE_CLIENT_KEY **and** PA
     }
 
 You can set the actual variables by [editing Xcode scheme](http://nshipster.com/launch-arguments-and-environment-variables/).
-> **Note:**
-> 
 > Uchat **requires your Parse's server master key** in order to enable client-push. Distributing an app with a master key is not generally recommended. More on "dangers" of client push [here](http://blog.parse.com/learn/engineering/the-dangerous-world-of-client-push/).
 
-💻 Comments on code
+Comments on code
 ===================
 There are few aspects of the code that are interesting from a learning perspective. I've outlined them below mostly to crystalise my own understanding. Hopefully you'll find them useful, especially if you're a beginning iOS developer.
 
 ## Push notifications
 Uchat uses Apple Push Notification service (APNs) for sending and receiving chat messages. I've considered other solutions for peer to peer communication, but at this stage I wanted to focus on the client side of things, and majority of alternatives required much more back-end work[^pushproviders]. 
-
-
 
 ### Registration for APNs
 Following steps are executed before any app can receive and send remote notifications:
@@ -217,7 +213,7 @@ The actual process is simpler than it would seem from the above diagram. Perhaps
 
 ### APIs
 
-🐛 Known Issues
+Known Issues
 ===========
 
  - The textView controller in ChatViewController doesn't always gets its height properly
@@ -230,7 +226,7 @@ Licensing
 
 
 
-📮 Contact
+Contact
 ======
 You can find me on [twitter](https://twitter.com/wmaterka) to catchup or contact me through github if you need any help with the code.
 
