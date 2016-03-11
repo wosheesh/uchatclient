@@ -92,7 +92,6 @@ class ChatViewController: UIViewController, ManagedObjectContextSettable {
             
             // clean up the textView
             chatTextView.text = ""
-            chatTextView.resignFirstResponder()
             chatTextViewHeightConst.constant = chatTextView.minChatTextViewHeight()
         }
     }
