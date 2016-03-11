@@ -124,6 +124,7 @@ class ChatViewController: UIViewController, ManagedObjectContextSettable {
 extension ChatViewController: DataProviderDelegate {
     func dataProviderDidUpdate(updates: [DataProviderUpdate<Message>]?) {
         dataSource.processUpdates(updates)
+        dataSource.scrollToLastRow()
     }
 }
 

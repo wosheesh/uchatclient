@@ -49,6 +49,11 @@ class TableViewDataSource<Delegate: DataSourceDelegate, Data: DataProvider, Cell
         tableView.endUpdates()
     }
     
+    func scrollToLastRow() {
+        let indexPath = NSIndexPath(forRow: dataProvider.numberOfItemsInSection(0)-1, inSection: 0)
+        tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: false)
+    }
+    
     // MARK: Private
     
     private let tableView: UITableView
