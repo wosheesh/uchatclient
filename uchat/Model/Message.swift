@@ -35,8 +35,13 @@ public final class Message: ManagedObject {
         message.authorKey = authorKey
         message.channel = channel
         message.createdAt = createdAt
-        message.receivedAt = receivedAt
         message.status = .Created
+        
+        if let receivedDate = receivedAt {
+            message.receivedAt = receivedDate
+            message.status = .Received
+        }
+        
         return message
     }
     

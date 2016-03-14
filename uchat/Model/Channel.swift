@@ -104,7 +104,7 @@ extension Channel {
     }
 
     func unsubscribeUser(fromView sender: ChatViewController) {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "newMessage", object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(sender, name: "newMessage", object: nil)
         PFPush.unsubscribeFromChannelInBackground(self.code) { succeeded, error in
             if succeeded {
                 print("🚀 Unsubscribed from \(self.code)")

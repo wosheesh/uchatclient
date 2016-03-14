@@ -79,24 +79,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if application.applicationState == UIApplicationState.Inactive {
             NSLog("Notification received while app was inactive")
-            PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
         }
         
         print("\(__FUNCTION__) reports that a new message was received")
         
         // Handle push while app is active
         if application.applicationState == UIApplicationState.Active {
-            NSLog("Notification received while app was Active")
+            print(" 📬 new message received with userinfo: \(userInfo)")
+            
             guard let rootViewController = self.window?.rootViewController else {
-                print("root")
-                return
+                fatalError("Couldn't find root view controller")
             }
+            
+            print(userInfo)
             
             if let currentViewController = getCurrentViewController(rootViewController) {
                 if currentViewController.isKindOfClass(ChatViewController) {
                     NSNotificationCenter.defaultCenter().postNotificationName("newMessage", object: userInfo)
-                    print(" 📬 new message received with userinfo: \(userInfo)")
-
                 }
             }
             
