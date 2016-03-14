@@ -12,11 +12,14 @@ class ChatTableCell: UITableViewCell {
     
     @IBOutlet weak var messageBody: UILabel!
     @IBOutlet weak var messageAuthorName: UILabel!
+    @IBOutlet weak var emojiIndicator: UILabel!
+    
 }
 
-extension ChatTableCell: ConfigurableCell {
+extension ChatTableCell: ConfigurableCell, Emojicator {
     
     func configureForObject(message: Message) {
+        updateIndicator(message.status)
         messageBody.text = message.body
         messageAuthorName.text = message.authorName
         
@@ -28,4 +31,20 @@ extension ChatTableCell: ConfigurableCell {
         
     }
     
+    func updateIndicator(status: Message.Status) {
+        
+        switch status {
+        case .Created:
+            emojiDialStart()
+        case .Sent:
+            messageSent()
+        case .Received:
+            messageReceived()
+        case .Lost:
+            messageLost()
+        }
+        
+    }
+    
 }
+

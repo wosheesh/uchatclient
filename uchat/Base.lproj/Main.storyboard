@@ -15,7 +15,6 @@
             <string>Cabin-Regular</string>
             <string>Cabin-Regular</string>
             <string>Cabin-Regular</string>
-            <string>Cabin-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -236,37 +235,51 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hUm-et-hDg">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="43" sectionHeaderHeight="1" sectionFooterHeight="9" translatesAutoresizingMaskIntoConstraints="NO" id="Nh9-bZ-Abl">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="1" sectionFooterHeight="9" translatesAutoresizingMaskIntoConstraints="NO" id="Nh9-bZ-Abl">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="486"/>
                                         <color key="backgroundColor" red="0.98039215690000003" green="0.98431372549999996" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationWidth="10" reuseIdentifier="ChatCell" textLabel="P6q-ir-cys" detailTextLabel="YMl-I8-1Kv" style="IBUITableViewCellStyleSubtitle" id="Xo0-vc-IMJ" customClass="ChatTableCell" customModule="uchat" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="1" width="600" height="43"/>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationWidth="10" reuseIdentifier="ChatCell" rowHeight="60" id="Xo0-vc-IMJ" customClass="ChatTableCell" customModule="uchat" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="1" width="600" height="60"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Xo0-vc-IMJ" id="T6S-js-fXm">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="42"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="P6q-ir-cys">
-                                                            <rect key="frame" x="15" y="4" width="30" height="20"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" name="Cabin-Regular" family="Cabin" pointSize="16"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message body" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0eX-Ly-nmb">
+                                                            <rect key="frame" x="31" y="8" width="551" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YMl-I8-1Kv">
-                                                            <rect key="frame" x="15" y="24" width="40" height="14"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
-                                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n2L-iX-IQv">
+                                                            <rect key="frame" x="31" y="30" width="62" height="12"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                            <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="🕐" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qb7-aL-1QR">
+                                                            <rect key="frame" x="8" y="8" width="23" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="0eX-Ly-nmb" secondAttribute="trailing" constant="10" id="23S-b7-ojU"/>
+                                                        <constraint firstItem="0eX-Ly-nmb" firstAttribute="top" secondItem="T6S-js-fXm" secondAttribute="topMargin" id="8Qy-ao-JKC"/>
+                                                        <constraint firstAttribute="leadingMargin" secondItem="Qb7-aL-1QR" secondAttribute="leading" id="HQz-rF-9dj"/>
+                                                        <constraint firstItem="0eX-Ly-nmb" firstAttribute="leading" secondItem="T6S-js-fXm" secondAttribute="leadingMargin" constant="23" id="bZL-zr-ch4"/>
+                                                        <constraint firstItem="Qb7-aL-1QR" firstAttribute="top" secondItem="0eX-Ly-nmb" secondAttribute="top" id="bfy-WV-nJH"/>
+                                                        <constraint firstItem="n2L-iX-IQv" firstAttribute="leading" secondItem="T6S-js-fXm" secondAttribute="leadingMargin" constant="23" id="skJ-UP-XSi"/>
+                                                        <constraint firstItem="n2L-iX-IQv" firstAttribute="top" secondItem="0eX-Ly-nmb" secondAttribute="bottom" constant="1" id="wZR-sn-VLJ"/>
+                                                    </constraints>
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" red="0.98039215690000003" green="0.98431372549999996" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <connections>
-                                                    <outlet property="messageAuthorName" destination="YMl-I8-1Kv" id="Ihp-K5-gk6"/>
-                                                    <outlet property="messageBody" destination="P6q-ir-cys" id="iMn-Jo-Prn"/>
+                                                    <outlet property="emojiIndicator" destination="Qb7-aL-1QR" id="cag-Dp-yN0"/>
+                                                    <outlet property="messageAuthorName" destination="n2L-iX-IQv" id="29B-Ia-cSU"/>
+                                                    <outlet property="messageBody" destination="0eX-Ly-nmb" id="TUL-pQ-EDX"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>

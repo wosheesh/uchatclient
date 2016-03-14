@@ -16,6 +16,16 @@ public final class Message: ManagedObject {
     @NSManaged public private(set) var createdAt: NSDate
     @NSManaged public private(set) var receivedAt: NSDate?
     @NSManaged public private(set) var channel: Channel
+    @NSManaged public private(set) var statusValue: Int
+    
+    public var status: Status {
+        get { return Status(rawValue: statusValue)! }
+        set { statusValue = newValue.rawValue }
+    }
+    
+    public enum Status: Int {
+        case Created = 1, Sent, Received, Lost
+    }
     
     public static func insertIntoContext(moc: NSManagedObjectContext, body: String, authorName: String, authorKey: String, createdAt: NSDate, receivedAt: NSDate?, channel: Channel) -> Message {
         let message: Message = moc.insertObject()
@@ -26,6 +36,7 @@ public final class Message: ManagedObject {
         message.channel = channel
         message.createdAt = createdAt
         message.receivedAt = receivedAt
+        message.status = .Created
         return message
     }
     
@@ -41,6 +52,7 @@ public final class Message: ManagedObject {
         
         return message
     }
+    
     
 }
 
@@ -84,8 +96,13 @@ extension Message {
 
         // send the message with completion block
         ParseClient.sharedInstance.push(jsonBody) { success, errorString in
-            if !success { simpleAlert(sender, message: errorString!) }
-            //TODO: recover from send failures (never seen them... but still)
+            if success {
+                self.status = .Sent
+            } else {
+                self.status = .Lost
+                simpleAlert(sender, message: errorString!)
+            }
+            //TODO: allow to resend .Lost messages
         }
     }
     

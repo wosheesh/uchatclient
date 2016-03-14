@@ -15,10 +15,11 @@
         <attribute name="createdAt" attributeType="Date" syncable="YES"/>
         <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="receivedAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="statusValue" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <relationship name="channel" maxCount="1" deletionRule="Nullify" destinationEntity="Channel" inverseName="messages" inverseEntity="Channel" syncable="YES"/>
     </entity>
     <elements>
         <element name="Channel" positionX="-63" positionY="-18" width="128" height="135"/>
-        <element name="Message" positionX="-54" positionY="-9" width="128" height="150"/>
+        <element name="Message" positionX="205" positionY="-33" width="128" height="163"/>
     </elements>
 </model>
