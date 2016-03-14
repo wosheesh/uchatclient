@@ -120,9 +120,9 @@ class ChatViewController: UIViewController, ManagedObjectContextSettable {
         let request = Message.sortedFetchRequest
         
         let channelPredicate = NSPredicate(format: "channel == %@", channel)
-        let receivedPredicate = NSPredicate(format: "receivedAt != nil")
-        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [channelPredicate, receivedPredicate])
-        request.predicate = compoundPredicate
+//        let receivedPredicate = NSPredicate(format: "receivedAt != nil")
+//        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [channelPredicate, receivedPredicate])
+        request.predicate = channelPredicate
         request.returnsObjectsAsFaults = false
         
         print("running fetch request on Message")

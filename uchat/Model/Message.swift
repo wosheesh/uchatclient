@@ -62,7 +62,7 @@ extension Message: ManagedObjectType {
     }
     
     public static var defaultSortDescriptors: [NSSortDescriptor] {
-        return [NSSortDescriptor(key: "receivedAt", ascending: true)]
+        return [NSSortDescriptor(key: "createdAt", ascending: true)]
     }
     
     public static func findOrFetchMessage(withId id: String, inContext moc: NSManagedObjectContext) -> Message? {
@@ -118,7 +118,6 @@ extension Message {
     }
     
     /// This is the main engine for parsing an incoming message into a Message object. The function checks for the validity of syntax, channel corectness and also interprets if the message was sent by the current user or other users. It will return nil if the incoming message was sent to a different channel to the currently subscribed or if we failed to create a new Message in context.
-    ///  - Returns: Message?
     static func createFromPushNotification(userInfo: [NSObject : AnyObject], inContext context: NSManagedObjectContext, currentChannel: Channel) throws {
         
         guard let aps = userInfo["aps"] as? NSDictionary else { throw MessageError.InvalidSyntax }
@@ -136,7 +135,10 @@ extension Message {
         // Check if this is a message we have sent. If not treat it as someone else's message and add it to context. If yes, update the existing message's receivedAt property.
         if let sentMessage = Message.findOrFetchMessage(withId: id, inContext: context) {
             print("🔂 Received a message sent by the current user. Updating receivedAt:")
-            context.performChanges { sentMessage.receivedAt = NSDate() }
+            context.performChanges {
+                sentMessage.receivedAt = NSDate()
+                sentMessage.status = .Received
+            }
             return
         }
         
